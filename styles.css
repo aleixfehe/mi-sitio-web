@@ -18,42 +18,90 @@ a { color: inherit; text-decoration: none; transition: 0.2s; }
 .container { width: min(var(--container), calc(100% - 2rem)); margin: 0 auto; }
 
 /* ==========================================================================
-   Header mejorado y Estilos del Logo
+   Header y Navegación (Corregido para Imagen)
    ========================================================================== */
 .site-header {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(255, 255, 255, 0.95); /* Un poco más opaco */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
-  height: 90px; /* Un poco más de altura para el logo */
-  display: flex; align-items: center;
-}
-.nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-
-/* Contenedor del logo y nombre de la empresa */
-.brand { 
-  display: flex; align-items: center; gap: 15px; /* Más espacio entre logo y texto */
-  font-weight: 800; font-size: 1.6rem; color: var(--primary); 
-  text-transform: uppercase; /* Para que 'MDEI' se vea potente */
+  /* Altura controlada para el header completo */
+  height: 90px;
+  display: flex;
+  align-items: center;
 }
 
-/* Estilos específicos para la imagen del logo */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Contenedor principal del logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espacio entre la imagen y el texto opcional */
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* --- ESTILO CLAVE PARA LA IMAGEN DEL LOGO --- */
 .brand-logo {
-  height: 50px; /* Altura controlada del logo en el header */
-  width: auto;  /* Mantiene la proporción */
-  display: block; /* Evita espacios extra en la base de la imagen */
+  /* Controlamos la altura de la imagen para que no deforme el header */
+  height: 80px; /* Ajusta este valor si quieres el logo más grande o pequeño */
+  width: auto;   /* Mantiene la proporción */
+  display: block;
 }
 
-.nav-links { display: flex; gap: 2rem; align-items: center; }
-.nav-links a:hover { color: var(--accent); }
-.btn-nav { background: var(--primary); color: white !important; padding: 0.7rem 1.4rem; border-radius: 6px; }
+/* Texto opcional al lado del logo */
+.brand-text {
+  color: var(--primary);
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
 
-/* ==========================================================================
-   Hero Sections
-   ========================================================================== */
-.hero-page { padding: 6rem 0 4rem; background: linear-gradient(to bottom, #fff, var(--bg)); }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.nav-links {
+  display: flex;
+  gap: 2.5rem; /* Espaciado profesional entre enlaces */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
 
+.nav-links a {
+  color: var(--muted);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* Estilo para el enlace de contacto tipo botón */
+.btn-nav {
+  background: var(--primary);
+  color: white !important;
+  padding: 0.7rem 1.4rem;
+  border-radius: 6px;
+}
+
+.menu-toggle {
+  display: none; /* Oculto por defecto, se muestra en móvil */
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 12px;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+}
 /* ==========================================================================
    Componentes
    ========================================================================== */
