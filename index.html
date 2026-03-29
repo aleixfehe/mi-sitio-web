@@ -1,264 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MDEI | Modernización y digitalización industrial</title>
-  <meta name="description" content="MDEI moderniza hornos industriales, autoclaves VPI y equipos térmicos con automatización, trazabilidad y conectividad." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDEI | Ingeniería y Modernización Industrial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a href="#inicio" class="brand" aria-label="MDEI inicio">
-        <span class="brand-mark">MDEI</span>
-        <span class="brand-text">Modernización y Digitalización de Equipos Industriales</span>
-      </a>
-
-      <button class="menu-toggle" aria-label="Abrir menú">☰</button>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#sectores">Sectores</a></li>
-          <li><a href="#metodo">Método</a></li>
-          <li><a href="#empresa">Empresa</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section id="inicio" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Ingeniería aplicada a procesos térmicos industriales</p>
-          <h1>Modernización técnica de hornos, autoclaves VPI y equipos industriales</h1>
-          <p class="lead">
-            En MDEI ayudamos a fabricantes y talleres industriales a actualizar maquinaria crítica sin sustituirla por completo.
-            Diseñamos soluciones de control, trazabilidad y conectividad para mejorar fiabilidad, mantenimiento y control del proceso.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto">Solicitar una reunión</a>
-            <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
-          </div>
-          <div class="hero-tags">
-            <span>PLC · HMI · SCADA</span>
-            <span>Retrofit industrial</span>
-            <span>Registro de ciclos</span>
-          </div>
+    <header class="site-header">
+        <div class="container nav">
+            <a href="index.html" class="brand">MDEI</a>
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="sectores.html">Sectores</a>
+                <a href="contacto.html" class="btn-nav">Contacto</a>
+            </nav>
         </div>
+    </header>
 
-        <aside class="hero-panel">
-          <div class="status-card">
-            <div class="status-head">
-              <span class="status-dot"></span>
-              <strong>Aplicaciones típicas</strong>
+    <main>
+        <section class="hero-page">
+            <div class="container grid-2">
+                <div>
+                    <span class="eyebrow">Expertos en Procesos Térmicos</span>
+                    <h1>Modernización técnica de equipos industriales.</h1>
+                    <p class="lead">Actualizamos hornos y autoclaves legacy con tecnología de control moderna, asegurando trazabilidad y eficiencia sin reemplazar la máquina completa.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="servicios.html" class="btn btn-primary">Nuestros Servicios</a>
+                        <a href="contacto.html" class="btn btn-secondary">Solicitar Consulta</a>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=800" alt="Ingeniería Industrial" style="width:100%; border-radius: 20px; box-shadow: var(--shadow);">
+                </div>
             </div>
-            <ul>
-              <li>Modernización de hornos industriales</li>
-              <li>Actualización de autoclaves VPI</li>
-              <li>Trazabilidad de procesos térmicos</li>
-              <li>Control y supervisión remota</li>
-            </ul>
-          </div>
-          <div class="info-card">
-            <small>Enfoque</small>
-            <strong>Soluciones robustas, mantenibles y orientadas a producción</strong>
-          </div>
-        </aside>
-      </div>
-    </section>
+        </section>
 
-    <section class="trust">
-      <div class="container trust-grid">
-        <article>
-          <strong>Modernización</strong>
-          <p>Actualización de equipos legacy con arquitectura de control moderna y mantenible.</p>
-        </article>
-        <article>
-          <strong>Trazabilidad</strong>
-          <p>Registro de variables, alarmas, recetas y ciclos para control y calidad.</p>
-        </article>
-        <article>
-          <strong>Continuidad</strong>
-          <p>Soluciones planteadas para reducir obsolescencia y prolongar la vida útil del activo.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="servicios" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Servicios</p>
-          <h2>Soluciones orientadas a fiabilidad, control y productividad</h2>
-          <p>
-            Intervenimos sobre maquinaria existente o nuevos desarrollos para implantar sistemas de automatización
-            coherentes con las necesidades reales de planta.
-          </p>
-        </div>
-
-        <div class="service-grid">
-          <article class="card">
-            <h3>Retrofit de hornos y autoclaves</h3>
-            <p>Sustitución de controles obsoletos, renovación de maniobra, seguridades, HMI y lógica de proceso.</p>
-          </article>
-          <article class="card">
-            <h3>Automatización y control</h3>
-            <p>Programación PLC, pantallas HMI, secuencias automáticas, recetas y mejora de operación del equipo.</p>
-          </article>
-          <article class="card">
-            <h3>Registro y trazabilidad</h3>
-            <p>Captura de temperatura, vacío, tiempos, incidencias y generación de históricos de proceso.</p>
-          </article>
-          <article class="card">
-            <h3>Integración y conectividad</h3>
-            <p>Conectividad industrial, acceso remoto, exportación de datos y base para supervisión avanzada.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="sectores" class="section section-soft">
-      <div class="container">
-        <div class="section-heading left">
-          <p class="eyebrow">Sectores</p>
-          <h2>Experiencia alineada con procesos eléctricos y térmicos</h2>
-        </div>
-
-        <div class="sector-grid">
-          <article class="sector-card">
-            <h3>Reparación de motores eléctricos</h3>
-            <p>Procesos de secado, impregnación y curado que requieren control estable y repetibilidad.</p>
-          </article>
-          <article class="sector-card">
-            <h3>Fabricación de motores</h3>
-            <p>Mejora de instalaciones existentes para aumentar control, estandarización y mantenimiento.</p>
-          </article>
-          <article class="sector-card">
-            <h3>Transformadores</h3>
-            <p>Aplicaciones con vacío, hornos y ciclos térmicos donde la trazabilidad aporta valor real.</p>
-          </article>
-          <article class="sector-card">
-            <h3>Industria con equipos legacy</h3>
-            <p>Empresas que necesitan modernizar sin reemplazar completamente activos críticos.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="metodo" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Método de trabajo</p>
-          <h2>Un enfoque claro desde el diagnóstico hasta la puesta en marcha</h2>
-        </div>
-
-        <div class="process-grid">
-          <article>
-            <span>01</span>
-            <h3>Análisis técnico</h3>
-            <p>Revisión del equipo, arquitectura existente, riesgos de obsolescencia y objetivos del cliente.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Diseño de solución</h3>
-            <p>Definición de hardware, software, seguridades, señalización y estructura de operación.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Implementación</h3>
-            <p>Programación, integración eléctrica, pruebas funcionales y puesta en marcha en planta.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Seguimiento</h3>
-            <p>Soporte técnico, mejoras evolutivas y preparación para futuras ampliaciones o digitalización.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="empresa" class="section section-dark-band">
-      <div class="container band-grid">
-        <div>
-          <p class="eyebrow">MDEI</p>
-          <h2>Ingeniería práctica para equipos que no pueden fallar</h2>
-          <p>
-            MDEI nace con una orientación clara: aportar soluciones técnicas serias a empresas que trabajan con equipos
-            industriales críticos y necesitan modernizarlos con criterio, continuidad y visión a largo plazo.
-          </p>
-        </div>
-        <div class="check-list">
-          <div>Especialización en procesos térmicos</div>
-          <div>Automatización industrial aplicada</div>
-          <div>Soluciones pensadas para mantenimiento real</div>
-          <div>Base preparada para digitalización futura</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="section">
-      <div class="container contact-grid">
-        <div>
-          <p class="eyebrow">Contacto</p>
-          <h2>Estudiamos tu equipo, instalación o necesidad de modernización</h2>
-          <p>
-            Esta versión de la web deja el bloque preparado para que después añadamos tu email real,
-            teléfono, dirección y formulario definitivo.
-          </p>
-          <div class="contact-data">
-            <div>
-              <small>Email</small>
-              <strong>contacto@mdei.es</strong>
+        <section class="section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Por qué elegir el Retrofit de MDEI</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Sostenibilidad</h3>
+                        <p>No descarte su maquinaria. Actualice el control y cumpla con las normativas actuales ahorrando costes de capital.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Trazabilidad Total</h3>
+                        <p>Implementamos sistemas de registro digital que capturan cada variable del ciclo térmico para auditorías de calidad.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Mantenibilidad</h3>
+                        <p>Sustituimos componentes propietarios u obsoletos por hardware comercial (Siemens, Schneider) fácil de reponer.</p>
+                    </div>
+                </div>
             </div>
-            <div>
-              <small>Ubicación</small>
-              <strong>Cataluña, España</strong>
-            </div>
-            <div>
-              <small>Actividad</small>
-              <strong>Proyectos industriales B2B</strong>
-            </div>
-          </div>
+        </section>
+    </main>
+
+    <footer class="section" style="background: var(--primary); color: white; padding: 3rem 0;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <p>© 2026 MDEI - Ingeniería Aplicada</p>
+            <nav class="nav-links">
+                <a href="contacto.html" style="color: white;">Aviso Legal</a>
+                <a href="contacto.html" style="color: white;">LinkedIn</a>
+            </nav>
         </div>
-
-        <form class="contact-form">
-          <label>
-            Nombre
-            <input type="text" placeholder="Tu nombre" />
-          </label>
-          <label>
-            Empresa
-            <input type="text" placeholder="Nombre de la empresa" />
-          </label>
-          <label>
-            Email
-            <input type="email" placeholder="correo@empresa.com" />
-          </label>
-          <label>
-            Mensaje
-            <textarea rows="5" placeholder="Cuéntanos brevemente qué equipo o proceso necesitas modernizar"></textarea>
-          </label>
-          <button type="button" class="btn btn-primary btn-block">Enviar consulta</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>
-        <strong>MDEI</strong>
-        <p>Modernización y Digitalización de Equipos Industriales</p>
-      </div>
-      <p>Web corporativa preliminar · preparada para evolución de marca y logo</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    </footer>
 </body>
 </html>
