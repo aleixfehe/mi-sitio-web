@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio | PulsoTech</title>
-  <meta name="description" content="PulsoTech desarrolla sistemas de fusión de sensórica clínica: biopotenciales, ópticos e inerciales combinados en datos fiables en tiempo real, con cumplimiento normativo IEC 60601 e ISO 13485.">
+  <meta name="description" content="PulsoTech diseña electrónica y sensórica para cirugía: fuerza de contacto, bioimpedancia tisular y posición del instrumento combinadas en una señal fiable en tiempo real, con cumplimiento IEC 60601 e ISO 13485.">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,9 +30,9 @@
     <section class="hero">
       <img src="img/circuito.jpg" alt="Placa de circuito con múltiples sensores y chips" class="hero-bg-image">
       <div class="container hero-content">
-        <span class="eyebrow">Fusión de Sensórica Clínica</span>
-        <h1>Integramos múltiples sensores en una sola fuente de verdad clínica.</h1>
-        <p class="lead">Desarrollamos sistemas de fusión sensorial —biopotenciales, inercial, óptica— que combinan señales dispares en datos clínicos fiables, en tiempo real.</p>
+        <span class="eyebrow">Electrónica y Sensórica Quirúrgica</span>
+        <h1>Convertimos las señales del quirófano en decisiones seguras, en tiempo real.</h1>
+        <p class="lead">Diseñamos electrónica y sensórica para instrumental y sistemas de cirugía asistida: fuerza de contacto, bioimpedancia tisular y posición del instrumento combinadas en una sola señal fiable para el cirujano.</p>
         <div class="hero-actions">
           <a href="servicios.html" class="btn btn-primary">Ver servicios</a>
           <a href="contacto.html" class="btn btn-secondary">Hablemos de tu proyecto</a>
@@ -44,7 +44,7 @@
       <div class="container stats-grid">
         <div class="stat reveal">
           <span class="stat-number" data-target="10" data-suffix="+">0</span>
-          <p>Años de experiencia en electromedicina</p>
+          <p>Años de experiencia en electrónica quirúrgica</p>
         </div>
         <div class="stat reveal">
           <span class="stat-number" data-target="100" data-suffix="%">0</span>
@@ -59,68 +59,68 @@
 
     <section class="section" style="background: var(--surface);">
       <div class="container">
-        <h2 class="section-title">Fusión en directo</h2>
-        <p class="section-sub">Así se ve el problema que resolvemos: una señal óptica (SpO2) se degrada con el movimiento, mientras el biopotencial (ECG) se mantiene estable. El algoritmo de fusión pondera cada fuente según su fiabilidad instantánea y entrega un trazado combinado limpio.</p>
+        <h2 class="section-title">Fusión de señal en quirófano</h2>
+        <p class="section-sub">Así se ve el problema que resolvemos: la activación del electrobisturí introduce interferencia electromagnética que satura el canal de bioimpedancia, mientras el sensor de fuerza sigue detectando con claridad la pulsatilidad de un vaso bajo el tejido. El algoritmo de fusión pondera cada fuente según su fiabilidad instantánea y mantiene estable la señal de contacto seguro.</p>
         <div class="wave-card reveal">
           <div class="wave-head">
-            <h3>Demostrador de fusión ECG · SpO2 · IMU</h3>
+            <h3>Demostrador de fusión: fuerza · bioimpedancia · vibración/EMI</h3>
             <span class="live">simulación en vivo</span>
           </div>
           <div class="wave-canvas-wrap">
             <canvas id="waveform"></canvas>
           </div>
           <div class="wave-legend">
-            <span><i style="background:#4ade80"></i>ECG (biopotencial)</span>
-            <span><i style="background:#2dd4bf"></i>SpO2 / PPG (óptico, crudo)</span>
-            <span><i style="background:#ffffff"></i>Señal fusionada</span>
-            <span><i style="background:#e07a5f"></i>IMU (movimiento)</span>
+            <span><i style="background:#4ade80"></i>Fuerza de contacto (pulsatilidad vascular)</span>
+            <span><i style="background:#2dd4bf"></i>Bioimpedancia tisular (cruda)</span>
+            <span><i style="background:#ffffff"></i>Señal fusionada (contacto seguro)</span>
+            <span><i style="background:#e07a5f"></i>Vibración / EMI del electrobisturí</span>
           </div>
           <div class="wave-readouts">
             <div>
-              <div class="ro-val" id="roBpm">--</div>
-              <div class="ro-lbl">Frecuencia cardíaca (bpm)</div>
+              <div class="ro-val" id="roForce">--</div>
+              <div class="ro-lbl">Fuerza de contacto (N)</div>
             </div>
             <div>
-              <div class="ro-val" id="roSpo2">--</div>
-              <div class="ro-lbl">SpO2 estimada</div>
+              <div class="ro-val" id="roImp">--</div>
+              <div class="ro-lbl">Impedancia estimada (fusión)</div>
             </div>
             <div>
-              <div class="ro-val" id="roMove">--</div>
-              <div class="ro-lbl">Índice de movimiento</div>
+              <div class="ro-val" id="roVib">--</div>
+              <div class="ro-lbl">Interferencia EMI / vibración</div>
             </div>
           </div>
         </div>
-        <p style="text-align:center; color: var(--muted); font-size: 0.85rem; margin-top: 1rem;">Datos generados por un motor de simulación con fines ilustrativos; no proceden de sensores ni pacientes reales.</p>
+        <p style="text-align:center; color: var(--muted); font-size: 0.85rem; margin-top: 1rem;">Datos generados por un motor de simulación con fines ilustrativos; no proceden de sensores, instrumental ni intervenciones reales.</p>
       </div>
     </section>
 
-    <section class="section" style="background: var(--surface);">
+    <section class="section">
       <div class="container">
         <h2 class="section-title">Áreas de desarrollo</h2>
         <div class="card-grid">
           <div class="card reveal">
-            <h3>Fusión multisensor</h3>
-            <p>Combinamos señales de distintas fuentes (ECG, SpO2, IMU, presión) en un único modelo de estado coherente mediante filtros de Kalman y técnicas de aprendizaje automático.</p>
+            <h3>Sensórica de instrumental quirúrgico</h3>
+            <p>Integramos sensores de fuerza y par, bioimpedancia tisular y óptica endoscópica en la punta del instrumento para dar al cirujano información que hoy no percibe.</p>
           </div>
           <div class="card reveal">
-            <h3>Hardware y sensórica</h3>
-            <p>Diseño de PCB, acondicionamiento de señal y circuitos de bajo ruido para captar datos limpios desde el propio sensor.</p>
+            <h3>Electrónica de electrocirugía</h3>
+            <p>Diseñamos el acondicionamiento de señal y los circuitos de bajo ruido que permiten que la sensórica conviva con un generador de electrobisturí sin perder precisión.</p>
           </div>
           <div class="card reveal">
             <h3>Firmware &amp; software embebido</h3>
-            <p>Sincronización temporal, adquisición en tiempo real y firmware trazable con los requisitos de fiabilidad del entorno clínico.</p>
+            <p>Control determinista de baja latencia, esterilizable y robusto frente a interferencia electromagnética, con los requisitos de fiabilidad del quirófano.</p>
           </div>
           <div class="card reveal">
             <h3>Cumplimiento normativo</h3>
-            <p>Documentación técnica alineada con IEC 60601 e ISO 13485 para acompañar el proceso de certificación.</p>
+            <p>Documentación técnica alineada con IEC 60601 —incluida la parte particular de equipos de electrocirugía— e IEC 62304 para software médico.</p>
           </div>
           <div class="card reveal">
-            <h3>Validación clínica</h3>
-            <p>Diseño de protocolos de prueba y análisis estadístico para demostrar precisión y robustez frente a artefactos de señal.</p>
+            <h3>Validación en banco y modelo preclínico</h3>
+            <p>Protocolos de prueba en banco y en modelo animal o cadavérico para demostrar precisión frente a variabilidad tisular e interferencia del generador.</p>
           </div>
           <div class="card reveal">
-            <h3>Integración de datos</h3>
-            <p>Conectamos la capa de sensórica con historiales clínicos y plataformas de monitorización remota.</p>
+            <h3>Integración con navegación y robótica</h3>
+            <p>Conectamos la sensórica de instrumento con sistemas de navegación quirúrgica y plataformas de cirugía robótica asistida.</p>
           </div>
         </div>
       </div>
@@ -129,27 +129,27 @@
     <section class="section">
       <div class="container">
         <h2 class="section-title">Sectores de aplicación</h2>
-        <p class="section-sub">La fusión de sensórica cobra más valor cuanto más ruidoso es el entorno de medida. Estos son los contextos donde solemos trabajar.</p>
+        <p class="section-sub">La fusión de sensórica cobra más valor cuanto más exigente es el entorno eléctrico y mecánico del quirófano. Estos son los contextos donde solemos trabajar.</p>
         <div class="use-grid">
           <div class="use-card reveal">
             <span class="use-idx">01</span>
-            <h3>Wearables médicos</h3>
-            <p>Dispositivos portátiles que combinan óptica e inercial para mantener la precisión durante el movimiento del paciente.</p>
+            <h3>Cirugía robótica asistida</h3>
+            <p>Sensores de fuerza y posición que devuelven al cirujano el feedback háptico que el brazo robótico no transmite por sí solo.</p>
           </div>
           <div class="use-card reveal">
             <span class="use-idx">02</span>
-            <h3>Monitorización hospitalaria</h3>
-            <p>Cabeceras de cama y UCI con múltiples biopotenciales sincronizados en una sola línea temporal fiable.</p>
+            <h3>Electrocirugía / electrobisturí</h3>
+            <p>Sensórica capaz de distinguir señal útil de la interferencia electromagnética que genera el propio equipo de corte y coagulación.</p>
           </div>
           <div class="use-card reveal">
             <span class="use-idx">03</span>
-            <h3>Telemedicina</h3>
-            <p>Captura remota de constantes con detección de artefactos para no confundir ruido de señal con eventos clínicos.</p>
+            <h3>Cirugía mínimamente invasiva</h3>
+            <p>Miniaturización de sensórica para instrumental laparoscópico, donde el espacio y la esterilización condicionan cada decisión de diseño.</p>
           </div>
           <div class="use-card reveal">
             <span class="use-idx">04</span>
-            <h3>Rehabilitación y biomecánica</h3>
-            <p>Fusión inercial y muscular para cuantificar el movimiento y la actividad durante la terapia.</p>
+            <h3>Navegación intraoperatoria</h3>
+            <p>Fusión de posición, fuerza e imagen para guiar al cirujano en tiempo real durante el procedimiento.</p>
           </div>
         </div>
       </div>
@@ -161,15 +161,15 @@
         <div class="card-grid">
           <div class="card reveal">
             <h3>1. Descubrimiento</h3>
-            <p>Analizamos el caso de uso clínico, las señales implicadas y los requisitos de precisión y latencia.</p>
+            <p>Analizamos el gesto quirúrgico, los sensores implicados y los requisitos de precisión y latencia del procedimiento.</p>
           </div>
           <div class="card reveal">
             <h3>2. Arquitectura sensorial</h3>
-            <p>Definimos qué sensores combinar y el algoritmo de fusión más adecuado para el contexto de uso.</p>
+            <p>Definimos qué sensores integrar en el instrumento y el algoritmo de fusión más adecuado para el entorno eléctrico del quirófano.</p>
           </div>
           <div class="card reveal">
-            <h3>3. Prototipado</h3>
-            <p>Construimos un prototipo funcional para validar la fusión de señales en condiciones reales.</p>
+            <h3>3. Prototipado y validación</h3>
+            <p>Construimos un prototipo funcional y lo validamos en banco y, cuando el proyecto lo requiere, en modelo animal o cadavérico.</p>
           </div>
           <div class="card reveal">
             <h3>4. Certificación</h3>
@@ -184,27 +184,27 @@
         <h2 class="section-title">Preguntas frecuentes</h2>
         <div class="accordion">
           <div class="accordion-item">
-            <button class="accordion-trigger">¿Qué es la fusión de sensórica?<span class="plus">+</span></button>
+            <button class="accordion-trigger">¿Qué es la sensórica quirúrgica?<span class="plus">+</span></button>
             <div class="accordion-panel">
-              <p>Es la combinación de datos de varios sensores para obtener una medida más precisa y fiable que la que daría cada sensor por separado, especialmente cuando alguna fuente se degrada por ruido o movimiento.</p>
+              <p>Es la instrumentación electrónica que da al cirujano información que no puede percibir directamente: fuerza de contacto, tipo de tejido o proximidad a un vaso, combinada en una sola señal fiable.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger">¿Con qué sensores trabajáis?<span class="plus">+</span></button>
             <div class="accordion-panel">
-              <p>Biopotenciales (ECG, EMG), ópticos (SpO2, PPG), inerciales (IMU) y de presión, entre otros, según el proyecto.</p>
+              <p>Fuerza y par, bioimpedancia tisular, óptica endoscópica e IMU de posición del instrumento, entre otros, según el proyecto.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger">¿Ayudáis con la certificación?<span class="plus">+</span></button>
             <div class="accordion-panel">
-              <p>Sí, preparamos la documentación técnica alineada con IEC 60601, ISO 13485 e ISO 14971 para facilitar el proceso con el organismo notificado.</p>
+              <p>Sí, preparamos la documentación técnica alineada con IEC 60601 —incluida la parte particular de electrocirugía—, ISO 13485 e IEC 62304 para software médico.</p>
             </div>
           </div>
           <div class="accordion-item">
             <button class="accordion-trigger">¿Trabajáis con prototipos o solo con producto final?<span class="plus">+</span></button>
             <div class="accordion-panel">
-              <p>Ambos. Podemos acompañar desde la prueba de concepto inicial hasta el expediente técnico completo, o intervenir solo en una fase concreta.</p>
+              <p>Ambos. Podemos acompañar desde la prueba de concepto sobre banco hasta el expediente técnico completo, o intervenir solo en una fase concreta.</p>
             </div>
           </div>
         </div>
@@ -214,8 +214,8 @@
     <section class="section">
       <div class="container">
         <div class="cta-banner reveal">
-          <h2>¿Tienes un caso de uso clínico con múltiples señales?</h2>
-          <p>Cuéntanos qué sensores manejas y qué precisión necesitas. Te respondemos en menos de 48 horas.</p>
+          <h2>¿Tienes un caso de uso quirúrgico con múltiples señales?</h2>
+          <p>Cuéntanos qué sensores manejas y qué precisión necesitas en quirófano. Te respondemos en menos de 48 horas.</p>
           <div class="hero-actions">
             <a href="contacto.html" class="btn btn-primary">Hablemos de tu proyecto</a>
             <a href="servicios.html" class="btn btn-secondary">Ver servicios</a>
@@ -230,9 +230,10 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="brand">PulsoTech</a>
-          <p>Fusión de sensórica clínica: biopotenciales, ópticos e inerciales combinados en una sola fuente de verdad, con trazabilidad normativa de principio a fin.</p>
+          <p>Electrónica y sensórica para cirugía: fuerza de contacto, bioimpedancia tisular y posición del instrumento combinadas en una señal fiable, con trazabilidad normativa de principio a fin.</p>
           <div class="badge-row on-light" style="margin-top:1.25rem">
             <span class="badge">IEC 60601</span>
+            <span class="badge">IEC 62304</span>
             <span class="badge">ISO 13485</span>
             <span class="badge">ISO 14971</span>
           </div>
