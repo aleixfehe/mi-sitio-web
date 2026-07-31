@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios | PulsoTech</title>
-  <meta name="description" content="Servicios de PulsoTech: fusión multisensor, hardware y firmware clínico, cumplimiento normativo IEC 60601/ISO 13485, validación clínica e integración de datos.">
+  <meta name="description" content="Servicios de PulsoTech: sensórica de instrumental quirúrgico, electrónica de electrocirugía, firmware en tiempo real, cumplimiento IEC 60601/ISO 13485 y validación preclínica.">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,8 +30,8 @@
     <section class="page-header">
       <div class="container">
         <span class="eyebrow">Servicios</span>
-        <h1>Del sensor al expediente técnico, sin perder la señal por el camino.</h1>
-        <p class="lead">Trabajamos cada capa del sistema —electrónica, algoritmo de fusión, firmware y documentación normativa— para que el dato clínico que llega al profesional sanitario sea preciso y defendible.</p>
+        <h1>Del sensor en la punta del instrumento al expediente técnico, sin perder la señal por el camino.</h1>
+        <p class="lead">Trabajamos cada capa del sistema —electrónica, algoritmo de fusión, firmware en tiempo real y documentación normativa— para que la información que llega al cirujano sea precisa y defendible, incluso con el electrobisturí activado.</p>
       </div>
     </section>
 
@@ -41,63 +41,63 @@
         <p class="section-sub">Seis frentes de trabajo que casi siempre avanzan a la vez, porque una decisión de hardware condiciona el algoritmo de fusión y una decisión normativa condiciona ambos.</p>
         <div class="card-grid">
           <div class="card reveal">
-            <h3>Fusión multisensor</h3>
-            <p>Combinamos señales de distintas fuentes en un único modelo de estado coherente.</p>
+            <h3>Sensórica de instrumental quirúrgico</h3>
+            <p>Integramos sensores en la punta y el cuerpo del instrumento para captar lo que el cirujano no puede percibir a simple vista.</p>
             <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
-              <li>Filtros de Kalman y Kalman extendido</li>
-              <li>Ponderación dinámica por fiabilidad de fuente</li>
-              <li>Detección y rechazo de artefactos de movimiento</li>
-              <li>Modelos de aprendizaje automático para fusión adaptativa</li>
+              <li>Sensores de fuerza y par</li>
+              <li>Bioimpedancia tisular</li>
+              <li>Óptica endoscópica</li>
+              <li>IMU de posición y orientación</li>
             </ul>
           </div>
           <div class="card reveal">
-            <h3>Hardware y sensórica</h3>
-            <p>Diseño de PCB y acondicionamiento de señal para captar datos limpios desde el origen.</p>
+            <h3>Electrónica de electrocirugía</h3>
+            <p>Diseño de circuitos de bajo ruido que conviven con un generador de electrobisturí sin perder precisión.</p>
             <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
-              <li>Diseño de circuitos de bajo ruido</li>
-              <li>Selección e integración de sensores biopotenciales, ópticos e inerciales</li>
+              <li>Acondicionamiento de señal de bajo ruido</li>
+              <li>Apantallamiento e inmunidad electromagnética (EMI/EMC)</li>
               <li>Aislamiento eléctrico y seguridad del paciente</li>
               <li>Prototipado de PCB y validación de banco</li>
             </ul>
           </div>
           <div class="card reveal">
             <h3>Firmware &amp; software embebido</h3>
-            <p>Adquisición en tiempo real y sincronización temporal entre sensores.</p>
+            <p>Control determinista de baja latencia para instrumental esterilizable.</p>
             <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <li>Adquisición en tiempo real de múltiples sensores</li>
               <li>Sincronización temporal multisensor</li>
-              <li>Firmware trazable y versionado</li>
-              <li>Gestión de energía para dispositivos portátiles</li>
-              <li>Comunicación segura con la capa de software</li>
+              <li>Firmware trazable y versionado (IEC 62304)</li>
+              <li>Gestión de energía para instrumental portátil</li>
             </ul>
           </div>
           <div class="card reveal">
             <h3>Cumplimiento normativo</h3>
-            <p>Documentación técnica alineada con los estándares del sector médico.</p>
+            <p>Documentación técnica alineada con los estándares del entorno quirúrgico.</p>
             <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
-              <li>Expediente técnico IEC 60601</li>
+              <li>Expediente técnico IEC 60601, incluida la parte particular de electrocirugía</li>
               <li>Sistema de gestión de calidad ISO 13485</li>
+              <li>Ciclo de vida de software IEC 62304</li>
               <li>Gestión de riesgos ISO 14971</li>
-              <li>Acompañamiento ante el organismo notificado</li>
             </ul>
           </div>
           <div class="card reveal">
-            <h3>Validación clínica</h3>
-            <p>Protocolos de prueba y análisis estadístico frente a artefactos de señal.</p>
+            <h3>Validación en banco y modelo preclínico</h3>
+            <p>Protocolos de prueba frente a variabilidad tisular e interferencia del generador.</p>
             <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
               <li>Diseño de protocolo de validación</li>
-              <li>Análisis estadístico de precisión y robustez</li>
-              <li>Pruebas frente a movimiento y ruido eléctrico</li>
+              <li>Ensayos en banco con tejido simulado</li>
+              <li>Validación en modelo animal o cadavérico</li>
               <li>Informe de validación para el expediente técnico</li>
             </ul>
           </div>
           <div class="card reveal">
-            <h3>Integración de datos</h3>
-            <p>Conectamos la capa de sensórica con historiales clínicos y monitorización remota.</p>
+            <h3>Integración con navegación y robótica</h3>
+            <p>Conectamos la sensórica de instrumento con sistemas de navegación y plataformas de cirugía robótica asistida.</p>
             <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
-              <li>Interfaces con historia clínica electrónica</li>
-              <li>Plataformas de monitorización remota</li>
-              <li>Exportación de datos en formatos estándar</li>
-              <li>Alertas clínicas configurables</li>
+              <li>Interfaces con brazos robóticos quirúrgicos</li>
+              <li>Feedback háptico de fuerza</li>
+              <li>Sistemas de navegación intraoperatoria</li>
+              <li>Alertas de proximidad y seguridad configurables</li>
             </ul>
           </div>
         </div>
@@ -111,15 +111,15 @@
         <div class="card-grid">
           <div class="card reveal">
             <h3>1. Descubrimiento</h3>
-            <p>Analizamos el caso de uso clínico, las señales implicadas y los requisitos de precisión y latencia. Salimos con un documento de alcance compartido.</p>
+            <p>Analizamos el gesto quirúrgico, las señales implicadas y los requisitos de precisión y latencia. Salimos con un documento de alcance compartido.</p>
           </div>
           <div class="card reveal">
             <h3>2. Arquitectura sensorial</h3>
-            <p>Definimos qué sensores combinar y el algoritmo de fusión más adecuado para el contexto de uso, junto con el plan de cumplimiento normativo.</p>
+            <p>Definimos qué sensores integrar en el instrumento y el algoritmo de fusión más adecuado, junto con el plan de cumplimiento normativo.</p>
           </div>
           <div class="card reveal">
             <h3>3. Prototipado y validación</h3>
-            <p>Construimos un prototipo funcional, lo probamos frente a condiciones reales de ruido y movimiento, y ajustamos el modelo de fusión.</p>
+            <p>Construimos un prototipo funcional, lo probamos frente a interferencia del generador y variabilidad tisular, y ajustamos el modelo de fusión.</p>
           </div>
           <div class="card reveal">
             <h3>4. Certificación</h3>
@@ -132,14 +132,14 @@
     <section class="section">
       <div class="container">
         <h2 class="section-title">Modalidades de colaboración</h2>
-        <p class="section-sub">Nos adaptamos a la fase en la que esté tu proyecto, desde una duda puntual hasta convertirnos en tu capacidad de ingeniería a largo plazo.</p>
+        <p class="section-sub">Nos adaptamos a la fase en la que esté tu instrumental, desde una duda puntual hasta convertirnos en tu capacidad de ingeniería a largo plazo.</p>
         <div class="tier-grid">
           <div class="tier-card reveal">
             <h3>Consultoría puntual</h3>
-            <p class="tier-for">Para equipos con un dispositivo en marcha y un problema concreto de señal.</p>
+            <p class="tier-for">Para equipos con instrumental en marcha y un problema concreto de señal o interferencia.</p>
             <ul>
-              <li>Diagnóstico de la arquitectura sensorial actual</li>
-              <li>Informe de causas de ruido y artefactos</li>
+              <li>Diagnóstico de la sensórica y la electrónica actual</li>
+              <li>Informe de causas de ruido o interferencia electromagnética</li>
               <li>Recomendación de algoritmo de fusión</li>
               <li>Sesión de revisión con el equipo técnico</li>
             </ul>
@@ -147,24 +147,24 @@
           </div>
           <div class="tier-card featured reveal">
             <h3>Desarrollo de producto</h3>
-            <p class="tier-for">Para equipos que parten de una idea o prototipo y necesitan llegar a certificación.</p>
+            <p class="tier-for">Para equipos que parten de una idea o prototipo de instrumental y necesitan llegar a certificación.</p>
             <ul>
-              <li>Arquitectura de fusión a medida</li>
+              <li>Arquitectura de sensórica a medida</li>
               <li>Diseño de hardware y firmware</li>
-              <li>Protocolo de validación clínica</li>
-              <li>Documentación IEC 60601 / ISO 13485</li>
+              <li>Protocolo de validación en banco y preclínico</li>
+              <li>Documentación IEC 60601 / ISO 13485 / IEC 62304</li>
               <li>Acompañamiento hasta certificación</li>
             </ul>
             <a href="contacto.html" class="btn btn-primary on-light">Hablar de mi proyecto</a>
           </div>
           <div class="tier-card reveal">
             <h3>Partner a largo plazo</h3>
-            <p class="tier-for">Para empresas con línea de producto activa que necesitan capacidad de ingeniería continua.</p>
+            <p class="tier-for">Para empresas con instrumental sensorizado en el mercado que necesitan capacidad de ingeniería continua.</p>
             <ul>
-              <li>Roadmap de mejora de precisión</li>
+              <li>Roadmap de nuevas generaciones de instrumento</li>
               <li>Mantenimiento ante cambios normativos</li>
               <li>Soporte en auditorías de calidad</li>
-              <li>Evolución de firmware y algoritmos</li>
+              <li>Evolución de firmware y algoritmos de fusión</li>
             </ul>
             <a href="contacto.html" class="btn btn-secondary on-light">Explorar colaboración</a>
           </div>
@@ -175,7 +175,7 @@
     <section class="section" style="background: var(--surface);">
       <div class="container">
         <div class="cta-banner reveal">
-          <h2>¿En qué fase está tu proyecto?</h2>
+          <h2>¿En qué fase está tu instrumental?</h2>
           <p>Cuéntanos qué sensores manejas, qué precisión necesitas y en qué punto normativo estás. Te respondemos en menos de 48 horas.</p>
           <div class="hero-actions">
             <a href="contacto.html" class="btn btn-primary">Hablemos de tu proyecto</a>
@@ -190,9 +190,10 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="brand">PulsoTech</a>
-          <p>Fusión de sensórica clínica: biopotenciales, ópticos e inerciales combinados en una sola fuente de verdad, con trazabilidad normativa de principio a fin.</p>
+          <p>Electrónica y sensórica para cirugía: fuerza de contacto, bioimpedancia tisular y posición del instrumento combinadas en una señal fiable, con trazabilidad normativa de principio a fin.</p>
           <div class="badge-row on-light" style="margin-top:1.25rem">
             <span class="badge">IEC 60601</span>
+            <span class="badge">IEC 62304</span>
             <span class="badge">ISO 13485</span>
             <span class="badge">ISO 14971</span>
           </div>
