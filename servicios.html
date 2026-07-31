@@ -1,96 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios | MDEI</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios | Mi Sitio Web</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="site-header">
-  <div class="container nav">
-    
-    <div class="brand">
-      <img src="logo_mdei.png" alt="Logo MDEI" class="brand-logo">
-      <span class="brand-text">MDEI</span>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html"><strong>Mi Sitio Web</strong></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="sobre.html">Sobre mí</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <nav class="nav-links">
-      <a href="index.html">Inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="sectores.html">Sectores</a>
-      <a href="contacto.html" class="btn-nav">Contacto</a>
-    </nav>
+  <main>
+    <div class="container">
+      <h1>Servicios</h1>
+      <p>Escribe aquí la lista de servicios que ofreces.</p>
+    </div>
+  </main>
 
-    <button class="menu-toggle" aria-label="Abrir menú">☰</button>
-  </div>
-</header>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Mi Sitio Web</p>
+    </div>
+  </footer>
 
-    <section class="hero-page">
-        <div class="container">
-            <span class="eyebrow">Soluciones de Ingeniería</span>
-            <h1>Servicios de Automatización y Control</h1>
-            <p class="lead">Desde el diagnóstico inicial hasta la puesta en marcha de sistemas SCADA avanzados.</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="grid-2">
-                <div>
-                    <h2>Retrofit de Hornos y Autoclaves</h2>
-                    <p>Especializados en maquinaria crítica donde el control de temperatura y vacío es vital. Sustituimos cuadros eléctricos antiguos por sistemas basados en PLC.</p>
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Antes</th>
-                                <th>Con MDEI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Relés y temporizadores</td>
-                                <td>Lógica de PLC Programable</td>
-                            </tr>
-                            <tr>
-                                <td>Papel o sin registro</td>
-                                <td>Base de datos SQL / Reportes PDF</td>
-                            </tr>
-                            <tr>
-                                <td>Operación manual</td>
-                                <td>Pantallas HMI Táctiles</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&w=800" alt="Tablero eléctrico" style="width:100%; border-radius: 12px;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="background: white;">
-        <div class="container card-grid">
-            <div class="card">
-                <h3>Programación PLC & HMI</h3>
-                <p>Desarrollo de software robusto para marcas líderes, con interfaces intuitivas para los operarios de planta.</p>
-            </div>
-            <div class="card">
-                <h3>Sistemas de Trazabilidad</h3>
-                <p>Cumplimiento de normativas sectoriales mediante el registro continuo de datos y alarmas.</p>
-            </div>
-            <div class="card">
-                <h3>Integración de Datos</h3>
-                <p>Conectamos su máquina con el ERP de la empresa para una gestión de producción integrada.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="section" style="background: var(--primary); color: white; padding: 3rem 0;">
-        <div class="container" style="text-align: center;">
-            <p>© 2026 MDEI - Ingeniería Aplicada</p>
-        </div>
-    </footer>
+  <script src="js/script.js"></script>
 </body>
 </html>
