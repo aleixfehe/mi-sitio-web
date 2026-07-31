@@ -4,13 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio | PulsoTech</title>
+  <meta name="description" content="PulsoTech desarrolla sistemas de fusión de sensórica clínica: biopotenciales, ópticos e inerciales combinados en datos fiables en tiempo real, con cumplimiento normativo IEC 60601 e ISO 13485.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="brand">PulsoTech</a>
-      <nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="primaryNav">
         <ul class="nav-links">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="sobre.html">Nosotros</a></li>
@@ -54,6 +59,43 @@
 
     <section class="section" style="background: var(--surface);">
       <div class="container">
+        <h2 class="section-title">Fusión en directo</h2>
+        <p class="section-sub">Así se ve el problema que resolvemos: una señal óptica (SpO2) se degrada con el movimiento, mientras el biopotencial (ECG) se mantiene estable. El algoritmo de fusión pondera cada fuente según su fiabilidad instantánea y entrega un trazado combinado limpio.</p>
+        <div class="wave-card reveal">
+          <div class="wave-head">
+            <h3>Demostrador de fusión ECG · SpO2 · IMU</h3>
+            <span class="live">simulación en vivo</span>
+          </div>
+          <div class="wave-canvas-wrap">
+            <canvas id="waveform"></canvas>
+          </div>
+          <div class="wave-legend">
+            <span><i style="background:#4ade80"></i>ECG (biopotencial)</span>
+            <span><i style="background:#2dd4bf"></i>SpO2 / PPG (óptico, crudo)</span>
+            <span><i style="background:#ffffff"></i>Señal fusionada</span>
+            <span><i style="background:#e07a5f"></i>IMU (movimiento)</span>
+          </div>
+          <div class="wave-readouts">
+            <div>
+              <div class="ro-val" id="roBpm">--</div>
+              <div class="ro-lbl">Frecuencia cardíaca (bpm)</div>
+            </div>
+            <div>
+              <div class="ro-val" id="roSpo2">--</div>
+              <div class="ro-lbl">SpO2 estimada</div>
+            </div>
+            <div>
+              <div class="ro-val" id="roMove">--</div>
+              <div class="ro-lbl">Índice de movimiento</div>
+            </div>
+          </div>
+        </div>
+        <p style="text-align:center; color: var(--muted); font-size: 0.85rem; margin-top: 1rem;">Datos generados por un motor de simulación con fines ilustrativos; no proceden de sensores ni pacientes reales.</p>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
         <h2 class="section-title">Áreas de desarrollo</h2>
         <div class="card-grid">
           <div class="card reveal">
@@ -86,6 +128,35 @@
 
     <section class="section">
       <div class="container">
+        <h2 class="section-title">Sectores de aplicación</h2>
+        <p class="section-sub">La fusión de sensórica cobra más valor cuanto más ruidoso es el entorno de medida. Estos son los contextos donde solemos trabajar.</p>
+        <div class="use-grid">
+          <div class="use-card reveal">
+            <span class="use-idx">01</span>
+            <h3>Wearables médicos</h3>
+            <p>Dispositivos portátiles que combinan óptica e inercial para mantener la precisión durante el movimiento del paciente.</p>
+          </div>
+          <div class="use-card reveal">
+            <span class="use-idx">02</span>
+            <h3>Monitorización hospitalaria</h3>
+            <p>Cabeceras de cama y UCI con múltiples biopotenciales sincronizados en una sola línea temporal fiable.</p>
+          </div>
+          <div class="use-card reveal">
+            <span class="use-idx">03</span>
+            <h3>Telemedicina</h3>
+            <p>Captura remota de constantes con detección de artefactos para no confundir ruido de señal con eventos clínicos.</p>
+          </div>
+          <div class="use-card reveal">
+            <span class="use-idx">04</span>
+            <h3>Rehabilitación y biomecánica</h3>
+            <p>Fusión inercial y muscular para cuantificar el movimiento y la actividad durante la terapia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
         <h2 class="section-title">Cómo trabajamos</h2>
         <div class="card-grid">
           <div class="card reveal">
@@ -108,21 +179,46 @@
       </div>
     </section>
 
-    <section class="section" style="background: var(--surface);">
+    <section class="section">
       <div class="container">
         <h2 class="section-title">Preguntas frecuentes</h2>
-        <div class="card-grid">
-          <div class="card reveal">
-            <h3>¿Qué es la fusión de sensórica?</h3>
-            <p>Es la combinación de datos de varios sensores para obtener una medida más precisa y fiable que la que daría cada sensor por separado.</p>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-trigger">¿Qué es la fusión de sensórica?<span class="plus">+</span></button>
+            <div class="accordion-panel">
+              <p>Es la combinación de datos de varios sensores para obtener una medida más precisa y fiable que la que daría cada sensor por separado, especialmente cuando alguna fuente se degrada por ruido o movimiento.</p>
+            </div>
           </div>
-          <div class="card reveal">
-            <h3>¿Con qué sensores trabajáis?</h3>
-            <p>Biopotenciales (ECG, EMG), ópticos (SpO2, PPG), inerciales (IMU) y de presión, entre otros, según el proyecto.</p>
+          <div class="accordion-item">
+            <button class="accordion-trigger">¿Con qué sensores trabajáis?<span class="plus">+</span></button>
+            <div class="accordion-panel">
+              <p>Biopotenciales (ECG, EMG), ópticos (SpO2, PPG), inerciales (IMU) y de presión, entre otros, según el proyecto.</p>
+            </div>
           </div>
-          <div class="card reveal">
-            <h3>¿Ayudáis con la certificación?</h3>
-            <p>Sí, preparamos la documentación técnica alineada con IEC 60601 e ISO 13485 para facilitar el proceso.</p>
+          <div class="accordion-item">
+            <button class="accordion-trigger">¿Ayudáis con la certificación?<span class="plus">+</span></button>
+            <div class="accordion-panel">
+              <p>Sí, preparamos la documentación técnica alineada con IEC 60601, ISO 13485 e ISO 14971 para facilitar el proceso con el organismo notificado.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">¿Trabajáis con prototipos o solo con producto final?<span class="plus">+</span></button>
+            <div class="accordion-panel">
+              <p>Ambos. Podemos acompañar desde la prueba de concepto inicial hasta el expediente técnico completo, o intervenir solo en una fase concreta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>¿Tienes un caso de uso clínico con múltiples señales?</h2>
+          <p>Cuéntanos qué sensores manejas y qué precisión necesitas. Te respondemos en menos de 48 horas.</p>
+          <div class="hero-actions">
+            <a href="contacto.html" class="btn btn-primary">Hablemos de tu proyecto</a>
+            <a href="servicios.html" class="btn btn-secondary">Ver servicios</a>
           </div>
         </div>
       </div>
@@ -131,7 +227,38 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 PulsoTech</p>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand">PulsoTech</a>
+          <p>Fusión de sensórica clínica: biopotenciales, ópticos e inerciales combinados en una sola fuente de verdad, con trazabilidad normativa de principio a fin.</p>
+          <div class="badge-row on-light" style="margin-top:1.25rem">
+            <span class="badge">IEC 60601</span>
+            <span class="badge">ISO 13485</span>
+            <span class="badge">ISO 14971</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:hola@pulsotech.es">hola@pulsotech.es</a></li>
+            <li><a href="tel:+34900000000">+34 900 000 000</a></li>
+            <li>Parque científico · España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PulsoTech</p>
+        <p>Sitio de demostración · cifras y datos de contacto ilustrativos</p>
+      </div>
     </div>
   </footer>
 
