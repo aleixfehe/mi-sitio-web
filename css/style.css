@@ -7,10 +7,10 @@
   --ink: #1c1c1a;
   --muted: #6b6b66;
   --line: #e5e4e0;
-  --hero-bg: #0a1418;
-  --accent: #2dd4bf;   /* teal, línea de monitor clínico */
-  --accent-glow: #4ade80; /* verde fósforo del ECG */
-  --accent-warm: #e07a5f; /* acento cálido para CTAs */
+  --hero-bg: #0d0d0c;
+  --accent: #171715;      /* negro de marca, para acentos sobre fondo claro */
+  --accent-glow: #ffffff; /* blanco, para acentos sobre fondo oscuro */
+  --danger: #b3392c;      /* rojo reservado solo para validación de formularios */
   --radius: 12px;
   --radius-sm: 8px;
   --shadow: 0 4px 16px -4px rgb(0 0 0 / 0.12);
@@ -59,10 +59,17 @@ img { max-width: 100%; display: block; }
 }
 
 .brand {
-  font-weight: 700;
-  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   text-decoration: none;
-  letter-spacing: -0.01em;
+}
+.brand-mark { width: 28px; height: 28px; flex: none; }
+.brand-word {
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
 }
 
 .nav-links {
@@ -132,7 +139,7 @@ img { max-width: 100%; display: block; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--hero-bg) 20%, rgba(10, 20, 24, 0.4) 70%);
+  background: linear-gradient(90deg, var(--hero-bg) 20%, rgba(0, 0, 0, 0.45) 70%);
 }
 
 .hero-content {
@@ -197,9 +204,9 @@ img { max-width: 100%; display: block; }
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn-primary { background: var(--accent-warm); color: #fff; }
+.btn-primary { background: #ffffff; color: var(--hero-bg); }
 .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.4); }
-.btn-primary.on-light { background: var(--ink); }
+.btn-primary.on-light { background: var(--ink); color: #ffffff; }
 .btn-secondary.on-light { color: var(--ink); border-color: var(--line); }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
@@ -465,10 +472,17 @@ main { min-height: 60vh; }
   font-family: var(--mono);
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--hero-bg));
+  background: linear-gradient(135deg, #3a3a38, var(--hero-bg));
 }
 .team-card h3 { font-size: 1rem; margin-bottom: 0.2rem; }
-.team-card .role { color: var(--accent-warm); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.6rem; }
+.team-card .role {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
 .team-card p { color: var(--muted); font-size: 0.9rem; }
 
 /* ==========================================================================
@@ -497,7 +511,7 @@ main { min-height: 60vh; }
   content: "Recomendado";
   position: absolute;
   top: -12px; left: 1.75rem;
-  background: var(--accent-warm);
+  background: var(--ink);
   color: #fff;
   font-size: 0.7rem;
   font-weight: 700;
@@ -589,7 +603,7 @@ main { min-height: 60vh; }
 .field { display: flex; flex-direction: column; gap: 0.4rem; }
 .field.full { grid-column: 1 / -1; }
 .field label { font-size: 0.85rem; font-weight: 600; }
-.field .req { color: var(--accent-warm); }
+.field .req { color: var(--danger); }
 .field input,
 .field select,
 .field textarea {
@@ -603,11 +617,11 @@ main { min-height: 60vh; }
 .field textarea { resize: vertical; min-height: 120px; }
 .field input:invalid:not(:placeholder-shown),
 .field textarea:invalid:not(:placeholder-shown) {
-  border-color: var(--accent-warm);
+  border-color: var(--danger);
 }
 .field-error {
   font-size: 0.78rem;
-  color: var(--accent-warm);
+  color: var(--danger);
   min-height: 1.1em;
 }
 .field-check {
@@ -623,8 +637,8 @@ main { min-height: 60vh; }
 .form-note { color: var(--muted); font-size: 0.85rem; }
 .form-success {
   display: none;
-  background: rgba(45, 212, 191, 0.12);
-  border: 1px solid var(--accent);
+  background: rgba(23, 23, 21, 0.05);
+  border: 1px solid var(--ink);
   border-radius: var(--radius-sm);
   padding: 1.1rem 1.25rem;
   margin-top: 1.25rem;
@@ -668,7 +682,7 @@ main { min-height: 60vh; }
   gap: 2rem;
   padding-bottom: 2rem;
 }
-.footer-col .brand { display: inline-block; margin-bottom: 0.75rem; }
+.footer-col .brand { margin-bottom: 0.75rem; }
 .footer-col p { max-width: 320px; font-size: 0.92rem; }
 .footer-col h4 {
   font-size: 0.78rem;
