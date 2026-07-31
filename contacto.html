@@ -4,13 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto | PulsoTech</title>
+  <meta name="description" content="Habla con PulsoTech sobre tu proyecto de fusión de sensórica clínica. Respondemos en menos de 48 horas.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="brand">PulsoTech</a>
-      <nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="primaryNav">
         <ul class="nav-links">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="sobre.html">Nosotros</a></li>
@@ -22,15 +27,142 @@
   </header>
 
   <main>
-    <div class="container section">
-      <h1>Contacto</h1>
-      <p>Escribe aquí tu información de contacto o un formulario.</p>
-    </div>
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Contacto</span>
+        <h1>Cuéntanos qué señales manejas y qué problema quieres resolver.</h1>
+        <p class="lead">Ya sea una duda puntual sobre un artefacto de señal o un dispositivo completo por certificar, respondemos en menos de 48 horas laborables.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <div class="form-card reveal">
+          <h2 style="margin-bottom:0.4rem;">Escríbenos</h2>
+          <p style="color:var(--muted); margin-bottom:1.75rem;">Rellena el formulario con el mayor detalle posible: cuantos más datos técnicos incluyas, más útil será nuestra primera respuesta.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="nombre">Nombre <span class="req">*</span></label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+                <span class="field-error" data-error-for="nombre"></span>
+              </div>
+              <div class="field">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization">
+                <span class="field-error" data-error-for="empresa"></span>
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" placeholder="tucorreo@empresa.com" autocomplete="email" required>
+                <span class="field-error" data-error-for="email"></span>
+              </div>
+              <div class="field">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" autocomplete="tel">
+                <span class="field-error" data-error-for="telefono"></span>
+              </div>
+              <div class="field full">
+                <label for="asunto">Asunto <span class="req">*</span></label>
+                <select id="asunto" name="asunto" required>
+                  <option value="" selected disabled>Selecciona una opción</option>
+                  <option value="consultoria">Consultoría puntual</option>
+                  <option value="desarrollo">Desarrollo de producto</option>
+                  <option value="normativa">Cumplimiento normativo</option>
+                  <option value="otro">Otro</option>
+                </select>
+                <span class="field-error" data-error-for="asunto"></span>
+              </div>
+              <div class="field full">
+                <label for="mensaje">Mensaje <span class="req">*</span></label>
+                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué sensores manejas, en qué fase está el proyecto y qué precisión necesitas…" required></textarea>
+                <span class="field-error" data-error-for="mensaje"></span>
+              </div>
+              <div class="honeypot" aria-hidden="true">
+                <label for="empresa_web">No rellenar</label>
+                <input type="text" id="empresa_web" name="empresa_web" tabindex="-1" autocomplete="off">
+              </div>
+              <div class="field full">
+                <label class="field-check">
+                  <input type="checkbox" id="consentimiento" name="consentimiento" required>
+                  <span>Acepto que PulsoTech use estos datos únicamente para responder a mi consulta.</span>
+                </label>
+                <span class="field-error" data-error-for="consentimiento"></span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary on-light">Enviar mensaje</button>
+              <span class="form-note">Sin spam. Solo hablamos de tu proyecto.</span>
+            </div>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <strong>Gracias, hemos recibido tu mensaje.</strong><br>
+            Te responderemos en menos de 48 horas laborables a la dirección que nos has indicado.
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card reveal">
+            <div class="k">Email</div>
+            <div class="v"><a href="mailto:hola@pulsotech.es">hola@pulsotech.es</a></div>
+          </div>
+          <div class="info-card reveal">
+            <div class="k">Teléfono</div>
+            <div class="v"><a href="tel:+34900000000">+34 900 000 000</a></div>
+          </div>
+          <div class="info-card reveal">
+            <div class="k">Ubicación</div>
+            <div class="v">Parque científico<small>España · trabajo híbrido con visitas al cliente</small></div>
+          </div>
+          <div class="info-card reveal">
+            <div class="k">Horario</div>
+            <div class="v">Lun–Vie, 9:00–18:00<small>Hora peninsular (CET)</small></div>
+          </div>
+          <div class="info-card reveal">
+            <div class="k">Tiempo de respuesta</div>
+            <div class="v">&lt; 48 horas<small>Días laborables</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 PulsoTech</p>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand">PulsoTech</a>
+          <p>Fusión de sensórica clínica: biopotenciales, ópticos e inerciales combinados en una sola fuente de verdad, con trazabilidad normativa de principio a fin.</p>
+          <div class="badge-row on-light" style="margin-top:1.25rem">
+            <span class="badge">IEC 60601</span>
+            <span class="badge">ISO 13485</span>
+            <span class="badge">ISO 14971</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:hola@pulsotech.es">hola@pulsotech.es</a></li>
+            <li><a href="tel:+34900000000">+34 900 000 000</a></li>
+            <li>Parque científico · España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PulsoTech</p>
+        <p>Sitio de demostración · el formulario no envía datos a ningún servidor</p>
+      </div>
     </div>
   </footer>
 
