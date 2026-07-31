@@ -4,13 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios | PulsoTech</title>
+  <meta name="description" content="Servicios de PulsoTech: fusión multisensor, hardware y firmware clínico, cumplimiento normativo IEC 60601/ISO 13485, validación clínica e integración de datos.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="brand">PulsoTech</a>
-      <nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="primaryNav">
         <ul class="nav-links">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="sobre.html">Nosotros</a></li>
@@ -22,15 +27,198 @@
   </header>
 
   <main>
-    <div class="container section">
-      <h1>Servicios</h1>
-      <p>Escribe aquí la lista de servicios de desarrollo de fusión de sensórica clínica que ofrecéis.</p>
-    </div>
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Servicios</span>
+        <h1>Del sensor al expediente técnico, sin perder la señal por el camino.</h1>
+        <p class="lead">Trabajamos cada capa del sistema —electrónica, algoritmo de fusión, firmware y documentación normativa— para que el dato clínico que llega al profesional sanitario sea preciso y defendible.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Qué hacemos</h2>
+        <p class="section-sub">Seis frentes de trabajo que casi siempre avanzan a la vez, porque una decisión de hardware condiciona el algoritmo de fusión y una decisión normativa condiciona ambos.</p>
+        <div class="card-grid">
+          <div class="card reveal">
+            <h3>Fusión multisensor</h3>
+            <p>Combinamos señales de distintas fuentes en un único modelo de estado coherente.</p>
+            <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <li>Filtros de Kalman y Kalman extendido</li>
+              <li>Ponderación dinámica por fiabilidad de fuente</li>
+              <li>Detección y rechazo de artefactos de movimiento</li>
+              <li>Modelos de aprendizaje automático para fusión adaptativa</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Hardware y sensórica</h3>
+            <p>Diseño de PCB y acondicionamiento de señal para captar datos limpios desde el origen.</p>
+            <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <li>Diseño de circuitos de bajo ruido</li>
+              <li>Selección e integración de sensores biopotenciales, ópticos e inerciales</li>
+              <li>Aislamiento eléctrico y seguridad del paciente</li>
+              <li>Prototipado de PCB y validación de banco</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Firmware &amp; software embebido</h3>
+            <p>Adquisición en tiempo real y sincronización temporal entre sensores.</p>
+            <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <li>Sincronización temporal multisensor</li>
+              <li>Firmware trazable y versionado</li>
+              <li>Gestión de energía para dispositivos portátiles</li>
+              <li>Comunicación segura con la capa de software</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Cumplimiento normativo</h3>
+            <p>Documentación técnica alineada con los estándares del sector médico.</p>
+            <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <li>Expediente técnico IEC 60601</li>
+              <li>Sistema de gestión de calidad ISO 13485</li>
+              <li>Gestión de riesgos ISO 14971</li>
+              <li>Acompañamiento ante el organismo notificado</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Validación clínica</h3>
+            <p>Protocolos de prueba y análisis estadístico frente a artefactos de señal.</p>
+            <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <li>Diseño de protocolo de validación</li>
+              <li>Análisis estadístico de precisión y robustez</li>
+              <li>Pruebas frente a movimiento y ruido eléctrico</li>
+              <li>Informe de validación para el expediente técnico</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Integración de datos</h3>
+            <p>Conectamos la capa de sensórica con historiales clínicos y monitorización remota.</p>
+            <ul style="margin-top:1rem; padding-left:1.1rem; color:var(--muted); font-size:0.92rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <li>Interfaces con historia clínica electrónica</li>
+              <li>Plataformas de monitorización remota</li>
+              <li>Exportación de datos en formatos estándar</li>
+              <li>Alertas clínicas configurables</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">Cómo trabajamos</h2>
+        <p class="section-sub">Cuatro fases, siempre con el organismo notificado en mente desde el primer día.</p>
+        <div class="card-grid">
+          <div class="card reveal">
+            <h3>1. Descubrimiento</h3>
+            <p>Analizamos el caso de uso clínico, las señales implicadas y los requisitos de precisión y latencia. Salimos con un documento de alcance compartido.</p>
+          </div>
+          <div class="card reveal">
+            <h3>2. Arquitectura sensorial</h3>
+            <p>Definimos qué sensores combinar y el algoritmo de fusión más adecuado para el contexto de uso, junto con el plan de cumplimiento normativo.</p>
+          </div>
+          <div class="card reveal">
+            <h3>3. Prototipado y validación</h3>
+            <p>Construimos un prototipo funcional, lo probamos frente a condiciones reales de ruido y movimiento, y ajustamos el modelo de fusión.</p>
+          </div>
+          <div class="card reveal">
+            <h3>4. Certificación</h3>
+            <p>Preparamos la documentación técnica y acompañamos el proceso hacia la certificación normativa junto al organismo notificado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Modalidades de colaboración</h2>
+        <p class="section-sub">Nos adaptamos a la fase en la que esté tu proyecto, desde una duda puntual hasta convertirnos en tu capacidad de ingeniería a largo plazo.</p>
+        <div class="tier-grid">
+          <div class="tier-card reveal">
+            <h3>Consultoría puntual</h3>
+            <p class="tier-for">Para equipos con un dispositivo en marcha y un problema concreto de señal.</p>
+            <ul>
+              <li>Diagnóstico de la arquitectura sensorial actual</li>
+              <li>Informe de causas de ruido y artefactos</li>
+              <li>Recomendación de algoritmo de fusión</li>
+              <li>Sesión de revisión con el equipo técnico</li>
+            </ul>
+            <a href="contacto.html" class="btn btn-secondary on-light">Consultar disponibilidad</a>
+          </div>
+          <div class="tier-card featured reveal">
+            <h3>Desarrollo de producto</h3>
+            <p class="tier-for">Para equipos que parten de una idea o prototipo y necesitan llegar a certificación.</p>
+            <ul>
+              <li>Arquitectura de fusión a medida</li>
+              <li>Diseño de hardware y firmware</li>
+              <li>Protocolo de validación clínica</li>
+              <li>Documentación IEC 60601 / ISO 13485</li>
+              <li>Acompañamiento hasta certificación</li>
+            </ul>
+            <a href="contacto.html" class="btn btn-primary on-light">Hablar de mi proyecto</a>
+          </div>
+          <div class="tier-card reveal">
+            <h3>Partner a largo plazo</h3>
+            <p class="tier-for">Para empresas con línea de producto activa que necesitan capacidad de ingeniería continua.</p>
+            <ul>
+              <li>Roadmap de mejora de precisión</li>
+              <li>Mantenimiento ante cambios normativos</li>
+              <li>Soporte en auditorías de calidad</li>
+              <li>Evolución de firmware y algoritmos</li>
+            </ul>
+            <a href="contacto.html" class="btn btn-secondary on-light">Explorar colaboración</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>¿En qué fase está tu proyecto?</h2>
+          <p>Cuéntanos qué sensores manejas, qué precisión necesitas y en qué punto normativo estás. Te respondemos en menos de 48 horas.</p>
+          <div class="hero-actions">
+            <a href="contacto.html" class="btn btn-primary">Hablemos de tu proyecto</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 PulsoTech</p>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand">PulsoTech</a>
+          <p>Fusión de sensórica clínica: biopotenciales, ópticos e inerciales combinados en una sola fuente de verdad, con trazabilidad normativa de principio a fin.</p>
+          <div class="badge-row on-light" style="margin-top:1.25rem">
+            <span class="badge">IEC 60601</span>
+            <span class="badge">ISO 13485</span>
+            <span class="badge">ISO 14971</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:hola@pulsotech.es">hola@pulsotech.es</a></li>
+            <li><a href="tel:+34900000000">+34 900 000 000</a></li>
+            <li>Parque científico · España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PulsoTech</p>
+        <p>Sitio de demostración · cifras y datos de contacto ilustrativos</p>
+      </div>
     </div>
   </footer>
 
