@@ -120,33 +120,35 @@ function initAccordion() {
   });
 }
 
-// Demostración de fusión de señal: ECG + PPG (SpO2) + IMU combinados en un
-// trazado "fusionado" más estable. Los valores son simulados con fines
-// ilustrativos, no proceden de sensores reales.
+// Demostración de fusión de señal quirúrgica: fuerza de contacto (biopotencial
+// mecánico transmitido por la pulsatilidad de un vaso), bioimpedancia tisular
+// e interferencia electromagnética / vibración del electrobisturí, combinadas
+// en un trazado "fusionado" de contacto seguro. Los valores son simulados con
+// fines ilustrativos, no proceden de sensores ni intervenciones reales.
 function initWaveform() {
   const canvas = document.getElementById('waveform');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const roBpm = document.getElementById('roBpm');
-  const roSpo2 = document.getElementById('roSpo2');
-  const roMove = document.getElementById('roMove');
+  const roForce = document.getElementById('roForce');
+  const roImp = document.getElementById('roImp');
+  const roVib = document.getElementById('roVib');
 
-  const COLOR_ECG = '#4ade80';
-  const COLOR_PPG = 'rgba(45, 212, 191, 0.55)';
+  const COLOR_FORCE = '#4ade80';
+  const COLOR_IMP = 'rgba(45, 212, 191, 0.55)';
   const COLOR_FUSED = '#ffffff';
-  const COLOR_IMU = '#e07a5f';
+  const COLOR_EMI = '#e07a5f';
 
   const N = 240;
-  const ecgBuf = new Array(N).fill(0);
-  const ppgBuf = new Array(N).fill(0.45);
-  const imuBuf = new Array(N).fill(0);
+  const forceBuf = new Array(N).fill(0);
+  const impBuf = new Array(N).fill(0.45);
+  const emiBuf = new Array(N).fill(0);
   const fusedBuf = new Array(N).fill(0.45);
 
   let W = 0, H = 0, laneH = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
-  let t = 0, burstUntil = -10, nextBurst = 3 + Math.random() * 3, bpm = 72;
-  let dispBpm = bpm, dispSpo2 = 98, dispMove = 4;
+  let t = 0, burstUntil = -10, nextBurst = 3 + Math.random() * 3, pulseRate = 72;
+  let dispForce = 1.6, dispImp = 380, dispVib = 4;
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
@@ -170,37 +172,45 @@ function initWaveform() {
       nextBurst = t + 4 + Math.random() * 4;
     }
     const inBurst = t < burstUntil;
-    const imuVal = inBurst
+    // Activación del electrobisturí: ráfagas de interferencia electromagnética
+    // y vibración acoplada al instrumento.
+    const emiVal = inBurst
       ? Math.sin(t * 26) * 0.8 + (Math.random() - 0.5) * 0.5
       : Math.sin(t * 1.3) * 0.06 + (Math.random() - 0.5) * 0.05;
 
-    const cycle = 60 / bpm;
+    // Pulsatilidad vascular transmitida al sensor de fuerza del instrumento.
+    const cycle = 60 / pulseRate;
     const phase = (t % cycle) / cycle;
-    let ecgVal = Math.exp(-Math.pow((phase - 0.18) * 22, 2)) * 0.16;
-    ecgVal += Math.exp(-Math.pow((phase - 0.32) * 90, 2)) * -0.28;
-    ecgVal += Math.exp(-Math.pow((phase - 0.34) * 140, 2)) * 1;
-    ecgVal += Math.exp(-Math.pow((phase - 0.36) * 90, 2)) * -0.32;
-    ecgVal += Math.exp(-Math.pow((phase - 0.55) * 14, 2)) * 0.2;
-    ecgVal += (Math.random() - 0.5) * 0.015;
+    let forceVal = Math.exp(-Math.pow((phase - 0.18) * 22, 2)) * 0.16;
+    forceVal += Math.exp(-Math.pow((phase - 0.32) * 90, 2)) * -0.28;
+    forceVal += Math.exp(-Math.pow((phase - 0.34) * 140, 2)) * 1;
+    forceVal += Math.exp(-Math.pow((phase - 0.36) * 90, 2)) * -0.32;
+    forceVal += Math.exp(-Math.pow((phase - 0.55) * 14, 2)) * 0.2;
+    forceVal += (Math.random() - 0.5) * 0.015;
 
-    const ppgClean = Math.sin(phase * 2 * Math.PI) * 0.32 + Math.sin(phase * 4 * Math.PI + 1) * 0.1 + 0.45;
-    const artifact = inBurst ? (Math.random() - 0.5) * 1.1 * Math.abs(imuVal) : 0;
-    const ppgVal = clamp(ppgClean + artifact, -0.1, 1.1);
+    // Bioimpedancia tisular: deriva lenta, corrompida por EMI cuando el
+    // electrobisturí está activo.
+    const impClean = Math.sin(phase * 2 * Math.PI) * 0.32 + Math.sin(phase * 4 * Math.PI + 1) * 0.1 + 0.45;
+    const artifact = inBurst ? (Math.random() - 0.5) * 1.1 * Math.abs(emiVal) : 0;
+    const impVal = clamp(impClean + artifact, -0.1, 1.1);
 
-    const trust = clamp(1 - Math.abs(imuVal) * 1.1, 0.12, 1);
-    const ecgEnvelope = clamp(ecgVal, -0.35, 1) * 0.35 + 0.45;
-    const fusedVal = trust * ppgClean + (1 - trust) * ecgEnvelope;
+    // Fusión: cuanto más EMI hay, menos se confía en la impedancia cruda y
+    // más peso gana la envolvente de fuerza (canal robusto frente a interferencia).
+    const trust = clamp(1 - Math.abs(emiVal) * 1.1, 0.12, 1);
+    const forceEnvelope = clamp(forceVal, -0.35, 1) * 0.35 + 0.45;
+    const fusedVal = trust * impClean + (1 - trust) * forceEnvelope;
 
-    push(ecgBuf, ecgVal);
-    push(ppgBuf, ppgVal);
-    push(imuBuf, imuVal);
+    push(forceBuf, forceVal);
+    push(impBuf, impVal);
+    push(emiBuf, emiVal);
     push(fusedBuf, fusedVal);
 
-    bpm += (72 + Math.sin(t * 0.15) * 6 - bpm) * 0.01;
-    const spo2Target = 98 - (inBurst ? Math.abs(imuVal) * 3 : 0);
-    dispBpm += (bpm - dispBpm) * 0.05;
-    dispSpo2 += (spo2Target - dispSpo2) * 0.08;
-    dispMove += (Math.abs(imuVal) * 100 - dispMove) * 0.12;
+    pulseRate += (72 + Math.sin(t * 0.15) * 6 - pulseRate) * 0.01;
+    const forceN = 1.6 + clamp(forceVal, -0.35, 1) * 1.3;
+    const impOhm = 380 + (fusedVal - 0.45) * 140;
+    dispForce += (forceN - dispForce) * 0.18;
+    dispImp += (impOhm - dispImp) * 0.08;
+    dispVib += (Math.abs(emiVal) * 100 - dispVib) * 0.12;
   }
 
   function drawLane(buf, lo, hi, top, color, width) {
@@ -230,18 +240,18 @@ function initWaveform() {
     }
     ctx.font = '10px SFMono-Regular, Consolas, monospace';
     ctx.fillStyle = 'rgba(255,255,255,0.4)';
-    ctx.fillText('ECG', 8, laneH * 0 + 14);
-    ctx.fillText('SpO2 (PPG) + fusión', 8, laneH * 1 + 14);
-    ctx.fillText('IMU / movimiento', 8, laneH * 2 + 14);
+    ctx.fillText('Fuerza (contacto)', 8, laneH * 0 + 14);
+    ctx.fillText('Bioimpedancia + fusión', 8, laneH * 1 + 14);
+    ctx.fillText('Vibración / EMI', 8, laneH * 2 + 14);
 
-    drawLane(ecgBuf, -0.35, 1.1, 0, COLOR_ECG, 1.5);
-    drawLane(ppgBuf, 0, 1, laneH, COLOR_PPG, 1.2);
+    drawLane(forceBuf, -0.35, 1.1, 0, COLOR_FORCE, 1.5);
+    drawLane(impBuf, 0, 1, laneH, COLOR_IMP, 1.2);
     drawLane(fusedBuf, 0, 1, laneH, COLOR_FUSED, 1.8);
-    drawLane(imuBuf, -1, 1, laneH * 2, COLOR_IMU, 1.2);
+    drawLane(emiBuf, -1, 1, laneH * 2, COLOR_EMI, 1.2);
 
-    if (roBpm) roBpm.textContent = Math.round(dispBpm);
-    if (roSpo2) roSpo2.textContent = dispSpo2.toFixed(1) + '%';
-    if (roMove) roMove.textContent = Math.round(clamp(dispMove, 0, 100));
+    if (roForce) roForce.textContent = dispForce.toFixed(1);
+    if (roImp) roImp.textContent = Math.round(clamp(dispImp, 0, 999)) + ' Ω';
+    if (roVib) roVib.textContent = Math.round(clamp(dispVib, 0, 100));
   }
 
   let rafId = null;
