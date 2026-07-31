@@ -135,10 +135,10 @@ function initWaveform() {
   const roImp = document.getElementById('roImp');
   const roVib = document.getElementById('roVib');
 
-  const COLOR_FORCE = '#4ade80';
-  const COLOR_IMP = 'rgba(45, 212, 191, 0.55)';
+  const COLOR_FORCE = '#f2f2f2';
+  const COLOR_IMP = '#5a5a5a';
   const COLOR_FUSED = '#ffffff';
-  const COLOR_EMI = '#e07a5f';
+  const COLOR_EMI = '#9a9a9a';
 
   const N = 240;
   const forceBuf = new Array(N).fill(0);
@@ -213,7 +213,7 @@ function initWaveform() {
     dispVib += (Math.abs(emiVal) * 100 - dispVib) * 0.12;
   }
 
-  function drawLane(buf, lo, hi, top, color, width) {
+  function drawLane(buf, lo, hi, top, color, width, dash) {
     ctx.beginPath();
     for (let i = 0; i < buf.length; i++) {
       const x = (i / (buf.length - 1)) * W;
@@ -225,7 +225,9 @@ function initWaveform() {
     ctx.lineWidth = width;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
+    if (dash) ctx.setLineDash(dash);
     ctx.stroke();
+    if (dash) ctx.setLineDash([]);
   }
 
   function draw() {
@@ -247,7 +249,7 @@ function initWaveform() {
     drawLane(forceBuf, -0.35, 1.1, 0, COLOR_FORCE, 1.5);
     drawLane(impBuf, 0, 1, laneH, COLOR_IMP, 1.2);
     drawLane(fusedBuf, 0, 1, laneH, COLOR_FUSED, 1.8);
-    drawLane(emiBuf, -1, 1, laneH * 2, COLOR_EMI, 1.2);
+    drawLane(emiBuf, -1, 1, laneH * 2, COLOR_EMI, 1.2, [3, 3]);
 
     if (roForce) roForce.textContent = dispForce.toFixed(1);
     if (roImp) roImp.textContent = Math.round(clamp(dispImp, 0, 999)) + ' Ω';
