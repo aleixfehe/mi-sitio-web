@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio | Mi Sitio Web</title>
+  <title>Inicio | PulsoTech</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a href="index.html"><strong>Mi Sitio Web</strong></a>
+      <a href="index.html" class="brand">PulsoTech</a>
       <nav>
         <ul class="nav-links">
           <li><a href="index.html">Inicio</a></li>
-          <li><a href="sobre.html">Sobre mí</a></li>
+          <li><a href="sobre.html">Nosotros</a></li>
           <li><a href="servicios.html">Servicios</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
@@ -22,15 +22,116 @@
   </header>
 
   <main>
-    <div class="container">
-      <h1>Título principal</h1>
-      <p>Escribe aquí el contenido de tu página de inicio.</p>
-    </div>
+    <section class="hero">
+      <img src="img/circuito.jpg" alt="Placa de circuito con múltiples sensores y chips" class="hero-bg-image">
+      <div class="container hero-content">
+        <span class="eyebrow">Fusión de Sensórica Clínica</span>
+        <h1>Integramos múltiples sensores en una sola fuente de verdad clínica.</h1>
+        <p class="lead">Desarrollamos sistemas de fusión sensorial —biopotenciales, inercial, óptica— que combinan señales dispares en datos clínicos fiables, en tiempo real.</p>
+        <div class="hero-actions">
+          <a href="servicios.html" class="btn btn-primary">Ver servicios</a>
+          <a href="contacto.html" class="btn btn-secondary">Hablemos de tu proyecto</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container stats-grid">
+        <div class="stat reveal">
+          <span class="stat-number" data-target="10" data-suffix="+">0</span>
+          <p>Años de experiencia en electromedicina</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-number" data-target="100" data-suffix="%">0</span>
+          <p>Trazabilidad documental del diseño</p>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-number" data-target="48" data-suffix="h">0</span>
+          <p>Tiempo de respuesta inicial</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">Áreas de desarrollo</h2>
+        <div class="card-grid">
+          <div class="card reveal">
+            <h3>Fusión multisensor</h3>
+            <p>Combinamos señales de distintas fuentes (ECG, SpO2, IMU, presión) en un único modelo de estado coherente mediante filtros de Kalman y técnicas de aprendizaje automático.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Hardware y sensórica</h3>
+            <p>Diseño de PCB, acondicionamiento de señal y circuitos de bajo ruido para captar datos limpios desde el propio sensor.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Firmware &amp; software embebido</h3>
+            <p>Sincronización temporal, adquisición en tiempo real y firmware trazable con los requisitos de fiabilidad del entorno clínico.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Cumplimiento normativo</h3>
+            <p>Documentación técnica alineada con IEC 60601 e ISO 13485 para acompañar el proceso de certificación.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Validación clínica</h3>
+            <p>Diseño de protocolos de prueba y análisis estadístico para demostrar precisión y robustez frente a artefactos de señal.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Integración de datos</h3>
+            <p>Conectamos la capa de sensórica con historiales clínicos y plataformas de monitorización remota.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Cómo trabajamos</h2>
+        <div class="card-grid">
+          <div class="card reveal">
+            <h3>1. Descubrimiento</h3>
+            <p>Analizamos el caso de uso clínico, las señales implicadas y los requisitos de precisión y latencia.</p>
+          </div>
+          <div class="card reveal">
+            <h3>2. Arquitectura sensorial</h3>
+            <p>Definimos qué sensores combinar y el algoritmo de fusión más adecuado para el contexto de uso.</p>
+          </div>
+          <div class="card reveal">
+            <h3>3. Prototipado</h3>
+            <p>Construimos un prototipo funcional para validar la fusión de señales en condiciones reales.</p>
+          </div>
+          <div class="card reveal">
+            <h3>4. Certificación</h3>
+            <p>Preparamos la documentación técnica y acompañamos el proceso hacia la certificación normativa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <div class="card-grid">
+          <div class="card reveal">
+            <h3>¿Qué es la fusión de sensórica?</h3>
+            <p>Es la combinación de datos de varios sensores para obtener una medida más precisa y fiable que la que daría cada sensor por separado.</p>
+          </div>
+          <div class="card reveal">
+            <h3>¿Con qué sensores trabajáis?</h3>
+            <p>Biopotenciales (ECG, EMG), ópticos (SpO2, PPG), inerciales (IMU) y de presión, entre otros, según el proyecto.</p>
+          </div>
+          <div class="card reveal">
+            <h3>¿Ayudáis con la certificación?</h3>
+            <p>Sí, preparamos la documentación técnica alineada con IEC 60601 e ISO 13485 para facilitar el proceso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 Mi Sitio Web</p>
+      <p>&copy; 2026 PulsoTech</p>
     </div>
   </footer>
 
