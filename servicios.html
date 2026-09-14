@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sensórica quirúrgica · technelatros</title>
-  <meta name="description" content="Proyectos de sensórica para instrumental quirúrgico: sensores de fuerza, bioimpedancia y posición, electrónica inmune al electrobisturí, firmware en tiempo real y documentación orientada a IEC 60601 e IEC 62304.">
+  <meta name="description" content="Proyectos de sensórica para instrumental quirúrgico: sensores integrados en el instrumento, electrónica que convive con el electrobisturí, validación y documentación orientada a certificación.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sensórica quirúrgica · technelatros">
   <meta property="og:description" content="Del sensor en la punta del instrumento a la documentación técnica, sin perder la señal por el camino.">
@@ -12,7 +12,7 @@
   <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
       <nav id="primaryNav" aria-label="Principal">
         <ul class="nav-links">
           <li><a href="servicios.html">Sensórica quirúrgica</a></li>
-          <li><a href="impresion-3d.html">Impresión 3D</a></li>
+          <li><a href="entornos-remotos.html">Entornos remotos</a></li>
           <li><a href="sobre.html">Nosotros</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
@@ -44,9 +44,9 @@
         <div class="hero-copy">
           <span class="eyebrow">Sensórica quirúrgica</span>
           <h1>Del sensor en la punta del instrumento a la documentación técnica.</h1>
-          <p class="lead">Trabajamos cada capa del sistema —electrónica, algoritmo de fusión, firmware en tiempo real, carcasa y documentación normativa— para que lo que llega al cirujano sea preciso y defendible, incluso con el electrobisturí activado.</p>
+          <p class="lead">Trabajamos cada capa del sistema —sensores, electrónica, software y documentación— para que lo que llega al cirujano sea preciso y defendible, incluso con el electrobisturí activado.</p>
           <div class="hero-actions">
-            <a href="contacto.html" class="btn btn-primary">Hablar de mi proyecto</a>
+            <a href="presupuesto.html" class="btn btn-primary">Pedir presupuesto</a>
             <a href="#modalidades" class="btn btn-ghost">Modalidades de trabajo</a>
           </div>
         </div>
@@ -60,46 +60,43 @@
             <span class="eyebrow">El problema</span>
             <h2>En quirófano, el ruido llega antes que la señal.</h2>
             <div class="prose">
-              <p>Un generador de electrocirugía puede inyectar varios voltios de interferencia justo en la banda donde vive la señal útil. La bioimpedancia se satura, la fuerza de contacto se vuelve ambigua y el sensor que funcionaba en el banco se queda ciego en el momento que importa.</p>
-              <p>Por eso no confiamos en un solo canal. Acondicionamos cada señal antes de digitalizarla y las combinamos con un algoritmo que <strong>pondera cada fuente según su fiabilidad instantánea</strong>: cuando una se degrada, las otras sostienen la lectura.</p>
+              <p>El propio equipo de electrocirugía genera una interferencia enorme justo cuando el cirujano más necesita información. El sensor que funcionaba en el banco se queda ciego en el momento que importa.</p>
+              <p>Por eso no confiamos en una sola medida. Limpiamos cada señal antes de procesarla y las combinamos de forma que, <strong>cuando una se degrada, las demás sostienen la lectura</strong>.</p>
             </div>
           </div>
           <figure class="figure reveal">
             <div class="diagram-scroll">
               <svg class="diagram is-wide" viewBox="0 0 860 250" role="img" aria-labelledby="fuTitle">
-                <title id="fuTitle">Cadena de señal: los sensores de fuerza, bioimpedancia y posición pasan por acondicionamiento, después por una fusión ponderada por confianza y producen una salida fiable. El ruido del electrobisturí entra en la etapa de acondicionamiento.</title>
+                <title id="fuTitle">Cadena de señal: los sensores pasan por una etapa de acondicionamiento, después por una fusión ponderada por confianza y producen una señal fiable para el cirujano. El ruido del electrobisturí entra en la etapa de acondicionamiento.</title>
                 <defs>
                   <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
                 </defs>
                 <rect class="d-box" x="20" y="62" width="175" height="106" rx="10"/>
                 <text x="107" y="106" text-anchor="middle" font-size="17" font-weight="600">Sensores</text>
-                <text class="d-muted" x="107" y="129" text-anchor="middle" font-size="12.5">fuerza · bioimpedancia</text>
-                <text class="d-muted" x="107" y="146" text-anchor="middle" font-size="12.5">posición</text>
+                <text class="d-muted" x="107" y="129" text-anchor="middle" font-size="12.5">en el instrumento</text>
 
                 <rect class="d-box" x="245" y="62" width="175" height="106" rx="10"/>
                 <text x="332" y="106" text-anchor="middle" font-size="17" font-weight="600">Acondicionamiento</text>
-                <text class="d-muted" x="332" y="129" text-anchor="middle" font-size="12.5">filtrado · aislamiento</text>
-                <text class="d-muted" x="332" y="146" text-anchor="middle" font-size="12.5">inmunidad EMI</text>
+                <text class="d-muted" x="332" y="129" text-anchor="middle" font-size="12.5">limpiar y proteger</text>
 
                 <rect class="d-box" x="470" y="62" width="195" height="106" rx="10"/>
-                <text x="567" y="106" text-anchor="middle" font-size="17" font-weight="600">Fusión ponderada</text>
-                <text class="d-muted" x="567" y="129" text-anchor="middle" font-size="12.5">confianza dinámica</text>
-                <text class="d-muted" x="567" y="146" text-anchor="middle" font-size="12.5">por canal</text>
+                <text x="567" y="106" text-anchor="middle" font-size="17" font-weight="600">Fusión</text>
+                <text class="d-muted" x="567" y="129" text-anchor="middle" font-size="12.5">según la fiabilidad</text>
+                <text class="d-muted" x="567" y="146" text-anchor="middle" font-size="12.5">de cada señal</text>
 
                 <rect class="d-box-strong" x="715" y="62" width="125" height="106" rx="10"/>
                 <text class="d-on-strong" x="777" y="106" text-anchor="middle" font-size="17" font-weight="600">Salida</text>
-                <text class="d-on-strong" x="777" y="129" text-anchor="middle" font-size="12.5" opacity=".75">señal fiable</text>
-                <text class="d-on-strong" x="777" y="146" text-anchor="middle" font-size="12.5" opacity=".75">&lt; 10 ms</text>
+                <text class="d-on-strong" x="777" y="129" text-anchor="middle" font-size="12.5" opacity=".75">para el cirujano</text>
 
                 <line class="d-line" x1="197" y1="115" x2="241" y2="115" marker-end="url(#arw)"/>
                 <line class="d-line" x1="422" y1="115" x2="466" y2="115" marker-end="url(#arw)"/>
                 <line class="d-line" x1="667" y1="115" x2="711" y2="115" marker-end="url(#arw)"/>
 
-                <path class="d-noise" d="M332 226 V172"/>
-                <text class="d-muted" x="332" y="244" text-anchor="middle" font-size="12.5">ruido e interferencia del electrobisturí</text>
+                <path class="d-wave" d="M332 226 V172" style="stroke-dasharray:4 4"/>
+                <text class="d-muted" x="332" y="244" text-anchor="middle" font-size="12.5">interferencia del electrobisturí</text>
               </svg>
             </div>
-            <figcaption>La norma atraviesa todas las etapas: cada filtro, umbral y peso del algoritmo queda justificado en el expediente.</figcaption>
+            <figcaption>Cada etapa queda justificada en la documentación técnica desde el primer día.</figcaption>
           </figure>
         </div>
       </div>
@@ -110,39 +107,15 @@
         <div class="section-head">
           <span class="eyebrow">Qué hacemos</span>
           <h2>Seis frentes que casi siempre avanzan a la vez.</h2>
-          <p class="lead">Ninguna capa funciona bien aislada: una decisión de hardware condiciona el algoritmo, y una decisión normativa condiciona a ambas.</p>
+          <p class="lead">Ninguno funciona bien por separado: una decisión de hardware condiciona el software, y la norma condiciona a ambos.</p>
         </div>
         <div class="grid grid-3">
-          <div class="cell reveal">
-            <h3>Sensórica de instrumental</h3>
-            <p>Sensores en la punta y el cuerpo del instrumento para captar lo que el cirujano no percibe a simple vista.</p>
-            <ul><li>Fuerza y par</li><li>Bioimpedancia tisular</li><li>Óptica endoscópica</li><li>IMU de posición y orientación</li></ul>
-          </div>
-          <div class="cell reveal">
-            <h3>Electrónica para electrocirugía</h3>
-            <p>Circuitos de bajo ruido que conviven con un generador de electrobisturí sin perder precisión.</p>
-            <ul><li>Acondicionamiento de bajo ruido</li><li>Apantallamiento e inmunidad EMI/EMC</li><li>Aislamiento y seguridad del paciente</li><li>Prototipado de PCB</li></ul>
-          </div>
-          <div class="cell reveal">
-            <h3>Firmware en tiempo real</h3>
-            <p>Latencia acotada y predecible: en quirófano no vale un «casi siempre a tiempo».</p>
-            <ul><li>Adquisición multisensor sincronizada</li><li>Fusión embebida determinista</li><li>Ciclo de vida trazable (IEC 62304)</li><li>Gestión de energía para instrumental portátil</li></ul>
-          </div>
-          <div class="cell reveal">
-            <h3>Carcasas y mecánica impresa</h3>
-            <p>Empuñaduras, soportes y alojamientos fabricados en casa para iterar el diseño en horas, no en semanas.</p>
-            <ul><li>Carcasas SLA y SLS para prototipo</li><li>Soportes con aislamiento mecánico</li><li>Utillaje de montaje y ensayo</li><li>Modelos anatómicos para banco</li></ul>
-          </div>
-          <div class="cell reveal">
-            <h3>Validación en banco y preclínica</h3>
-            <p>Protocolos que ponen a prueba la precisión frente a la variabilidad del tejido y la interferencia del generador.</p>
-            <ul><li>Diseño del protocolo de validación</li><li>Ensayos con tejido simulado</li><li>Modelo animal o cadavérico cuando procede</li><li>Informe para el expediente técnico</li></ul>
-          </div>
-          <div class="cell reveal">
-            <h3>Diseño orientado a norma</h3>
-            <p>Documentación pensada desde el primer boceto para no rehacer el trabajo cuando llegue la certificación.</p>
-            <ul><li>IEC 60601, incluida la parte de electrocirugía</li><li>Base de sistema de calidad ISO 13485</li><li>Software según IEC 62304</li><li>Gestión de riesgos ISO 14971</li></ul>
-          </div>
+          <div class="cell reveal"><h3>Sensores en el instrumento</h3><p>Captamos lo que la mano no percibe: la fuerza de contacto, el tipo de tejido y la posición del instrumento.</p></div>
+          <div class="cell reveal"><h3>Electrónica que convive con el quirófano</h3><p>Circuitos que siguen midiendo con precisión junto a un electrobisturí y que protegen al paciente.</p></div>
+          <div class="cell reveal"><h3>Software en tiempo real</h3><p>Respuesta inmediata y predecible, porque en quirófano no vale un «casi siempre a tiempo».</p></div>
+          <div class="cell reveal"><h3>Integración con robótica y navegación</h3><p>Conectamos el instrumento con plataformas de cirugía asistida para devolver al cirujano el tacto que el robot no transmite.</p></div>
+          <div class="cell reveal"><h3>Validación en banco y preclínica</h3><p>Ensayos que ponen a prueba la precisión frente a la variabilidad del tejido y la interferencia real.</p></div>
+          <div class="cell reveal"><h3>Diseño orientado a norma</h3><p>Trabajamos con IEC 60601, ISO 13485 e IEC 62304 como referencia desde el primer boceto, no como trámite final.</p></div>
         </div>
       </div>
     </section>
@@ -151,29 +124,13 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Fases de un proyecto</span>
-          <h2>Cuatro fases, con el organismo notificado en mente desde el primer día.</h2>
+          <h2>Cuatro fases, con la certificación en mente desde el primer día.</h2>
         </div>
         <ol class="steps">
-          <li class="step reveal">
-            <h3>Descubrimiento</h3>
-            <p>Analizamos el gesto quirúrgico, las señales implicadas y los requisitos de precisión y latencia del procedimiento.</p>
-            <span class="step-out">→ documento de alcance compartido</span>
-          </li>
-          <li class="step reveal">
-            <h3>Arquitectura sensorial</h3>
-            <p>Qué sensores integrar, dónde colocarlos y qué algoritmo de fusión encaja con el entorno eléctrico del quirófano.</p>
-            <span class="step-out">→ arquitectura y plan normativo</span>
-          </li>
-          <li class="step reveal">
-            <h3>Prototipo y validación</h3>
-            <p>Electrónica, firmware y carcasa impresa. Lo probamos frente al generador y ajustamos el modelo de fusión con datos.</p>
-            <span class="step-out">→ prototipo e informe de banco</span>
-          </li>
-          <li class="step reveal">
-            <h3>Documentación</h3>
-            <p>Cada decisión registrada con vistas al expediente técnico y al organismo que lo revisará más adelante.</p>
-            <span class="step-out">→ base del expediente técnico</span>
-          </li>
+          <li class="step reveal"><h3>Descubrimiento</h3><p>Analizamos el gesto quirúrgico, qué información falta y con qué precisión y rapidez debe llegar.</p><span class="step-out">→ documento de alcance</span></li>
+          <li class="step reveal"><h3>Arquitectura</h3><p>Qué medir, dónde colocar cada sensor y cómo combinar las señales en el entorno eléctrico del quirófano.</p><span class="step-out">→ arquitectura y plan normativo</span></li>
+          <li class="step reveal"><h3>Prototipo y validación</h3><p>Construimos el prototipo, lo probamos frente a interferencias reales y ajustamos con datos.</p><span class="step-out">→ prototipo e informe de banco</span></li>
+          <li class="step reveal"><h3>Documentación</h3><p>Cada decisión registrada para el expediente técnico y el organismo que lo revisará.</p><span class="step-out">→ base del expediente técnico</span></li>
         </ol>
       </div>
     </section>
@@ -183,41 +140,39 @@
         <div class="section-head">
           <span class="eyebrow">Modalidades</span>
           <h2>Entramos en la fase en la que esté tu instrumental.</h2>
-          <p class="lead">Desde una duda concreta de señal hasta convertirnos en tu capacidad de ingeniería a largo plazo.</p>
+          <p class="lead">Desde una duda concreta hasta convertirnos en tu equipo de ingeniería a largo plazo.</p>
         </div>
         <div class="tiers">
           <div class="tier reveal">
             <h3>Consultoría puntual</h3>
-            <p class="tier-for">Para equipos con instrumental en marcha y un problema concreto de ruido o interferencia.</p>
+            <p class="tier-for">Para equipos con instrumental en marcha y un problema concreto de ruido o fiabilidad.</p>
             <ul>
-              <li>Diagnóstico de la sensórica y la electrónica actual</li>
-              <li>Informe de causas de ruido o EMI</li>
-              <li>Recomendación de algoritmo de fusión</li>
+              <li>Diagnóstico de lo que tienes ahora</li>
+              <li>Informe de causas y soluciones</li>
               <li>Sesión de revisión con tu equipo</li>
             </ul>
-            <a href="contacto.html" class="btn btn-ghost btn-sm">Consultar disponibilidad</a>
+            <a href="presupuesto.html" class="btn btn-ghost btn-sm">Pedir presupuesto</a>
           </div>
           <div class="tier is-featured reveal">
             <h3>Desarrollo de producto</h3>
             <p class="tier-for">Para quien parte de una idea o un prototipo y quiere avanzar hacia la certificación.</p>
             <ul>
-              <li>Arquitectura de sensórica a medida</li>
-              <li>Hardware, firmware y carcasa impresa</li>
-              <li>Protocolo de validación en banco y preclínico</li>
-              <li>Documentación orientada a IEC 60601 / ISO 13485 / IEC 62304</li>
+              <li>Sistema de sensórica a medida</li>
+              <li>Prototipo funcional validado en banco</li>
+              <li>Documentación orientada a certificación</li>
+              <li>Acompañamiento hasta el organismo notificado</li>
             </ul>
-            <a href="contacto.html" class="btn btn-primary btn-sm">Hablar de mi proyecto</a>
+            <a href="presupuesto.html" class="btn btn-primary btn-sm">Pedir presupuesto</a>
           </div>
           <div class="tier reveal">
             <h3>Partner a largo plazo</h3>
             <p class="tier-for">Para empresas con instrumental sensorizado que necesitan ingeniería continua.</p>
             <ul>
-              <li>Roadmap de nuevas generaciones de instrumento</li>
+              <li>Nuevas generaciones de instrumento</li>
               <li>Seguimiento de cambios normativos</li>
               <li>Apoyo en auditorías de calidad</li>
-              <li>Evolución de firmware y algoritmos</li>
             </ul>
-            <a href="contacto.html" class="btn btn-ghost btn-sm">Explorar colaboración</a>
+            <a href="contacto.html" class="btn btn-ghost btn-sm">Hablar con nosotros</a>
           </div>
         </div>
       </div>
@@ -229,11 +184,11 @@
         <div class="cta-band">
           <div>
             <h2>¿En qué fase está tu instrumental?</h2>
-            <p class="lead">Cuéntanos qué sensores manejas, qué precisión necesitas y en qué punto normativo estás. Te respondemos en menos de 48 horas.</p>
+            <p class="lead">Cuéntanos qué quieres medir, con qué precisión y en qué punto estás. Te respondemos en menos de 48 horas.</p>
           </div>
           <div class="hero-actions">
-            <a href="contacto.html" class="btn btn-primary">Hablemos de tu proyecto</a>
-            <a href="impresion-3d.html" class="btn btn-on-dark">Ver impresión 3D</a>
+            <a href="presupuesto.html" class="btn btn-primary">Pedir presupuesto</a>
+            <a href="entornos-remotos.html" class="btn btn-on-dark">Ver entornos remotos</a>
           </div>
         </div>
       </div>
@@ -245,13 +200,13 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg><span class="brand-word">technelatros</span></a>
-          <p>Ingeniería por proyectos: sensórica para instrumental quirúrgico y fabricación por impresión 3D.</p>
+          <p>Ingeniería por proyectos en sensórica y comunicaciones para el quirófano y para entornos de difícil acceso.</p>
         </div>
         <div class="footer-col">
           <h4>Líneas</h4>
           <ul>
             <li><a href="servicios.html">Sensórica quirúrgica</a></li>
-            <li><a href="impresion-3d.html">Impresión 3D</a></li>
+            <li><a href="entornos-remotos.html">Entornos remotos</a></li>
             <li><a href="presupuesto.html">Pedir presupuesto</a></li>
           </ul>
         </div>
@@ -273,7 +228,7 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; <span id="year">2026</span> technelatros · España</p>
-        <p>IEC 60601 · ISO 13485 · IEC 62304 como referencia de diseño</p>
+        <p>Ingeniería por proyectos</p>
       </div>
     </div>
   </footer>
