@@ -1,17 +1,18 @@
 // Worker de technelatros: sirve el sitio estático y atiende dos formularios.
 //
-//   POST /api/presupuesto  -> correo al equipo con los modelos adjuntos
+//   POST /api/presupuesto  -> correo al equipo con la documentación adjunta
 //                             + acuse de recibo al cliente
 //   POST /api/contacto     -> correo al equipo
 //
 // El correo se envía con la API de Resend (https://resend.com).
 // Configuración (ver README.md):
-//   secreto  RESEND_API_KEY   clave de API de Resend
-//   variable QUOTE_TO         buzón que recibe las solicitudes
-//   variable MAIL_FROM        remitente verificado en Resend
+//   secreto  RESEND_API_KEY    clave de API de Resend
+//   variable QUOTE_TO          buzón que recibe las solicitudes
+//   variable MAIL_FROM         remitente verificado en Resend
 //   variable SEND_CONFIRMATION "false" para no enviar acuse al cliente
 
-const ALLOWED = ['stl', 'obj', '3mf', 'step', 'stp', 'iges', 'igs', 'dxf', 'zip', 'pdf', 'png', 'jpg', 'jpeg'];
+const ALLOWED = ['pdf', 'doc', 'docx', 'odt', 'rtf', 'txt', 'xls', 'xlsx', 'ods', 'csv', 'ppt', 'pptx',
+  'png', 'jpg', 'jpeg', 'webp', 'heic', 'dwg', 'dxf', 'step', 'stp', 'iges', 'igs', 'stl', 'zip'];
 const MAX_FILES = 5;
 const MAX_TOTAL = 15 * 1024 * 1024;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,14 +46,12 @@ async function handleQuote(request, env) {
 
   const nombre = field(form, 'nombre', 120);
   const email = field(form, 'email', 200);
+  const descripcion = field(form, 'descripcion', 6000);
   if (nombre.length < 2) return json({ error: 'Falta el nombre.' }, 400);
   if (!EMAIL_RE.test(email)) return json({ error: 'El correo no es válido.' }, 400);
+  if (descripcion.length < 20) return json({ error: 'La descripción del proyecto es demasiado corta.' }, 400);
 
   const files = form.getAll('archivos').filter((f) => typeof f === 'object' && f.size > 0);
-  const enlace = field(form, 'enlace', 500);
-  if (!files.length && !/^https?:\/\//i.test(enlace)) {
-    return json({ error: 'Adjunta al menos un archivo o un enlace de descarga.' }, 400);
-  }
   if (files.length > MAX_FILES) return json({ error: `Máximo ${MAX_FILES} archivos.` }, 400);
 
   let total = 0;
@@ -66,50 +65,46 @@ async function handleQuote(request, env) {
   }
 
   const ref = makeRef();
+  const tipo = field(form, 'tipo', 60) || 'Sin especificar';
   const data = {
     Referencia: ref,
+    Tipo: tipo,
+    Proyecto: field(form, 'titulo', 160),
+    Descripción: descripcion,
+    Fase: field(form, 'fase', 80),
+    Plazo: field(form, 'plazo', 60),
+    Ubicación: field(form, 'ubicacion', 160),
+    'Presupuesto orientativo': field(form, 'rango', 40),
     Nombre: nombre,
     Correo: email,
     Empresa: field(form, 'empresa', 160),
     Teléfono: field(form, 'telefono', 40),
-    Tecnología: field(form, 'tecnologia', 20),
-    Material: field(form, 'material', 80),
-    Cantidad: field(form, 'cantidad', 10),
-    Acabado: field(form, 'acabado', 60),
-    Uso: field(form, 'uso', 60),
-    Plazo: field(form, 'plazo', 60),
-    'Enlace de descarga': enlace,
-    Notas: field(form, 'notas', 4000),
+    'Contacto preferido': field(form, 'contacto_pref', 40),
+    'Pide NDA': form.get('nda') === 'si' ? 'Sí, antes de dar más detalles' : '',
+    'Enlace de descarga': field(form, 'enlace', 500),
   };
-
-  let analysis = '';
-  try {
-    const parsed = JSON.parse(field(form, 'analisis', 20000) || '{}');
-    analysis = JSON.stringify(parsed, null, 2);
-  } catch (_) { /* análisis ausente o corrupto: no es imprescindible */ }
 
   await sendEmail(env, {
     to: [env.QUOTE_TO],
     reply_to: email,
-    subject: `Presupuesto 3D ${ref} · ${nombre}${data.Empresa ? ` (${data.Empresa})` : ''}`,
-    html: table('Nueva solicitud de presupuesto de impresión 3D', data)
-      + (files.length ? `<p><b>Archivos adjuntos:</b> ${files.map((f) => escapeHtml(f.name)).join(', ')}</p>` : '')
-      + (analysis ? `<p><b>Análisis en navegador (orientativo)</b></p><pre style="font:12px/1.5 monospace;background:#f0eee6;padding:12px;border-radius:6px;white-space:pre-wrap">${escapeHtml(analysis)}</pre>` : ''),
+    subject: `Presupuesto ${ref} · ${tipo} · ${nombre}${data.Empresa ? ` (${data.Empresa})` : ''}`,
+    html: table('Nueva solicitud de presupuesto', data)
+      + (files.length ? `<p style="font:14px/1.5 -apple-system,Segoe UI,sans-serif"><b>Adjuntos:</b> ${files.map((f) => escapeHtml(f.name)).join(', ')}</p>` : ''),
     attachments,
   });
 
   if (env.SEND_CONFIRMATION !== 'false') {
     await sendEmail(env, {
       to: [email],
-      subject: `Hemos recibido tu solicitud ${ref}`,
-      html: `<div style="font:15px/1.6 Georgia,serif;color:#141413;max-width:560px">
-        <p>Hola, ${escapeHtml(nombre)}:</p>
-        <p>Hemos recibido tu solicitud de impresión 3D con referencia <b style="font-family:monospace">${ref}</b>${files.length ? ` y ${files.length === 1 ? 'el archivo' : `los ${files.length} archivos`} que nos has enviado` : ''}.</p>
-        <p>Revisaremos la geometría, la orientación y los soportes, y te enviaremos el presupuesto a este correo en un máximo de 24 horas laborables. Si necesitamos aclarar algo, te escribiremos antes.</p>
-        <p>Puedes responder a este mensaje para añadir información.</p>
-        <p style="color:#6e6a5f">— El equipo de technelatros</p>
-      </div>`,
       reply_to: env.QUOTE_TO,
+      subject: `Hemos recibido tu solicitud ${ref}`,
+      html: `<div style="font:15px/1.6 -apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#0f1b2d;max-width:560px">
+        <p>Hola, ${escapeHtml(nombre)}:</p>
+        <p>Hemos recibido tu solicitud de presupuesto con referencia <b style="font-family:monospace;color:#1d3d6b">${ref}</b>${files.length ? ` junto con ${files.length === 1 ? 'el documento' : `los ${files.length} documentos`} que nos has enviado` : ''}.</p>
+        <p>La estudiaremos y te responderemos en un máximo de 48 horas laborables. Si necesitamos aclarar el alcance, te contactaremos antes de enviarte la propuesta.</p>
+        <p>Puedes responder a este mensaje para añadir información.</p>
+        <p style="color:#56627a">— El equipo de technelatros</p>
+      </div>`,
     }).catch((err) => console.error('Acuse no enviado', err));
   }
 
@@ -195,9 +190,9 @@ function escapeHtml(s) {
 function table(title, data) {
   const rows = Object.entries(data)
     .filter(([, v]) => v)
-    .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#6e6a5f;vertical-align:top;white-space:nowrap">${escapeHtml(k)}</td><td style="padding:6px 0;white-space:pre-wrap">${escapeHtml(v)}</td></tr>`)
+    .map(([k, v]) => `<tr><td style="padding:6px 14px 6px 0;color:#56627a;vertical-align:top;white-space:nowrap">${escapeHtml(k)}</td><td style="padding:6px 0;white-space:pre-wrap">${escapeHtml(v)}</td></tr>`)
     .join('');
-  return `<div style="font:14px/1.5 -apple-system,Segoe UI,sans-serif;color:#141413"><h2 style="font-size:17px;font-weight:600">${escapeHtml(title)}</h2><table style="border-collapse:collapse">${rows}</table></div>`;
+  return `<div style="font:14px/1.5 -apple-system,'Segoe UI',Helvetica,Arial,sans-serif;color:#0f1b2d"><h2 style="font-size:17px;font-weight:600;color:#1d3d6b">${escapeHtml(title)}</h2><table style="border-collapse:collapse">${rows}</table></div>`;
 }
 
 function json(body, status = 200) {
