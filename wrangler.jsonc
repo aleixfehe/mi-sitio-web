@@ -1,7 +1,16 @@
 {
   "name": "mi-sitio-web",
+  "main": "worker/index.js",
   "compatibility_date": "2024-09-25",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "QUOTE_TO": "presupuestos@technelatros.es",
+    "MAIL_FROM": "technelatros <presupuestos@technelatros.es>",
+    "SEND_CONFIRMATION": "true"
   }
+  // La clave de Resend va como secreto, nunca aquí:
+  //   npx wrangler secret put RESEND_API_KEY
 }
