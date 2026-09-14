@@ -3,132 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto | omnimed</title>
-  <meta name="description" content="Habla con omnimed sobre tu proyecto de electrónica y sensórica quirúrgica. Respondemos en menos de 48 horas.">
+  <title>Contacto · technelatros</title>
+  <meta name="description" content="Cuéntanos tu proyecto de sensórica quirúrgica o de impresión 3D. Respondemos en menos de 48 horas laborables.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Contacto | omnimed">
-  <meta property="og:description" content="Cuéntanos qué instrumento o sistema quirúrgico quieres sensorizar. Respondemos en menos de 48 horas.">
-  <meta property="og:image" content="img/omnimed-wordmark.png">
+  <meta property="og:title" content="Contacto · technelatros">
+  <meta property="og:description" content="Cuéntanos tu proyecto. Respondemos en menos de 48 horas.">
   <meta property="og:locale" content="es_ES">
-  <link rel="icon" href="img/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
   <header class="site-header">
     <div class="container nav">
-      <a href="index.html" class="brand"><img src="img/logo-mark.svg" alt="" class="brand-mark" width="28" height="28"><span class="brand-word">omnimed</span></a>
-      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="primaryNav">
+      <a href="index.html" class="brand" aria-label="technelatros, inicio">
+        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg>
+        <span class="brand-word">technelatros</span>
+      </a>
+      <nav id="primaryNav" aria-label="Principal">
         <ul class="nav-links">
-          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Sensórica quirúrgica</a></li>
+          <li><a href="impresion-3d.html">Impresión 3D</a></li>
           <li><a href="sobre.html">Nosotros</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
+      <a href="presupuesto.html" class="btn btn-ink btn-sm btn-nav">Pedir presupuesto</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <main>
-    <section class="page-header">
+  <main id="main">
+    <section class="page-hero" style="padding-bottom:clamp(2rem,4vw,3rem)">
       <div class="container">
-        <span class="eyebrow">Contacto</span>
-        <h1>Cuéntanos qué instrumento o sistema quirúrgico quieres sensorizar.</h1>
-        <p class="lead">Ya sea una duda puntual sobre interferencia del electrobisturí o un instrumento completo por certificar, respondemos en menos de 48 horas laborables.</p>
+        <div class="hero-copy">
+          <span class="eyebrow">Contacto</span>
+          <h1>Cuéntanos qué tienes entre manos.</h1>
+          <p class="lead">Una idea de instrumento, un problema de señal, un prototipo atascado o una pieza que necesitas fabricar. Respondemos en menos de 48 horas laborables.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container contact-grid">
-        <div class="form-card reveal">
-          <h2 style="margin-bottom:0.4rem;">Escríbenos</h2>
-          <p style="color:var(--muted); margin-bottom:1.75rem;">Rellena el formulario con el mayor detalle posible: cuantos más datos técnicos incluyas sobre el instrumento y el entorno quirúrgico, más útil será nuestra primera respuesta.</p>
-
-          <form id="contactForm" novalidate>
+    <section class="section" style="padding-top:clamp(2rem,4vw,3rem)">
+      <div class="container">
+        <div class="contact-layout">
+          <form id="contactForm" class="form-card" novalidate>
             <div class="form-grid">
               <div class="field">
-                <label for="nombre">Nombre <span class="req">*</span></label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+                <label for="cNombre">Nombre</label>
+                <input id="cNombre" name="nombre" type="text" autocomplete="name" required>
                 <span class="field-error" data-error-for="nombre"></span>
               </div>
               <div class="field">
-                <label for="empresa">Empresa</label>
-                <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" autocomplete="organization">
-                <span class="field-error" data-error-for="empresa"></span>
-              </div>
-              <div class="field">
-                <label for="email">Email <span class="req">*</span></label>
-                <input type="email" id="email" name="email" placeholder="tucorreo@empresa.com" autocomplete="email" required>
+                <label for="cEmail">Correo electrónico</label>
+                <input id="cEmail" name="email" type="email" autocomplete="email" required>
                 <span class="field-error" data-error-for="email"></span>
               </div>
               <div class="field">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" autocomplete="tel">
-                <span class="field-error" data-error-for="telefono"></span>
+                <label for="cOrg">Empresa, hospital o centro <span class="opt">(opcional)</span></label>
+                <input id="cOrg" name="organizacion" type="text" autocomplete="organization">
               </div>
-              <div class="field full">
-                <label for="asunto">Asunto <span class="req">*</span></label>
-                <select id="asunto" name="asunto" required>
-                  <option value="" selected disabled>Selecciona una opción</option>
-                  <option value="consultoria">Consultoría puntual</option>
-                  <option value="desarrollo">Desarrollo de producto</option>
-                  <option value="normativa">Cumplimiento normativo</option>
-                  <option value="otro">Otro</option>
+              <div class="field">
+                <label for="cAsunto">De qué quieres hablar</label>
+                <select id="cAsunto" name="asunto" required>
+                  <option value="">Elige una opción</option>
+                  <option>Proyecto de sensórica quirúrgica</option>
+                  <option>Impresión 3D (sin archivo todavía)</option>
+                  <option>Colaboración o investigación</option>
+                  <option>Otro</option>
                 </select>
                 <span class="field-error" data-error-for="asunto"></span>
               </div>
               <div class="field full">
-                <label for="mensaje">Mensaje <span class="req">*</span></label>
-                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué sensores manejas, en qué fase está el instrumento y qué precisión necesitas en quirófano…" required></textarea>
+                <label for="cMensaje">Mensaje</label>
+                <textarea id="cMensaje" name="mensaje" placeholder="Qué quieres conseguir, en qué fase estás y para cuándo lo necesitas." required></textarea>
                 <span class="field-error" data-error-for="mensaje"></span>
               </div>
-              <div class="honeypot" aria-hidden="true">
-                <label for="empresa_web">No rellenar</label>
-                <input type="text" id="empresa_web" name="empresa_web" tabindex="-1" autocomplete="off">
-              </div>
-              <div class="field full">
-                <label class="field-check">
-                  <input type="checkbox" id="consentimiento" name="consentimiento" required>
-                  <span>Acepto que omnimed use estos datos únicamente para responder a mi consulta.</span>
-                </label>
-                <span class="field-error" data-error-for="consentimiento"></span>
-              </div>
             </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary on-light">Enviar mensaje</button>
-              <span class="form-note">Sin spam. Solo hablamos de tu proyecto.</span>
+            <div class="hp" aria-hidden="true">
+              <label for="cTrap">No rellenes este campo</label>
+              <input id="cTrap" name="empresa_web" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form-section" style="padding-bottom:0">
+              <label class="check-row" for="cConsent">
+                <input id="cConsent" name="consentimiento" type="checkbox" value="si">
+                <span>Acepto que technelatros use mis datos solo para responder a este mensaje.</span>
+              </label>
+              <span class="field-error" data-error-for="consentimiento"></span>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+              </div>
+              <div id="contactStatus" class="form-status"></div>
             </div>
           </form>
 
-          <div class="form-success" id="formSuccess">
-            <strong>Gracias, hemos recibido tu mensaje.</strong><br>
-            Te responderemos en menos de 48 horas laborables a la dirección que nos has indicado.
-          </div>
-        </div>
-
-        <div class="info-grid">
-          <div class="info-card reveal">
-            <div class="k">Email</div>
-            <div class="v"><a href="mailto:hola@omnimed.es">hola@omnimed.es</a></div>
-          </div>
-          <div class="info-card reveal">
-            <div class="k">Teléfono</div>
-            <div class="v"><a href="tel:+34727785408">+34 727 785 408</a></div>
-          </div>
-          <div class="info-card reveal">
-            <div class="k">Ubicación</div>
-            <div class="v">Parque científico<small>España · trabajo híbrido con visitas al cliente</small></div>
-          </div>
-          <div class="info-card reveal">
-            <div class="k">Horario</div>
-            <div class="v">Lun–Vie, 9:00–18:00<small>Hora peninsular (CET)</small></div>
-          </div>
-          <div class="info-card reveal">
-            <div class="k">Tiempo de respuesta</div>
-            <div class="v">&lt; 48 horas<small>Días laborables</small></div>
-          </div>
+          <aside class="contact-aside">
+            <div class="notice"><strong>¿Ya tienes el archivo 3D?</strong> Usa el <a href="presupuesto.html" style="text-decoration:underline">formulario de presupuesto</a>: verás las medidas de tu pieza al momento y el presupuesto te llega por correo.</div>
+            <div class="contact-item"><span class="cell-k">Proyectos y consultas</span><a href="mailto:hola@technelatros.es">hola@technelatros.es</a></div>
+            <div class="contact-item"><span class="cell-k">Presupuestos de impresión</span><a href="mailto:presupuestos@technelatros.es">presupuestos@technelatros.es</a></div>
+            <div class="contact-item"><span class="cell-k">Teléfono</span><a href="tel:+34727785408">+34 727 785 408</a></div>
+            <div class="contact-item"><span class="cell-k">Dónde estamos</span><span>España · envíos a península y Baleares</span></div>
+            <div class="contact-item"><span class="cell-k">Confidencialidad</span><span style="color:var(--muted);font-size:.92rem">Firmamos un acuerdo de confidencialidad antes de ver tu proyecto si lo necesitas.</span></div>
+          </aside>
         </div>
       </div>
     </section>
@@ -138,36 +118,36 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <a href="index.html" class="brand"><img src="img/logo-mark.svg" alt="" class="brand-mark" width="28" height="28"><span class="brand-word">omnimed</span></a>
-          <p>Electrónica y sensórica para cirugía: fuerza de contacto, bioimpedancia tisular y posición del instrumento combinadas en una señal fiable, con trazabilidad normativa de principio a fin.</p>
-          <div class="badge-row on-light" style="margin-top:1.25rem">
-            <span class="badge">IEC 60601</span>
-            <span class="badge">IEC 62304</span>
-            <span class="badge">ISO 13485</span>
-            <span class="badge">ISO 14971</span>
-          </div>
+          <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg><span class="brand-word">technelatros</span></a>
+          <p>Ingeniería por proyectos: sensórica para instrumental quirúrgico y fabricación por impresión 3D.</p>
         </div>
         <div class="footer-col">
-          <h4>Navegación</h4>
+          <h4>Líneas</h4>
           <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Sensórica quirúrgica</a></li>
+            <li><a href="impresion-3d.html">Impresión 3D</a></li>
+            <li><a href="presupuesto.html">Pedir presupuesto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
             <li><a href="sobre.html">Nosotros</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
             <li><a href="contacto.html">Contacto</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Contacto</h4>
           <ul>
-            <li><a href="mailto:hola@omnimed.es">hola@omnimed.es</a></li>
+            <li><a href="mailto:hola@technelatros.es">hola@technelatros.es</a></li>
+            <li><a href="mailto:presupuestos@technelatros.es">presupuestos@technelatros.es</a></li>
             <li><a href="tel:+34727785408">+34 727 785 408</a></li>
-            <li>Parque científico · España</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 omnimed</p>
-        <p>Sitio de demostración · el formulario no envía datos a ningún servidor</p>
+        <p>&copy; <span id="year">2026</span> technelatros · España</p>
+        <p>IEC 60601 · ISO 13485 · IEC 62304 como referencia de diseño</p>
       </div>
     </div>
   </footer>
