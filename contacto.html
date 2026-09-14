@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto · technelatros</title>
-  <meta name="description" content="Cuéntanos tu proyecto de sensórica quirúrgica o de impresión 3D. Respondemos en menos de 48 horas laborables.">
+  <meta name="description" content="Escríbenos para consultas generales, colaboraciones o prensa. Para proyectos concretos, usa el formulario de presupuesto.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contacto · technelatros">
-  <meta property="og:description" content="Cuéntanos tu proyecto. Respondemos en menos de 48 horas.">
+  <meta property="og:description" content="Respondemos en menos de 48 horas.">
   <meta property="og:locale" content="es_ES">
   <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
       <nav id="primaryNav" aria-label="Principal">
         <ul class="nav-links">
           <li><a href="servicios.html">Sensórica quirúrgica</a></li>
-          <li><a href="impresion-3d.html">Impresión 3D</a></li>
+          <li><a href="entornos-remotos.html">Entornos remotos</a></li>
           <li><a href="sobre.html">Nosotros</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
@@ -42,8 +42,8 @@
       <div class="container">
         <div class="hero-copy">
           <span class="eyebrow">Contacto</span>
-          <h1>Cuéntanos qué tienes entre manos.</h1>
-          <p class="lead">Una idea de instrumento, un problema de señal, un prototipo atascado o una pieza que necesitas fabricar. Respondemos en menos de 48 horas laborables.</p>
+          <h1>Hablemos.</h1>
+          <p class="lead">Para consultas generales, colaboraciones o prensa, escríbenos aquí. Respondemos en menos de 48 horas laborables.</p>
         </div>
       </div>
     </section>
@@ -64,23 +64,24 @@
                 <span class="field-error" data-error-for="email"></span>
               </div>
               <div class="field">
-                <label for="cOrg">Empresa, hospital o centro <span class="opt">(opcional)</span></label>
+                <label for="cOrg">Empresa u organización <span class="opt">(opcional)</span></label>
                 <input id="cOrg" name="organizacion" type="text" autocomplete="organization">
               </div>
               <div class="field">
                 <label for="cAsunto">De qué quieres hablar</label>
                 <select id="cAsunto" name="asunto" required>
                   <option value="">Elige una opción</option>
-                  <option>Proyecto de sensórica quirúrgica</option>
-                  <option>Impresión 3D (sin archivo todavía)</option>
+                  <option>Consulta general</option>
                   <option>Colaboración o investigación</option>
+                  <option>Prensa</option>
+                  <option>Trabajar con nosotros</option>
                   <option>Otro</option>
                 </select>
                 <span class="field-error" data-error-for="asunto"></span>
               </div>
               <div class="field full">
                 <label for="cMensaje">Mensaje</label>
-                <textarea id="cMensaje" name="mensaje" placeholder="Qué quieres conseguir, en qué fase estás y para cuándo lo necesitas." required></textarea>
+                <textarea id="cMensaje" name="mensaje" required></textarea>
                 <span class="field-error" data-error-for="mensaje"></span>
               </div>
             </div>
@@ -102,12 +103,11 @@
           </form>
 
           <aside class="contact-aside">
-            <div class="notice"><strong>¿Ya tienes el archivo 3D?</strong> Usa el <a href="presupuesto.html" style="text-decoration:underline">formulario de presupuesto</a>: verás las medidas de tu pieza al momento y el presupuesto te llega por correo.</div>
-            <div class="contact-item"><span class="cell-k">Proyectos y consultas</span><a href="mailto:hola@technelatros.es">hola@technelatros.es</a></div>
-            <div class="contact-item"><span class="cell-k">Presupuestos de impresión</span><a href="mailto:presupuestos@technelatros.es">presupuestos@technelatros.es</a></div>
+            <div class="notice"><strong>¿Tienes un proyecto concreto?</strong> Usa el <a href="presupuesto.html" style="text-decoration:underline">formulario de presupuesto</a>: puedes adjuntar documentación y te respondemos con una propuesta por correo.</div>
+            <div class="contact-item"><span class="cell-k">Consultas</span><a href="mailto:hola@technelatros.es">hola@technelatros.es</a></div>
+            <div class="contact-item"><span class="cell-k">Presupuestos</span><a href="mailto:presupuestos@technelatros.es">presupuestos@technelatros.es</a></div>
             <div class="contact-item"><span class="cell-k">Teléfono</span><a href="tel:+34727785408">+34 727 785 408</a></div>
-            <div class="contact-item"><span class="cell-k">Dónde estamos</span><span>España · envíos a península y Baleares</span></div>
-            <div class="contact-item"><span class="cell-k">Confidencialidad</span><span style="color:var(--muted);font-size:.92rem">Firmamos un acuerdo de confidencialidad antes de ver tu proyecto si lo necesitas.</span></div>
+            <div class="contact-item"><span class="cell-k">Dónde estamos</span><span>España · proyectos en todo el territorio</span></div>
           </aside>
         </div>
       </div>
@@ -119,13 +119,13 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg><span class="brand-word">technelatros</span></a>
-          <p>Ingeniería por proyectos: sensórica para instrumental quirúrgico y fabricación por impresión 3D.</p>
+          <p>Ingeniería por proyectos en sensórica y comunicaciones para el quirófano y para entornos de difícil acceso.</p>
         </div>
         <div class="footer-col">
           <h4>Líneas</h4>
           <ul>
             <li><a href="servicios.html">Sensórica quirúrgica</a></li>
-            <li><a href="impresion-3d.html">Impresión 3D</a></li>
+            <li><a href="entornos-remotos.html">Entornos remotos</a></li>
             <li><a href="presupuesto.html">Pedir presupuesto</a></li>
           </ul>
         </div>
@@ -147,7 +147,7 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; <span id="year">2026</span> technelatros · España</p>
-        <p>IEC 60601 · ISO 13485 · IEC 62304 como referencia de diseño</p>
+        <p>Ingeniería por proyectos</p>
       </div>
     </div>
   </footer>
