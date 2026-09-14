@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impresión 3D FDM, SLA y SLS · technelatros</title>
+  <meta name="description" content="Impresión 3D por proyecto en FDM, resina SLA y nylon SLS: prototipos funcionales, carcasas para electrónica, utillaje, modelos anatómicos y series cortas. Tolerancias, materiales y guía de diseño.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Impresión 3D · technelatros">
+  <meta property="og:description" content="FDM, SLA y SLS con tolerancias de laboratorio. Sube tu modelo y recibe el presupuesto por correo en 24 h.">
+  <meta property="og:locale" content="es_ES">
+  <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="technelatros, inicio">
+        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg>
+        <span class="brand-word">technelatros</span>
+      </a>
+      <nav id="primaryNav" aria-label="Principal">
+        <ul class="nav-links">
+          <li><a href="servicios.html">Sensórica quirúrgica</a></li>
+          <li><a href="impresion-3d.html">Impresión 3D</a></li>
+          <li><a href="sobre.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="presupuesto.html" class="btn btn-ink btn-sm btn-nav">Pedir presupuesto</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <canvas class="bg-art" data-art="layers" aria-hidden="true"></canvas>
+      <div class="container">
+        <div class="hero-copy">
+          <span class="eyebrow">Impresión 3D por proyecto</span>
+          <h1>Piezas fabricadas con el criterio de un laboratorio de quirófano.</h1>
+          <p class="lead">Las máquinas con las que prototipamos instrumental quirúrgico están disponibles para tu proyecto. Mismas tolerancias, mismos materiales, misma costumbre de medir antes de entregar.</p>
+          <div class="hero-actions">
+            <a href="presupuesto.html" class="btn btn-primary">Subir mi modelo</a>
+            <a href="#materiales" class="btn btn-ghost">Ver materiales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Tecnologías</span>
+          <h2>Tres procesos, elegidos según lo que la pieza tiene que hacer.</h2>
+          <p class="lead">Si no sabes cuál necesitas, no pasa nada: en el formulario puedes marcar «No lo sé» y te proponemos la opción más adecuada en el presupuesto.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="cell reveal">
+            <span class="cell-k">FDM · filamento</span>
+            <h3>Piezas funcionales y grandes</h3>
+            <p>Robusto y económico. La mejor opción para carcasas, soportes, utillaje y prototipos que se van a manipular.</p>
+            <ul>
+              <li>Volumen máx. <span class="mono">300 × 300 × 400 mm</span></li>
+              <li>Altura de capa <span class="mono">0,1 – 0,3 mm</span></li>
+              <li>Tolerancia <span class="mono">±0,2 mm</span> o ±0,3 %</li>
+              <li>Pared mínima <span class="mono">1,2 mm</span></li>
+            </ul>
+          </div>
+          <div class="cell reveal">
+            <span class="cell-k">SLA · resina</span>
+            <h3>Detalle fino y superficie lisa</h3>
+            <p>Precisión y acabado casi de molde. Ideal para piezas pequeñas, encajes exactos y modelos anatómicos.</p>
+            <ul>
+              <li>Volumen máx. <span class="mono">218 × 123 × 260 mm</span></li>
+              <li>Altura de capa <span class="mono">0,025 – 0,1 mm</span></li>
+              <li>Tolerancia <span class="mono">±0,1 mm</span></li>
+              <li>Pared mínima <span class="mono">0,6 mm</span></li>
+            </ul>
+          </div>
+          <div class="cell reveal">
+            <span class="cell-k">SLS · polvo de nylon</span>
+            <h3>Series cortas sin soportes</h3>
+            <p>Piezas isotrópicas y resistentes, con geometrías internas imposibles en otros procesos. Rentable a partir de pocas unidades.</p>
+            <ul>
+              <li>Volumen máx. <span class="mono">165 × 165 × 300 mm</span></li>
+              <li>Altura de capa <span class="mono">0,1 mm</span></li>
+              <li>Tolerancia <span class="mono">±0,25 mm</span> o ±0,3 %</li>
+              <li>Pared mínima <span class="mono">0,8 mm</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-surface" id="materiales">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Materiales</span>
+          <h2>Materiales en stock.</h2>
+          <p class="lead">Si necesitas uno que no aparece, pregúntanos: trabajamos con más bajo pedido.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Material</th><th scope="col">Proceso</th><th scope="col">Qué lo distingue</th><th scope="col">Temp. máx. orientativa</th><th scope="col">Uso típico</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>PLA</td><td class="num">FDM</td><td>Rígido, buen acabado, económico</td><td class="num">55 °C</td><td>Maquetas y prototipos visuales</td></tr>
+              <tr><td>PETG</td><td class="num">FDM</td><td>Tenaz, resistente a productos químicos</td><td class="num">70 °C</td><td>Carcasas y piezas funcionales</td></tr>
+              <tr><td>ASA</td><td class="num">FDM</td><td>Estable a rayos UV e intemperie</td><td class="num">90 °C</td><td>Exterior, cajas de equipos</td></tr>
+              <tr><td>TPU 95A</td><td class="num">FDM</td><td>Flexible y elástico</td><td class="num">80 °C</td><td>Juntas, fundas, agarres</td></tr>
+              <tr><td>PA-CF<small>nylon con fibra de carbono</small></td><td class="num">FDM</td><td>Rígido y ligero</td><td class="num">120 °C</td><td>Utillaje, soportes de sensores</td></tr>
+              <tr><td>Resina estándar</td><td class="num">SLA</td><td>Detalle fino, superficie lisa</td><td class="num">50 °C</td><td>Modelos y piezas pequeñas</td></tr>
+              <tr><td>Resina técnica<small>tipo tough</small></td><td class="num">SLA</td><td>Resiste impactos y encajes a presión</td><td class="num">50 °C</td><td>Clips, encajes, prototipos funcionales</td></tr>
+              <tr><td>Resina biocompatible<small>certificada por el fabricante del material</small></td><td class="num">SLA</td><td>Apta para contacto breve según la ficha del fabricante</td><td class="num">—</td><td>Modelos anatómicos, guías de planificación</td></tr>
+              <tr><td>Resina transparente</td><td class="num">SLA</td><td>Translúcida, pulible</td><td class="num">50 °C</td><td>Canales de fluidos, visores</td></tr>
+              <tr><td>PA12</td><td class="num">SLS</td><td>Isotrópico, sin soportes</td><td class="num">95 °C</td><td>Series cortas, piezas finales</td></tr>
+              <tr><td>PA11</td><td class="num">SLS</td><td>Más dúctil que el PA12</td><td class="num">90 °C</td><td>Bisagras vivas, clips</td></tr>
+              <tr><td>PA12 con fibra de vidrio</td><td class="num">SLS</td><td>Rigidez y estabilidad dimensional</td><td class="num">110 °C</td><td>Piezas estructurales</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="notice" style="margin-top:1.25rem"><strong>Sobre el uso clínico.</strong> La biocompatibilidad certificada es una propiedad del material, no de la pieza terminada. Si tu pieza va a estar en contacto con un paciente, te ayudamos a documentar el proceso de fabricación y posprocesado, pero la responsabilidad regulatoria del producto es de su fabricante.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="split">
+          <div>
+            <span class="eyebrow">Guía rápida de diseño</span>
+            <h2>Cinco cosas que abaratan y mejoran cualquier pieza.</h2>
+            <div class="prose">
+              <p>Revisamos cada archivo antes de presupuestar y te avisamos si algo puede fallar. Pero si estás diseñando desde cero, estas reglas te ahorran iteraciones.</p>
+            </div>
+          </div>
+          <div class="table-wrap reveal">
+            <table class="data-table" style="min-width:460px">
+              <thead><tr><th scope="col">Regla</th><th scope="col">FDM</th><th scope="col">SLA</th><th scope="col">SLS</th></tr></thead>
+              <tbody>
+                <tr><td>Pared mínima</td><td class="num">1,2 mm</td><td class="num">0,6 mm</td><td class="num">0,8 mm</td></tr>
+                <tr><td>Holgura en encajes</td><td class="num">0,3 mm</td><td class="num">0,15 mm</td><td class="num">0,25 mm</td></tr>
+                <tr><td>Agujero mínimo</td><td class="num">2 mm</td><td class="num">0,5 mm</td><td class="num">1,5 mm</td></tr>
+                <tr><td>Voladizo sin soporte</td><td class="num">45°</td><td class="num">30°</td><td class="num">sin límite</td></tr>
+                <tr><td>Rosca impresa desde</td><td class="num">M6</td><td class="num">M3</td><td class="num">M4</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-surface">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Aplicaciones</span>
+          <h2>Lo que más imprimimos.</h2>
+        </div>
+        <div class="feature-list">
+          <div class="feature reveal"><h3>Prototipos funcionales</h3><p>Piezas que se montan, se atornillan y se prueban, no solo se miran.</p></div>
+          <div class="feature reveal"><h3>Carcasas para electrónica</h3><p>Con alojamientos para PCB, pasacables y tapas a presión. Nuestro día a día en sensórica.</p></div>
+          <div class="feature reveal"><h3>Utillaje y plantillas</h3><p>Galgas, útiles de montaje y soportes de ensayo que ahorran horas en línea o en banco.</p></div>
+          <div class="feature reveal"><h3>Modelos anatómicos</h3><p>A partir de segmentaciones de TC o RM, para planificación, formación o ensayo de instrumental.</p></div>
+          <div class="feature reveal"><h3>Series cortas</h3><p>De 10 a 500 unidades en SLS, sin molde y con el mismo diseño que el prototipo.</p></div>
+          <div class="feature reveal"><h3>Repuestos y piezas descatalogadas</h3><p>Ingeniería inversa a partir de la pieza original o de sus restos.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <canvas class="bg-art" data-art="rings" aria-hidden="true"></canvas>
+      <div class="container layer">
+        <div class="section-head">
+          <span class="eyebrow">Del archivo a tu mesa</span>
+          <h2>Así funciona un pedido.</h2>
+        </div>
+        <ol class="steps">
+          <li class="step"><h3>Subes el archivo</h3><p>Desde el formulario de presupuesto, con la tecnología y el material si ya los sabes.</p><span class="step-out">→ análisis inmediato de medidas</span></li>
+          <li class="step"><h3>Presupuesto por correo</h3><p>Precio, plazo y recomendaciones de diseño en 24 horas laborables.</p><span class="step-out">→ válido 30 días</span></li>
+          <li class="step"><h3>Fabricamos</h3><p>Imprimimos, retiramos soportes, posprocesamos y medimos las cotas críticas.</p><span class="step-out">→ 5–7 días laborables</span></li>
+          <li class="step"><h3>Enviamos</h3><p>Embalaje protegido y seguimiento a cualquier punto de la península y Baleares.</p><span class="step-out">→ 24–48 h de transporte</span></li>
+        </ol>
+        <div class="hero-actions" style="margin-top:2.25rem">
+          <a href="presupuesto.html" class="btn btn-primary">Pedir presupuesto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg><span class="brand-word">technelatros</span></a>
+          <p>Ingeniería por proyectos: sensórica para instrumental quirúrgico y fabricación por impresión 3D.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Líneas</h4>
+          <ul>
+            <li><a href="servicios.html">Sensórica quirúrgica</a></li>
+            <li><a href="impresion-3d.html">Impresión 3D</a></li>
+            <li><a href="presupuesto.html">Pedir presupuesto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="sobre.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:hola@technelatros.es">hola@technelatros.es</a></li>
+            <li><a href="mailto:presupuestos@technelatros.es">presupuestos@technelatros.es</a></li>
+            <li><a href="tel:+34727785408">+34 727 785 408</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> technelatros · España</p>
+        <p>IEC 60601 · ISO 13485 · IEC 62304 como referencia de diseño</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
