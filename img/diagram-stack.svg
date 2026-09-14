@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" font-family="'Segoe UI', system-ui, sans-serif">
+  <rect x="20" y="200" width="460" height="80" rx="8" fill="#ffffff" stroke="#1c1c1a" stroke-width="2"/>
+  <text x="44" y="234" font-size="16" font-weight="600" fill="#1c1c1a">Hardware y sensórica</text>
+  <text x="44" y="256" font-size="11.5" fill="#6b6b66">PCB · acondicionamiento de señal · bajo ruido</text>
+
+  <rect x="20" y="110" width="460" height="80" rx="8" fill="#ffffff" stroke="#1c1c1a" stroke-width="2"/>
+  <text x="44" y="144" font-size="16" font-weight="600" fill="#1c1c1a">Firmware en tiempo real</text>
+  <text x="44" y="166" font-size="11.5" fill="#6b6b66">adquisición · sincronización · latencia acotada</text>
+
+  <rect x="20" y="20" width="460" height="80" rx="8" fill="#ffffff" stroke="#1c1c1a" stroke-width="2"/>
+  <text x="44" y="54" font-size="16" font-weight="600" fill="#1c1c1a">Algoritmo de fusión</text>
+  <text x="44" y="76" font-size="11.5" fill="#6b6b66">confianza dinámica por canal · filtrado</text>
+
+  <path d="M505,20 L522,20 L522,280 L505,280" fill="none" stroke="#9a9a9a" stroke-width="1.6"/>
+  <text x="534" y="140" font-size="13" font-weight="600" fill="#1c1c1a">Documentación</text>
+  <text x="534" y="158" font-size="13" font-weight="600" fill="#1c1c1a">normativa</text>
+  <text x="534" y="178" font-size="11" fill="#6b6b66">en cada capa,</text>
+  <text x="534" y="194" font-size="11" fill="#6b6b66">no al final</text>
+</svg>
