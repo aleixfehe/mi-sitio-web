@@ -20,66 +20,92 @@ function withAlpha(color, alpha) {
 // propósito: acompañan al texto, no compiten con él.
 // --------------------------------------------------------------------------
 const ART = {
-  // Capas de impresión apiladas que forman una silueta orgánica: la pieza
-  // fabricada capa a capa y, a la vez, algo anatómico.
-  layers(ctx, W, H, c) {
+  // Cordilleras superpuestas con un repetidor en la cima y nodos en las
+  // laderas: medir y transmitir desde donde casi nadie llega.
+  terrain(ctx, W, H, c) {
     const narrow = W < 760;
-    const cx = narrow ? W * 0.82 : W * 0.74;
-    const baseY = narrow ? H * 0.52 : H * 0.86;
-    const R = narrow ? Math.min(W * 0.42, 210) : Math.min(W * 0.2, H * 0.36, 270);
-    const L = narrow ? 30 : 46;
-    const gap = (narrow ? H * 0.34 : H * 0.62) / L;
-    const squash = 0.34;
+    const rows = narrow ? 12 : 16;
+    const top = narrow ? H * 0.18 : H * 0.36;
+    const bottom = narrow ? H * 0.52 : H * 1.02;
+    const startX = narrow ? W * 0.2 : W * 0.34;
+    const center = narrow ? 0.76 : 0.7;
+    const ampBase = narrow ? 34 : H * 0.12;
+    let mast = null;
+    const nodes = [];
 
-    // Plataforma de impresión
-    ctx.lineWidth = 1;
-    for (let k = 0; k < 3; k++) {
-      ctx.beginPath();
-      ctx.ellipse(cx, baseY + 10, R * (1.15 + k * 0.14), R * (1.15 + k * 0.14) * squash, 0, 0, Math.PI * 2);
-      ctx.strokeStyle = withAlpha(c.b, 0.07 - k * 0.015);
-      ctx.stroke();
-    }
-
-    for (let i = 0; i < L; i++) {
-      const t = i / (L - 1);
-      const y0 = baseY - i * gap;
-      const profile = 0.5 + 0.42 * Math.sin(Math.PI * (t * 0.92 + 0.06)) + 0.1 * Math.sin(t * 9.5);
-      const r = R * profile;
-      ctx.beginPath();
-      for (let s = 0; s <= 120; s++) {
-        const a = (s / 120) * Math.PI * 2;
-        const wob = 1 + 0.07 * Math.sin(3 * a + t * 5.2) + 0.045 * Math.sin(5 * a - t * 8.1) + 0.03 * Math.cos(2 * a + t * 13);
-        const x = cx + Math.cos(a) * r * wob;
-        const y = y0 + Math.sin(a) * r * wob * squash;
-        if (s === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    for (let i = 0; i < rows; i++) {
+      const t = i / (rows - 1);
+      const yb = top + (bottom - top) * t;
+      const amp = ampBase * (1 - t * 0.55);
+      const pts = [];
+      for (let x = startX; x <= W + 8; x += 4) {
+        const u = x / W;
+        const n = 0.5 * Math.sin(u * 6.1 + i * 1.3) + 0.3 * Math.sin(u * 13.7 - i * 0.8) + 0.1 * Math.sin(u * 31 + i * 2.1);
+        const env = Math.exp(-Math.pow((u - center) * 3.2, 2));
+        pts.push([x, yb - amp * (0.25 + env * (1.1 + 0.7 * n))]);
       }
+
+      ctx.beginPath();
+      pts.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+      ctx.lineTo(W + 8, H + 8);
+      ctx.lineTo(startX, H + 8);
       ctx.closePath();
-      ctx.fillStyle = withAlpha(c.bg, 0.72);
+      ctx.fillStyle = withAlpha(c.bg, 0.82);
       ctx.fill();
-      const accent = i % 7 === 3;
-      ctx.lineWidth = accent ? 1.3 : 1;
-      ctx.strokeStyle = accent ? withAlpha(c.b, 0.3) : withAlpha(c.a, 0.2 + 0.28 * t);
+
+      ctx.beginPath();
+      pts.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+      const accent = i % 5 === 2;
+      ctx.lineWidth = accent ? 1.2 : 1;
+      ctx.strokeStyle = accent ? withAlpha(c.b, 0.24) : withAlpha(c.a, 0.14 + 0.28 * (1 - t));
       ctx.stroke();
+
+      if (i === 2) {
+        const inFrame = pts.filter(([x]) => x > W * 0.55 && x < W * 0.88);
+        if (inFrame.length) mast = inFrame.reduce((m, p) => (p[1] < m[1] ? p : m));
+      }
+      if (i === Math.round(rows * 0.42) || i === Math.round(rows * 0.68)) {
+        const k = Math.floor(pts.length * (nodes.length ? 0.82 : 0.38));
+        nodes.push(pts[k]);
+      }
     }
 
-    // Boquilla depositando la última capa
-    const topY = baseY - (L - 1) * gap;
-    ctx.strokeStyle = withAlpha(c.b, 0.35);
-    ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    ctx.moveTo(cx + R * 0.35, topY - 70);
-    ctx.lineTo(cx + R * 0.35, topY - 26);
-    ctx.lineTo(cx + R * 0.31, topY - 14);
-    ctx.lineTo(cx + R * 0.39, topY - 14);
-    ctx.lineTo(cx + R * 0.35, topY - 26);
-    ctx.stroke();
-    ctx.fillStyle = withAlpha(c.a, 0.9);
-    ctx.beginPath();
-    ctx.arc(cx + R * 0.35, topY - 6, 2.6, 0, Math.PI * 2);
-    ctx.fill();
+    if (mast) {
+      const [mx, my] = mast;
+      const h = narrow ? 30 : 46;
+      const topY = my - h;
+      nodes.forEach(([nx, ny]) => {
+        ctx.save();
+        ctx.setLineDash([3, 5]);
+        ctx.strokeStyle = withAlpha(c.a, 0.45);
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(nx, ny - 6);
+        ctx.lineTo(mx, topY);
+        ctx.stroke();
+        ctx.restore();
+        ctx.fillStyle = withAlpha(c.b, 0.5);
+        ctx.fillRect(nx - 3.5, ny - 7, 7, 7);
+      });
 
-    fadeLeft(ctx, W, H, narrow ? 0.05 : 0.3, narrow ? 0.62 : 0.6);
-    if (narrow) fadeBottom(ctx, W, H, 0.35, 0.7);
+      ctx.strokeStyle = withAlpha(c.b, 0.5);
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(mx - 8, my); ctx.lineTo(mx, topY); ctx.lineTo(mx + 8, my);
+      ctx.moveTo(mx - 5, my - h * 0.35); ctx.lineTo(mx + 5, my - h * 0.35);
+      ctx.moveTo(mx - 2.6, my - h * 0.68); ctx.lineTo(mx + 2.6, my - h * 0.68);
+      ctx.stroke();
+      for (let k = 1; k <= 3; k++) {
+        ctx.strokeStyle = withAlpha(c.a, 0.6 - k * 0.14);
+        ctx.beginPath(); ctx.arc(mx, topY, 7 * k, -Math.PI / 4, Math.PI / 4); ctx.stroke();
+        ctx.beginPath(); ctx.arc(mx, topY, 7 * k, (Math.PI * 3) / 4, (Math.PI * 5) / 4); ctx.stroke();
+      }
+      ctx.fillStyle = withAlpha(c.a, 0.95);
+      ctx.beginPath(); ctx.arc(mx, topY, 2.4, 0, Math.PI * 2); ctx.fill();
+    }
+
+    fadeLeft(ctx, W, H, narrow ? 0.08 : 0.3, narrow ? 0.5 : 0.56);
+    if (narrow) fadeBottom(ctx, W, H, 0.42, 0.6);
   },
 
   // Trazas de señal: pulsatilidad, deriva de impedancia y una ráfaga de
@@ -115,8 +141,8 @@ const ART = {
     fadeLeft(ctx, W, H, 0, 0.5);
   },
 
-  // Anillos concéntricos: el campo alrededor de un sensor, o las ondas de
-  // una capa recién depositada. Para fondos oscuros.
+  // Anillos concéntricos: el campo alrededor de un sensor o de una antena.
+  // Para fondos oscuros.
   rings(ctx, W, H, c) {
     const cx = W * 0.92;
     const cy = H * 0.5;
@@ -162,10 +188,10 @@ function initBackgroundArt() {
 
   const drawAll = () => {
     const colors = {
-      a: cssVar('--art-a') || '#bf5f3c',
-      b: cssVar('--art-b') || '#141413',
-      bg: cssVar('--bg') || '#f0eee6',
-      on: cssVar('--on-dark') || '#f3f1e9',
+      a: cssVar('--art-a') || '#1d3d6b',
+      b: cssVar('--art-b') || '#0f1b2d',
+      bg: cssVar('--bg') || '#f3f5f8',
+      on: cssVar('--on-dark') || '#eef2f7',
     };
     canvases.forEach((canvas) => {
       const draw = ART[canvas.dataset.art];
