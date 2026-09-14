@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presupuesto de impresión 3D · technelatros</title>
+  <meta name="description" content="Sube tu archivo STL, OBJ, STEP o 3MF y recibe el presupuesto de impresión 3D por correo en 24 horas laborables. Análisis inmediato de medidas y volumen en el navegador.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Presupuesto de impresión 3D · technelatros">
+  <meta property="og:description" content="Sube tu modelo y recibe el presupuesto por correo en 24 h.">
+  <meta property="og:locale" content="es_ES">
+  <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="technelatros, inicio">
+        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg>
+        <span class="brand-word">technelatros</span>
+      </a>
+      <nav id="primaryNav" aria-label="Principal">
+        <ul class="nav-links">
+          <li><a href="servicios.html">Sensórica quirúrgica</a></li>
+          <li><a href="impresion-3d.html">Impresión 3D</a></li>
+          <li><a href="sobre.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="presupuesto.html" class="btn btn-ink btn-sm btn-nav">Pedir presupuesto</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero" style="padding-bottom:clamp(2rem,4vw,3rem)">
+      <canvas class="bg-art" data-art="layers" aria-hidden="true"></canvas>
+      <div class="container">
+        <div class="hero-copy">
+          <span class="eyebrow">Presupuesto de impresión 3D</span>
+          <h1>Sube tu modelo. El presupuesto te llega por correo.</h1>
+          <p class="lead">Sin registro y sin compromiso. Revisamos la geometría, elegimos contigo tecnología y material, y te enviamos precio y plazo en un máximo de 24 horas laborables.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:clamp(2rem,4vw,3rem)">
+      <div class="container">
+        <div class="quote-layout">
+          <form id="quoteForm" class="form-card" novalidate>
+            <div class="form-section">
+              <p class="form-section-title">1 · Tus archivos</p>
+              <div class="field full">
+                <label for="qFiles" class="visually-hidden">Archivos del modelo</label>
+                <div class="dropzone" id="dropzone">
+                  <svg viewBox="0 0 34 34" aria-hidden="true"><path class="ill-clay" d="M17 23 V7 M11 13 L17 7 L23 13"/><path class="ill-ink" d="M6 21 V27 H28 V21"/></svg>
+                  <span class="dropzone-title">Arrastra aquí tus modelos o haz clic para elegirlos</span>
+                  <span class="dropzone-hint">Hasta 5 archivos y 15 MB en total</span>
+                  <span class="dropzone-formats">STL · OBJ · 3MF · STEP · IGES · DXF · PDF · ZIP</span>
+                  <input type="file" id="qFiles" multiple accept=".stl,.obj,.3mf,.step,.stp,.iges,.igs,.dxf,.zip,.pdf,.png,.jpg,.jpeg">
+                </div>
+                <div class="file-list" id="fileList" aria-live="polite"></div>
+                <span class="field-error" data-error-for="archivos"></span>
+              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="qUnidades">Unidades del archivo</label>
+                  <select id="qUnidades" name="unidades">
+                    <option value="mm">Milímetros</option>
+                    <option value="cm">Centímetros</option>
+                    <option value="in">Pulgadas</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="qEnlace">¿Archivo grande? Enlace de descarga <span class="opt">(opcional)</span></label>
+                  <input id="qEnlace" name="enlace" type="url" inputmode="url" placeholder="https://wetransfer.com/…">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <p class="form-section-title">2 · Fabricación</p>
+              <fieldset>
+                <legend>Tecnología</legend>
+                <div class="choice-row">
+                  <label class="choice"><input type="radio" id="tAuto" name="tecnologia" value="auto" checked><span>No lo sé<small>proponédmela vosotros</small></span></label>
+                  <label class="choice"><input type="radio" id="tFdm" name="tecnologia" value="fdm"><span>FDM<small>filamento · ±0,2 mm</small></span></label>
+                  <label class="choice"><input type="radio" id="tSla" name="tecnologia" value="sla"><span>SLA<small>resina · ±0,1 mm</small></span></label>
+                  <label class="choice"><input type="radio" id="tSls" name="tecnologia" value="sls"><span>SLS<small>nylon · sin soportes</small></span></label>
+                </div>
+              </fieldset>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="qMaterial">Material</label>
+                  <select id="qMaterial" name="material"></select>
+                </div>
+                <div class="field">
+                  <label for="qCantidad">Unidades a fabricar</label>
+                  <input id="qCantidad" name="cantidad" type="number" min="1" max="10000" step="1" value="1" inputmode="numeric">
+                  <span class="field-error" data-error-for="cantidad"></span>
+                </div>
+                <div class="field">
+                  <label for="qAcabado">Acabado</label>
+                  <select id="qAcabado" name="acabado">
+                    <option>Estándar (soportes retirados)</option>
+                    <option>Lijado fino</option>
+                    <option>Imprimado, listo para pintar</option>
+                    <option>Pintado a color</option>
+                    <option>Teñido negro (solo SLS)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="qUso">Para qué es la pieza</label>
+                  <select id="qUso" name="uso">
+                    <option>Prototipo funcional</option>
+                    <option>Prototipo visual o maqueta</option>
+                    <option>Pieza final</option>
+                    <option>Carcasa para electrónica</option>
+                    <option>Utillaje o plantilla</option>
+                    <option>Modelo anatómico</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label for="qPlazo">Plazo</label>
+                  <select id="qPlazo" name="plazo">
+                    <option>Estándar · 5–7 días laborables</option>
+                    <option>Urgente · 48–72 h, según disponibilidad</option>
+                    <option>Sin prisa · priorizar precio</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <p class="form-section-title">3 · Dónde te enviamos el presupuesto</p>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="qNombre">Nombre</label>
+                  <input id="qNombre" name="nombre" type="text" autocomplete="name" required>
+                  <span class="field-error" data-error-for="nombre"></span>
+                </div>
+                <div class="field">
+                  <label for="qEmail">Correo electrónico</label>
+                  <input id="qEmail" name="email" type="email" autocomplete="email" required>
+                  <span class="field-error" data-error-for="email"></span>
+                </div>
+                <div class="field">
+                  <label for="qEmpresa">Empresa o centro <span class="opt">(opcional)</span></label>
+                  <input id="qEmpresa" name="empresa" type="text" autocomplete="organization">
+                </div>
+                <div class="field">
+                  <label for="qTelefono">Teléfono <span class="opt">(opcional)</span></label>
+                  <input id="qTelefono" name="telefono" type="tel" autocomplete="tel">
+                </div>
+                <div class="field full">
+                  <label for="qNotas">Detalles que debamos saber <span class="opt">(opcional)</span></label>
+                  <textarea id="qNotas" name="notas" placeholder="Cotas críticas, piezas que deben encajar, color, esterilización, dirección de envío…"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <input type="hidden" id="qAnalisis" name="analisis" value="">
+            <div class="hp" aria-hidden="true">
+              <label for="qTrap">No rellenes este campo</label>
+              <input id="qTrap" name="empresa_web" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-section">
+              <label class="check-row" for="qConsent">
+                <input id="qConsent" name="consentimiento" type="checkbox" value="si">
+                <span>Acepto que technelatros use mis datos y archivos solo para preparar y enviarme este presupuesto.</span>
+              </label>
+              <span class="field-error" data-error-for="consentimiento"></span>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+                <small>Recibirás un acuse de recibo al momento y el presupuesto en un máximo de 24 horas laborables.</small>
+              </div>
+              <div id="quoteStatus" class="form-status"></div>
+            </div>
+          </form>
+
+          <aside class="quote-aside" aria-label="Análisis del modelo">
+            <section class="analysis">
+              <div class="analysis-head">
+                <h2 id="anName">Ningún modelo</h2>
+                <span class="state" id="anState">en espera</span>
+              </div>
+              <div class="viewer">
+                <canvas id="viewerCanvas" role="img" aria-label="Vista previa 3D del modelo"></canvas>
+                <div class="viewer-empty" id="viewerEmpty">La vista previa aparece al subir un STL u OBJ</div>
+                <span class="viewer-hint">arrastra para girar</span>
+              </div>
+              <div class="readouts">
+                <div class="readout span-2"><span class="readout-val is-accent" id="anDims">—</span><span class="readout-lbl">Medidas X × Y × Z</span></div>
+                <div class="readout"><span class="readout-val" id="anVol">—</span><span class="readout-lbl">Volumen de la pieza</span></div>
+                <div class="readout"><span class="readout-val" id="anArea">—</span><span class="readout-lbl">Superficie</span></div>
+                <div class="readout"><span class="readout-val" id="anMass">—</span><span class="readout-lbl">Material estimado</span></div>
+                <div class="readout"><span class="readout-val" id="anTime">—</span><span class="readout-lbl">Tiempo de máquina</span></div>
+                <div class="readout"><span class="readout-val" id="anTris">—</span><span class="readout-lbl">Triángulos de la malla</span></div>
+                <div class="readout"><span class="readout-val" id="anFit">—</span><span class="readout-lbl">Volumen de impresión</span></div>
+              </div>
+              <p class="analysis-note" id="anNote"></p>
+            </section>
+            <p class="notice"><strong>Tus archivos son confidenciales.</strong> Solo los ve el equipo técnico que prepara el presupuesto. Si lo necesitas, firmamos un acuerdo de confidencialidad antes de que nos envíes nada.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-surface">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Después de enviar</span>
+          <h2>Qué pasa con tu solicitud.</h2>
+        </div>
+        <ol class="steps steps-3">
+          <li class="step"><h3>Acuse de recibo</h3><p>Al momento recibes un correo con la referencia de tu solicitud. Respóndelo si quieres añadir algo.</p></li>
+          <li class="step"><h3>Revisión técnica</h3><p>Comprobamos la malla, espesores y encajes, y elegimos orientación y soportes. Si algo no está claro, te escribimos antes.</p></li>
+          <li class="step"><h3>Presupuesto</h3><p>Precio por unidad y por serie, plazo, material recomendado y observaciones de diseño. Válido 30 días.</p></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg><span class="brand-word">technelatros</span></a>
+          <p>Ingeniería por proyectos: sensórica para instrumental quirúrgico y fabricación por impresión 3D.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Líneas</h4>
+          <ul>
+            <li><a href="servicios.html">Sensórica quirúrgica</a></li>
+            <li><a href="impresion-3d.html">Impresión 3D</a></li>
+            <li><a href="presupuesto.html">Pedir presupuesto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="sobre.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:hola@technelatros.es">hola@technelatros.es</a></li>
+            <li><a href="mailto:presupuestos@technelatros.es">presupuestos@technelatros.es</a></li>
+            <li><a href="tel:+34727785408">+34 727 785 408</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> technelatros · España</p>
+        <p>IEC 60601 · ISO 13485 · IEC 62304 como referencia de diseño</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/presupuesto.js"></script>
+</body>
+</html>
