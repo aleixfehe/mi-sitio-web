@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 260" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1c1a"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9a9a9a"/>
+    </marker>
+  </defs>
+
+  <rect x="20" y="65" width="175" height="110" rx="10" fill="#ffffff" stroke="#1c1c1a" stroke-width="2"/>
+  <text x="107" y="112" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1c1a">Sensores</text>
+  <text x="107" y="134" text-anchor="middle" font-size="11.5" fill="#6b6b66">fuerza · bioimpedancia</text>
+  <text x="107" y="149" text-anchor="middle" font-size="11.5" fill="#6b6b66">posición</text>
+
+  <rect x="245" y="65" width="175" height="110" rx="10" fill="#ffffff" stroke="#1c1c1a" stroke-width="2"/>
+  <text x="332" y="112" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1c1a">Acondicionamiento</text>
+  <text x="332" y="134" text-anchor="middle" font-size="11.5" fill="#6b6b66">filtrado · aislamiento</text>
+  <text x="332" y="149" text-anchor="middle" font-size="11.5" fill="#6b6b66">inmunidad EMI</text>
+
+  <rect x="470" y="65" width="195" height="110" rx="10" fill="#ffffff" stroke="#1c1c1a" stroke-width="2"/>
+  <text x="567" y="112" text-anchor="middle" font-size="16" font-weight="600" fill="#1c1c1a">Fusión ponderada</text>
+  <text x="567" y="134" text-anchor="middle" font-size="11.5" fill="#6b6b66">confianza dinámica</text>
+  <text x="567" y="149" text-anchor="middle" font-size="11.5" fill="#6b6b66">por canal</text>
+
+  <rect x="715" y="65" width="125" height="110" rx="10" fill="#1c1c1a" stroke="#1c1c1a" stroke-width="2"/>
+  <text x="777" y="112" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">Salida</text>
+  <text x="777" y="134" text-anchor="middle" font-size="11.5" fill="#c9c9c6">señal</text>
+  <text x="777" y="149" text-anchor="middle" font-size="11.5" fill="#c9c9c6">fiable</text>
+
+  <line x1="197" y1="120" x2="243" y2="120" stroke="#1c1c1a" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="422" y1="120" x2="468" y2="120" stroke="#1c1c1a" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="667" y1="120" x2="713" y2="120" stroke="#1c1c1a" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <line x1="332" y1="238" x2="332" y2="177" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arrow-muted)"/>
+  <text x="332" y="253" text-anchor="middle" font-size="11.5" fill="#6b6b66">ruido / interferencia del electrobisturí</text>
+</svg>
