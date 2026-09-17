@@ -142,7 +142,7 @@ const ART = {
   },
 
   // Anillos concéntricos: el campo alrededor de un sensor o de una antena.
-  // Para fondos oscuros.
+  // Muy tenues, para las bandas de cierre.
   rings(ctx, W, H, c) {
     const cx = W * 0.92;
     const cy = H * 0.5;
@@ -153,7 +153,7 @@ const ART = {
       ctx.ellipse(cx, cy, r, r * 0.62, -0.18, 0, Math.PI * 2);
       const accent = i % 6 === 0;
       ctx.lineWidth = 1;
-      ctx.strokeStyle = accent ? withAlpha(c.a, 0.35) : withAlpha(c.on, 0.06);
+      ctx.strokeStyle = accent ? withAlpha(c.a, 0.3) : withAlpha(c.b, 0.06);
       ctx.stroke();
     }
     fadeLeft(ctx, W, H, 0.25, 0.75);
