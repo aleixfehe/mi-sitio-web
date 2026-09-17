@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entornos de difícil acceso · AKRA</title>
+  <title>Entornos de difícil acceso | AKRA</title>
   <meta name="description" content="Redes de sensores autónomas y comunicaciones de largo alcance para infraestructuras, industria y medio natural: equipos que funcionan años sin mantenimiento donde no llega la red.">
-  <meta name="theme-color" content="#070b12">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Entornos de difícil acceso · AKRA">
+  <meta property="og:title" content="Entornos de difícil acceso | AKRA">
   <meta property="og:description" content="Datos fiables desde lugares a los que casi nadie llega.">
   <meta property="og:image" content="img/logo-mark.svg">
   <meta property="og:locale" content="es_ES">
   <link rel="icon" href="img/favicon.svg?v=4" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
         <div class="hero-copy">
           <span class="eyebrow">Sensórica y telecomunicaciones de difícil acceso</span>
           <h1>Datos fiables desde donde casi nadie llega.</h1>
-          <p class="lead">Diseñamos, instalamos y mantenemos sistemas de medida que funcionan solos durante años —en montaña, bajo tierra, dentro de una máquina o lejos de cualquier red— y que hacen llegar sus datos hasta donde los necesitas.</p>
+          <p class="lead">Diseñamos, instalamos y mantenemos sistemas de medida que funcionan solos durante años (en montaña, bajo tierra, dentro de una máquina o lejos de cualquier red) y que hacen llegar sus datos hasta donde los necesitas.</p>
           <div class="hero-actions">
             <a href="presupuesto.html" class="btn btn-primary">Pedir presupuesto</a>
             <a href="#nodo" class="btn btn-ghost">Ver el nodo en 3D</a>
@@ -56,7 +56,7 @@
       </div>
     </section>
 
-    <section class="section section-dark gridded" id="nodo">
+    <section class="section section-tint gridded" id="nodo">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Modelo 3D</span>
@@ -74,7 +74,7 @@
               <li data-part="shell">Envolvente sellada</li>
               <li data-part="probe">Sonda de medida</li>
             </ul>
-            <span class="vp-tag">Nodo de campo · vista despiezada</span>
+            <span class="vp-tag">Nodo de campo en vista despiezada</span>
             <span class="vp-tag vp-tag-br">Arrastra para girar</span>
           </div>
           <div class="panel">
@@ -109,7 +109,7 @@
         <div class="lab lab-top">
           <div class="viewport frame draggable fixed-ratio" id="covView" style="aspect-ratio: 180 / 110">
             <canvas id="covCanvas" role="img" aria-label="Mapa topográfico simulado con un repetidor que se mueve arrastrando o con las flechas del teclado"></canvas>
-            <span class="vp-tag">Terreno simulado · 9 × 5,5 km</span>
+            <span class="vp-tag">Terreno simulado de 9 × 5,5 km</span>
             <span class="vp-tag vp-tag-br">Arrastra el repetidor</span>
           </div>
           <div class="panel">
@@ -120,9 +120,9 @@
               <input type="range" id="covMast" min="3" max="40" value="15">
             </div>
             <div class="readouts">
-              <div class="readout"><span class="readout-val is-accent" id="covLinked">— / 10</span><span class="readout-lbl">Sensores con enlace</span></div>
-              <div class="readout"><span class="readout-val" id="covArea">—</span><span class="readout-lbl">Superficie con cobertura</span></div>
-              <div class="readout span-2"><span class="readout-val" id="covBackhaul">—</span><span class="readout-lbl">Enlace con la estación base</span></div>
+              <div class="readout"><span class="readout-val is-accent" id="covLinked">Calculando</span><span class="readout-lbl">Sensores con enlace</span></div>
+              <div class="readout"><span class="readout-val" id="covArea">Calculando</span><span class="readout-lbl">Superficie con cobertura</span></div>
+              <div class="readout span-2"><span class="readout-val" id="covBackhaul">Calculando</span><span class="readout-lbl">Enlace con la estación base</span></div>
             </div>
             <ul class="legend">
               <li><i style="background:#3d8bff"></i>Con cobertura</li>
@@ -177,10 +177,10 @@
           <h2>Del estudio del terreno al sistema funcionando.</h2>
         </div>
         <ol class="steps">
-          <li class="step reveal"><h3>Estudio del emplazamiento</h3><p>Visitamos o analizamos el lugar y simulamos la cobertura con su cartografía real.</p><span class="step-out">→ informe de viabilidad</span></li>
-          <li class="step reveal"><h3>Diseño y piloto</h3><p>Montamos unos pocos puntos de medida para comprobar en condiciones reales que todo responde.</p><span class="step-out">→ piloto con datos reales</span></li>
-          <li class="step reveal"><h3>Despliegue</h3><p>Instalamos el sistema completo, lo ponemos en marcha y dejamos configuradas las alertas.</p><span class="step-out">→ red operativa y documentada</span></li>
-          <li class="step reveal"><h3>Operación</h3><p>Vigilamos la salud del sistema, lo actualizamos a distancia y acudimos solo cuando es necesario.</p><span class="step-out">→ soporte continuo</span></li>
+          <li class="step reveal"><h3>Estudio del emplazamiento</h3><p>Visitamos o analizamos el lugar y simulamos la cobertura con su cartografía real.</p><span class="step-out"><b>Entregable:</b> informe de viabilidad</span></li>
+          <li class="step reveal"><h3>Diseño y piloto</h3><p>Montamos unos pocos puntos de medida para comprobar en condiciones reales que todo responde.</p><span class="step-out"><b>Entregable:</b> piloto con datos reales</span></li>
+          <li class="step reveal"><h3>Despliegue</h3><p>Instalamos el sistema completo, lo ponemos en marcha y dejamos configuradas las alertas.</p><span class="step-out"><b>Entregable:</b> red operativa y documentada</span></li>
+          <li class="step reveal"><h3>Operación</h3><p>Vigilamos la salud del sistema, lo actualizamos a distancia y acudimos solo cuando es necesario.</p><span class="step-out"><b>Entregable:</b> soporte continuo</span></li>
         </ol>
       </div>
     </section>
@@ -214,7 +214,7 @@
       </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="section section-tint">
       <canvas class="bg-art" data-art="rings" aria-hidden="true"></canvas>
       <div class="container">
         <div class="cta-band">
@@ -237,7 +237,7 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 86 L50 30 L84 86" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 68 H64" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path class="sig" d="M40.1 20.1 A14 14 0 0 1 59.9 20.1" fill="none" stroke-width="6" stroke-linecap="round"/><path class="sig" d="M31.6 11.6 A26 26 0 0 1 68.4 11.6" fill="none" stroke-width="6" stroke-linecap="round" opacity=".55"/></svg><span class="brand-word">AKRA</span></a>
-          <p>Del griego <span lang="grc">ἄκρα</span>, los extremos. Ingeniería por proyectos en sensórica y telecomunicaciones.</p>
+          <p>Ingeniería por proyectos en sensórica y telecomunicaciones, para el quirófano y para lugares de difícil acceso.</p>
         </div>
         <div class="footer-col">
           <h4>Líneas</h4>
@@ -265,7 +265,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="year">2026</span> AKRA · España</p>
+        <p>&copy; <span id="year">2026</span> AKRA. España</p>
         <p>Ingeniería por proyectos</p>
       </div>
     </div>
