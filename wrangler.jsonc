@@ -8,7 +8,7 @@
   },
   "vars": {
     "QUOTE_TO": "presupuestos@technelatros.es",
-    "MAIL_FROM": "technelatros <presupuestos@technelatros.es>",
+    "MAIL_FROM": "AKRA <presupuestos@technelatros.es>",
     "SEND_CONFIRMATION": "true"
   }
   // La clave de Resend va como secreto, nunca aquí:
