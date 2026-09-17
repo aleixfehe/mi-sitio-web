@@ -111,29 +111,31 @@
           </div>
           <figure class="figure reveal">
             <div class="diagram-scroll">
-              <svg class="diagram is-wide" viewBox="0 0 860 250" role="img" aria-labelledby="fuTitle">
-                <title id="fuTitle">Cadena de señal: los sensores pasan por una etapa de acondicionamiento, después por una fusión según la fiabilidad de cada señal y producen una salida para el cirujano. La interferencia del electrobisturí entra en el acondicionamiento.</title>
+              <svg class="diagram" viewBox="0 0 480 452" role="img" aria-labelledby="fuTitle">
+                <title id="fuTitle">Cadena de señal de arriba abajo: los sensores del instrumento pasan por una etapa de acondicionamiento, después por una fusión según la fiabilidad de cada señal y producen una salida para el cirujano. La interferencia del electrobisturí entra en la etapa de acondicionamiento.</title>
                 <defs>
                   <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+                  <marker id="arwWarn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--warn)"/></marker>
                 </defs>
-                <rect class="d-box" x="20" y="62" width="175" height="106" rx="10"/>
-                <text x="107" y="106" text-anchor="middle" font-size="17" font-weight="600">Sensores</text>
-                <text class="d-muted" x="107" y="129" text-anchor="middle" font-size="12.5">en el instrumento</text>
-                <rect class="d-box" x="245" y="62" width="175" height="106" rx="10"/>
-                <text x="332" y="106" text-anchor="middle" font-size="17" font-weight="600">Acondicionamiento</text>
-                <text class="d-muted" x="332" y="129" text-anchor="middle" font-size="12.5">limpiar y proteger</text>
-                <rect class="d-box" x="470" y="62" width="195" height="106" rx="10"/>
-                <text x="567" y="106" text-anchor="middle" font-size="17" font-weight="600">Fusión</text>
-                <text class="d-muted" x="567" y="129" text-anchor="middle" font-size="12.5">según la fiabilidad</text>
-                <text class="d-muted" x="567" y="146" text-anchor="middle" font-size="12.5">de cada señal</text>
-                <rect class="d-box-strong" x="715" y="62" width="125" height="106" rx="10"/>
-                <text class="d-on-strong" x="777" y="106" text-anchor="middle" font-size="17" font-weight="600">Salida</text>
-                <text class="d-on-strong" x="777" y="129" text-anchor="middle" font-size="12.5" opacity=".8">para el cirujano</text>
-                <line class="d-line" x1="197" y1="115" x2="241" y2="115" marker-end="url(#arw)"/>
-                <line class="d-line" x1="422" y1="115" x2="466" y2="115" marker-end="url(#arw)"/>
-                <line class="d-line" x1="667" y1="115" x2="711" y2="115" marker-end="url(#arw)"/>
-                <path class="d-warn" d="M332 226 V172" style="stroke-dasharray:4 4"/>
-                <text class="d-muted" x="332" y="244" text-anchor="middle" font-size="12.5">interferencia del electrobisturí</text>
+                <rect class="d-box" x="50" y="8" width="280" height="72" rx="10"/>
+                <text x="190" y="37" text-anchor="middle" font-size="19" font-weight="600">Sensores</text>
+                <text class="d-muted" x="190" y="58" text-anchor="middle" font-size="14">en el instrumento</text>
+                <line class="d-line" x1="190" y1="82" x2="190" y2="114" marker-end="url(#arw)"/>
+                <rect class="d-box" x="50" y="118" width="280" height="72" rx="10"/>
+                <text x="190" y="147" text-anchor="middle" font-size="19" font-weight="600">Acondicionamiento</text>
+                <text class="d-muted" x="190" y="168" text-anchor="middle" font-size="14">limpiar y proteger</text>
+                <line class="d-line" x1="190" y1="192" x2="190" y2="224" marker-end="url(#arw)"/>
+                <rect class="d-box" x="50" y="228" width="280" height="84" rx="10"/>
+                <text x="190" y="257" text-anchor="middle" font-size="19" font-weight="600">Fusión</text>
+                <text class="d-muted" x="190" y="278" text-anchor="middle" font-size="14">según la fiabilidad</text>
+                <text class="d-muted" x="190" y="295" text-anchor="middle" font-size="14">de cada señal</text>
+                <line class="d-line" x1="190" y1="314" x2="190" y2="346" marker-end="url(#arw)"/>
+                <rect class="d-box-strong" x="50" y="350" width="280" height="72" rx="10"/>
+                <text class="d-on-strong" x="190" y="379" text-anchor="middle" font-size="19" font-weight="600">Salida</text>
+                <text class="d-on-strong" opacity=".85" x="190" y="400" text-anchor="middle" font-size="14">para el cirujano</text>
+                <line class="d-warn" x1="472" y1="154" x2="336" y2="154" style="stroke-dasharray:5 4" marker-end="url(#arwWarn)"/>
+                <text class="d-muted" x="404" y="128" text-anchor="middle" font-size="14">interferencia del</text>
+                <text class="d-muted" x="404" y="145" text-anchor="middle" font-size="14">electrobisturí</text>
               </svg>
             </div>
             <figcaption>Cada etapa queda justificada en la documentación técnica desde el primer día.</figcaption>
