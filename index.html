@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AKRA · Sensórica y telecomunicaciones en los extremos</title>
+  <title>AKRA | Sensórica y telecomunicaciones en los extremos</title>
   <meta name="description" content="AKRA diseña sensórica y telecomunicaciones para el quirófano y para lugares de difícil acceso. Ingeniería por proyectos, simulaciones en vivo y presupuesto en línea.">
-  <meta name="theme-color" content="#070b12">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AKRA · Medimos en los extremos">
+  <meta property="og:title" content="AKRA | Medimos en los extremos">
   <meta property="og:description" content="Sensores en la punta de un instrumento quirúrgico. Redes que transmiten desde la cima de una montaña.">
   <meta property="og:image" content="img/logo-mark.svg">
   <meta property="og:locale" content="es_ES">
   <link rel="icon" href="img/favicon.svg?v=4" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
@@ -83,17 +83,12 @@
               <div>Batería media<span class="hud-val" id="hudBattery">89 %</span></div>
             </div>
             <ul class="hud-log" id="hudLog">
-              <li>--:--:-- · <b>N-04</b> · nivel 2,17 m</li>
-              <li>--:--:-- · <b>N-09</b> · temperatura −2,4 °C</li>
+              <li><time>10:42:07</time><b>N-04</b><span>nivel 2,17 m</span></li>
+              <li><time>10:42:03</time><b>N-09</b><span>temperatura −2,4 °C</span></li>
             </ul>
           </aside>
         </div>
       </div>
-    </section>
-
-    <section class="container etym">
-      <div class="etym-word"><span class="etym-greek" lang="grc">ἄκρα</span><span class="etym-pron">ÁKRA · GR. «LOS EXTREMOS»</span></div>
-      <p>En griego, <strong>la punta y la cumbre</strong>. Los dos lugares donde trabajamos: el extremo de un instrumento dentro del cuerpo y el punto más alto del terreno, desde donde una señal tiene que salir sí o sí.</p>
     </section>
 
     <section class="section">
@@ -158,23 +153,24 @@
       </div>
     </section>
 
-    <section class="section section-dark gridded" id="laboratorio">
+    <section class="section section-tint gridded" id="laboratorio">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Laboratorio · simulación 01</span>
+          <span class="eyebrow">Simulación 1: el quirófano</span>
           <h2>Un instrumento que sigue midiendo cuando el quirófano se vuelve hostil.</h2>
-          <p class="lead">Activa el electrobisturí: la bioimpedancia se llena de ruido, pero la salida aguanta porque el sistema se apoya en el sensor de fuerza mientras dura la interferencia. Desactiva la fusión para ver la diferencia.</p>
+          <p class="lead">Guía el instrumento con el ratón y presiona sobre el tejido. Cuando pasas sobre el vaso, el sensor de fuerza nota el pulso. Activa el electrobisturí para cortar: la bioimpedancia se llena de ruido, pero la salida aguanta gracias a la fusión de señales.</p>
         </div>
 
         <div class="lab">
-          <div class="viewport frame" id="labScene" style="aspect-ratio: 16 / 11">
-            <span class="vp-tag">Instrumento sensorizado · tejido · vaso</span>
+          <div class="viewport frame steer" id="labScene" style="aspect-ratio: 16 / 11" tabindex="0" aria-label="Simulación del instrumento quirúrgico. Usa las flechas para moverlo y la barra espaciadora para presionar.">
+            <span class="vp-tag">Mueve el ratón para guiar el instrumento</span>
             <span class="vp-tag vp-tag-br" id="labState" aria-live="polite">Contacto estable con el tejido</span>
           </div>
           <div class="panel">
-            <div class="panel-head"><span class="sim-tag">Simulación en vivo</span><h3>Fusión de señales</h3></div>
+            <div class="panel-head"><span class="sim-tag">Simulación en vivo</span><h3>Guía tú el instrumento</h3></div>
+            <p class="panel-hint">Mueve el ratón sobre el tejido y <b>mantén pulsado</b> para presionar. Con el teclado: flechas y <kbd>espacio</kbd>. Si activas el electrobisturí, verás el corte sobre el tejido.</p>
             <button type="button" class="toggle is-warn" id="labCautery" aria-pressed="false">
-              <span><span data-label>Activar electrobisturí</span><small>Inyecta interferencia en la punta</small></span>
+              <span><span data-label>Activar electrobisturí</span><small>Corta y genera interferencia al presionar</small></span>
               <span class="sw" aria-hidden="true"></span>
             </button>
             <button type="button" class="toggle" id="labFusion" aria-pressed="true">
@@ -182,15 +178,16 @@
               <span class="sw" aria-hidden="true"></span>
             </button>
             <div class="control">
-              <label for="labPressure">Presión del instrumento <output id="labPressureOut" for="labPressure">60 %</output></label>
+              <label for="labPressure">Fuerza al presionar <output id="labPressureOut" for="labPressure">60 %</output></label>
               <input type="range" id="labPressure" min="10" max="100" value="60">
             </div>
+            <div class="btn-row"><button type="button" class="btn btn-ghost btn-sm" id="labReset">Limpiar tejido</button></div>
             <canvas class="trace" id="labTrace" role="img" aria-label="Registro en tiempo real de fuerza, bioimpedancia cruda y señal de salida"></canvas>
             <div class="readouts">
-              <div class="readout"><span class="readout-val is-accent" id="labForce">—</span><span class="readout-lbl">Fuerza de contacto</span></div>
-              <div class="readout"><span class="readout-val" id="labImp">—</span><span class="readout-lbl">Impedancia de salida</span></div>
-              <div class="readout"><span class="readout-val" id="labTrust">—</span><span class="readout-lbl">Confianza en la impedancia</span></div>
-              <div class="readout"><span class="readout-val" id="labEmi">—</span><span class="readout-lbl">Interferencia</span></div>
+              <div class="readout"><span class="readout-val is-accent" id="labForce">0,00 N</span><span class="readout-lbl">Fuerza de contacto</span></div>
+              <div class="readout"><span class="readout-val" id="labImp">440 Ω</span><span class="readout-lbl">Impedancia de salida</span></div>
+              <div class="readout"><span class="readout-val" id="labTrust">100 %</span><span class="readout-lbl">Confianza en la impedancia</span></div>
+              <div class="readout"><span class="readout-val" id="labEmi">0 %</span><span class="readout-lbl">Interferencia</span></div>
             </div>
           </div>
         </div>
@@ -201,7 +198,7 @@
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Laboratorio · simulación 02</span>
+          <span class="eyebrow">Simulación 2: el terreno</span>
           <h2>Una ladera puede dejar a media red sin señal.</h2>
           <p class="lead">Arrastra el repetidor por el mapa y cambia la altura del mástil. En cada punto se calcula la línea de vista contra el relieve: así decidimos dónde instalar antes de subir a la montaña.</p>
         </div>
@@ -209,7 +206,7 @@
         <div class="lab lab-top">
           <div class="viewport frame draggable fixed-ratio" id="covView" style="aspect-ratio: 180 / 110">
             <canvas id="covCanvas" role="img" aria-label="Mapa topográfico simulado con un repetidor que se mueve arrastrando o con las flechas del teclado"></canvas>
-            <span class="vp-tag">Terreno simulado · 9 × 5,5 km</span>
+            <span class="vp-tag">Terreno simulado de 9 × 5,5 km</span>
             <span class="vp-tag vp-tag-br">Arrastra el repetidor</span>
           </div>
           <div class="panel">
@@ -220,9 +217,9 @@
               <input type="range" id="covMast" min="3" max="40" value="15">
             </div>
             <div class="readouts">
-              <div class="readout"><span class="readout-val is-accent" id="covLinked">— / 10</span><span class="readout-lbl">Sensores con enlace</span></div>
-              <div class="readout"><span class="readout-val" id="covArea">—</span><span class="readout-lbl">Superficie con cobertura</span></div>
-              <div class="readout span-2"><span class="readout-val" id="covBackhaul">—</span><span class="readout-lbl">Enlace con la estación base</span></div>
+              <div class="readout"><span class="readout-val is-accent" id="covLinked">Calculando</span><span class="readout-lbl">Sensores con enlace</span></div>
+              <div class="readout"><span class="readout-val" id="covArea">Calculando</span><span class="readout-lbl">Superficie con cobertura</span></div>
+              <div class="readout span-2"><span class="readout-val" id="covBackhaul">Calculando</span><span class="readout-lbl">Enlace con la estación base</span></div>
             </div>
             <ul class="legend">
               <li><i style="background:#3d8bff"></i>Con cobertura</li>
@@ -267,10 +264,10 @@
           <p class="lead">No vendemos horas sueltas. Cada proyecto sigue la misma secuencia y termina con algo que puedes tocar, medir o poner en marcha.</p>
         </div>
         <ol class="steps">
-          <li class="step reveal"><h3>Alcance</h3><p>Una conversación técnica para entender el problema, el entorno y lo que tiene que cumplirse para darlo por resuelto.</p><span class="step-out">→ propuesta con precio y plazo</span></li>
-          <li class="step reveal"><h3>Diseño y simulación</h3><p>Definimos qué medir, cómo alimentarlo y cómo hacer llegar el dato, y lo simulamos antes de fabricar nada.</p><span class="step-out">→ arquitectura y plan de pruebas</span></li>
-          <li class="step reveal"><h3>Prototipo y ensayo</h3><p>Construimos y probamos en banco y en condiciones reales hasta que los resultados cumplen lo acordado.</p><span class="step-out">→ prototipo e informe de ensayo</span></li>
-          <li class="step reveal"><h3>Entrega y puesta en marcha</h3><p>Instalamos o transferimos el sistema, con la documentación de cada decisión y el soporte que necesites.</p><span class="step-out">→ sistema funcionando y documentado</span></li>
+          <li class="step reveal"><h3>Alcance</h3><p>Una conversación técnica para entender el problema, el entorno y lo que tiene que cumplirse para darlo por resuelto.</p><span class="step-out"><b>Entregable:</b> propuesta con precio y plazo</span></li>
+          <li class="step reveal"><h3>Diseño y simulación</h3><p>Definimos qué medir, cómo alimentarlo y cómo hacer llegar el dato, y lo simulamos antes de fabricar nada.</p><span class="step-out"><b>Entregable:</b> arquitectura y plan de pruebas</span></li>
+          <li class="step reveal"><h3>Prototipo y ensayo</h3><p>Construimos y probamos en banco y en condiciones reales hasta que los resultados cumplen lo acordado.</p><span class="step-out"><b>Entregable:</b> prototipo e informe de ensayo</span></li>
+          <li class="step reveal"><h3>Entrega y puesta en marcha</h3><p>Instalamos o transferimos el sistema, con la documentación de cada decisión y el soporte que necesites.</p><span class="step-out"><b>Entregable:</b> sistema funcionando y documentado</span></li>
         </ol>
       </div>
     </section>
@@ -284,10 +281,10 @@
         <div class="grid grid-3">
           <div class="cell reveal"><span class="cell-k">Quirófano</span><h3>Fabricantes de dispositivos médicos</h3><p>Equipos con instrumental en desarrollo que necesitan sensórica, electrónica fiable o documentación orientada a certificación.</p></div>
           <div class="cell reveal"><span class="cell-k">Quirófano</span><h3>Hospitales y unidades de innovación</h3><p>Cirujanos e ingenieros clínicos con una idea de instrumento que quieren convertir en prototipo.</p></div>
-          <div class="cell reveal"><span class="cell-k">Quirófano · Campo</span><h3>Empresas tecnológicas</h3><p>Del primer prototipo que se enseña a inversores al piloto que se valida en condiciones reales.</p></div>
+          <div class="cell reveal"><span class="cell-k">Quirófano y campo</span><h3>Empresas tecnológicas</h3><p>Del primer prototipo que se enseña a inversores al piloto que se valida en condiciones reales.</p></div>
           <div class="cell reveal"><span class="cell-k">Campo</span><h3>Infraestructuras y obra civil</h3><p>Presas, puentes, túneles y taludes que hay que vigilar de forma continua, lejos de cualquier oficina.</p></div>
           <div class="cell reveal"><span class="cell-k">Campo</span><h3>Agua, energía e industria</h3><p>Depósitos, conducciones, instalaciones aisladas y maquinaria donde un fallo sin detectar sale caro.</p></div>
-          <div class="cell reveal"><span class="cell-k">Campo · Quirófano</span><h3>Administraciones e investigación</h3><p>Espacios naturales, estaciones de medida y grupos de investigación con proyectos financiados.</p></div>
+          <div class="cell reveal"><span class="cell-k">Campo y quirófano</span><h3>Administraciones e investigación</h3><p>Espacios naturales, estaciones de medida y grupos de investigación con proyectos financiados.</p></div>
         </div>
       </div>
     </section>
@@ -327,7 +324,7 @@
       </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="section section-tint">
       <canvas class="bg-art" data-art="rings" aria-hidden="true"></canvas>
       <div class="container">
         <div class="cta-band">
@@ -350,7 +347,7 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 86 L50 30 L84 86" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 68 H64" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path class="sig" d="M40.1 20.1 A14 14 0 0 1 59.9 20.1" fill="none" stroke-width="6" stroke-linecap="round"/><path class="sig" d="M31.6 11.6 A26 26 0 0 1 68.4 11.6" fill="none" stroke-width="6" stroke-linecap="round" opacity=".55"/></svg><span class="brand-word">AKRA</span></a>
-          <p>Del griego <span lang="grc">ἄκρα</span>, los extremos. Ingeniería por proyectos en sensórica y telecomunicaciones.</p>
+          <p>Ingeniería por proyectos en sensórica y telecomunicaciones, para el quirófano y para lugares de difícil acceso.</p>
         </div>
         <div class="footer-col">
           <h4>Líneas</h4>
@@ -378,7 +375,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="year">2026</span> AKRA · España</p>
+        <p>&copy; <span id="year">2026</span> AKRA. España</p>
         <p>Ingeniería por proyectos</p>
       </div>
     </div>
