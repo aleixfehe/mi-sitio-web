@@ -163,19 +163,19 @@
     ui.linked.className = `readout-val ${linked === sensors.length ? 'is-ok' : linked >= sensors.length / 2 ? 'is-accent' : 'is-warn'}`;
     const km2 = (covered / (CW * CH)) * (GW * CELL / 1000) * (GH * CELL / 1000);
     ui.area.textContent = `${km2.toFixed(1).replace('.', ',')} km²`;
-    ui.backhaul.textContent = backhaulOk ? `Directo · ${(bh.dist / 1000).toFixed(1).replace('.', ',')} km` : 'Obstruido por el relieve';
+    ui.backhaul.textContent = backhaulOk ? `Directo, a ${(bh.dist / 1000).toFixed(1).replace('.', ',')} km` : 'Obstruido por el relieve';
     ui.backhaul.className = `readout-val ${backhaulOk ? 'is-ok' : 'is-warn'}`;
     ui.mastOut.textContent = `${mast} m`;
   }
 
   // Dibujo
+  // El mapa es una pantalla oscura: colores fijos, no los de la página.
   const col = {
-    accent: K.cssVar('--accent', '#3d8bff'),
-    bright: K.cssVar('--accent-bright', '#7db4ff'),
-    ink: K.cssVar('--ink', '#e8eef6'),
-    warn: K.cssVar('--warn', '#f0a63a'),
-    ok: K.cssVar('--ok', '#3ecf8e'),
-    muted: K.cssVar('--muted', '#97a4b8'),
+    accent: '#3d8bff',
+    bright: '#7db4ff',
+    ink: '#e8eef6',
+    warn: '#f0a63a',
+    muted: '#9aa7ba',
   };
   let pulse = 0;
 
@@ -218,7 +218,7 @@
     ctx.setLineDash([]);
 
     // Sensores
-    ctx.font = '10px "IBM Plex Mono", Consolas, monospace';
+    ctx.font = '500 12px Barlow, "Segoe UI", sans-serif';
     sensors.forEach((s) => {
       const x = s.x * sx, y = s.y * sy;
       ctx.fillStyle = s.ok ? col.ink : col.warn;
@@ -238,7 +238,7 @@
     ctx.fillStyle = col.bright;
     ctx.fillRect(gx - 6, gy - 6, 12, 12);
     ctx.fillStyle = col.ink;
-    ctx.fillText('ESTACIÓN BASE', gx + 10, gy + 4);
+    ctx.fillText('Estación base', gx + 10, gy + 4);
 
     // Repetidor
     const p = (pulse % 1);
@@ -259,7 +259,7 @@
     ctx.lineTo(rx + 3.5, ry + 4);
     ctx.stroke();
     ctx.fillStyle = col.ink;
-    ctx.fillText(`REPETIDOR · ${ui.mast.value} m`, rx + 14, ry + 4);
+    ctx.fillText(`Repetidor, mástil de ${ui.mast.value} m`, rx + 14, ry + 4);
   }
 
   // Interacción: arrastrar o tocar para mover el repetidor
