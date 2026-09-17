@@ -1,4 +1,4 @@
-// Worker de technelatros: sirve el sitio estático y atiende dos formularios.
+// Worker de AKRA: sirve el sitio estático y atiende dos formularios.
 //
 //   POST /api/presupuesto  -> correo al equipo con la documentación adjunta
 //                             + acuse de recibo al cliente
@@ -103,7 +103,7 @@ async function handleQuote(request, env) {
         <p>Hemos recibido tu solicitud de presupuesto con referencia <b style="font-family:monospace;color:#1d3d6b">${ref}</b>${files.length ? ` junto con ${files.length === 1 ? 'el documento' : `los ${files.length} documentos`} que nos has enviado` : ''}.</p>
         <p>La estudiaremos y te responderemos en un máximo de 48 horas laborables. Si necesitamos aclarar el alcance, te contactaremos antes de enviarte la propuesta.</p>
         <p>Puedes responder a este mensaje para añadir información.</p>
-        <p style="color:#56627a">— El equipo de technelatros</p>
+        <p style="color:#56627a">— El equipo de AKRA</p>
       </div>`,
     }).catch((err) => console.error('Acuse no enviado', err));
   }
