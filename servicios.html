@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sensórica quirúrgica · AKRA</title>
+  <title>Sensórica quirúrgica | AKRA</title>
   <meta name="description" content="Sensórica para instrumental quirúrgico: sensores integrados en el instrumento, electrónica que convive con el electrobisturí, validación y documentación orientada a certificación.">
-  <meta name="theme-color" content="#070b12">
+  <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sensórica quirúrgica · AKRA">
+  <meta property="og:title" content="Sensórica quirúrgica | AKRA">
   <meta property="og:description" content="Del sensor en la punta del instrumento a la documentación técnica.">
   <meta property="og:image" content="img/logo-mark.svg">
   <meta property="og:locale" content="es_ES">
   <link rel="icon" href="img/favicon.svg?v=4" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
         <div class="hero-copy">
           <span class="eyebrow">Sensórica quirúrgica</span>
           <h1>La punta del instrumento, convertida en sensor.</h1>
-          <p class="lead">Trabajamos cada capa del sistema —sensores, electrónica, software y documentación— para que lo que llega al cirujano sea preciso y defendible, incluso con el electrobisturí activado.</p>
+          <p class="lead">Trabajamos cada capa del sistema (sensores, electrónica, software y documentación) para que lo que llega al cirujano sea preciso y defendible, incluso con el electrobisturí activado.</p>
           <div class="hero-actions">
             <a href="presupuesto.html" class="btn btn-primary">Pedir presupuesto</a>
             <a href="#simulacion" class="btn btn-ghost">Ver la simulación</a>
@@ -56,23 +56,24 @@
       </div>
     </section>
 
-    <section class="section section-dark gridded" id="simulacion">
+    <section class="section section-tint gridded" id="simulacion">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">El problema, en vivo</span>
           <h2>En quirófano, el ruido llega antes que la señal.</h2>
-          <p class="lead">El propio equipo de electrocirugía genera una interferencia enorme justo cuando el cirujano más necesita información. Pruébalo: activa el electrobisturí y compara la salida con y sin fusión de señales.</p>
+          <p class="lead">El propio equipo de electrocirugía genera una interferencia enorme justo cuando el cirujano más necesita información. Pruébalo: guía el instrumento con el ratón, activa el electrobisturí y compara la salida con y sin fusión de señales.</p>
         </div>
 
         <div class="lab">
-          <div class="viewport frame" id="labScene" style="aspect-ratio: 16 / 11">
-            <span class="vp-tag">Instrumento sensorizado · tejido · vaso</span>
+          <div class="viewport frame steer" id="labScene" style="aspect-ratio: 16 / 11" tabindex="0" aria-label="Simulación del instrumento quirúrgico. Usa las flechas para moverlo y la barra espaciadora para presionar.">
+            <span class="vp-tag">Mueve el ratón para guiar el instrumento</span>
             <span class="vp-tag vp-tag-br" id="labState" aria-live="polite">Contacto estable con el tejido</span>
           </div>
           <div class="panel">
-            <div class="panel-head"><span class="sim-tag">Simulación en vivo</span><h3>Fusión de señales</h3></div>
+            <div class="panel-head"><span class="sim-tag">Simulación en vivo</span><h3>Guía tú el instrumento</h3></div>
+            <p class="panel-hint">Mueve el ratón sobre el tejido y <b>mantén pulsado</b> para presionar. Con el teclado: flechas y <kbd>espacio</kbd>. Si activas el electrobisturí, verás el corte sobre el tejido.</p>
             <button type="button" class="toggle is-warn" id="labCautery" aria-pressed="false">
-              <span><span data-label>Activar electrobisturí</span><small>Inyecta interferencia en la punta</small></span>
+              <span><span data-label>Activar electrobisturí</span><small>Corta y genera interferencia al presionar</small></span>
               <span class="sw" aria-hidden="true"></span>
             </button>
             <button type="button" class="toggle" id="labFusion" aria-pressed="true">
@@ -80,15 +81,16 @@
               <span class="sw" aria-hidden="true"></span>
             </button>
             <div class="control">
-              <label for="labPressure">Presión del instrumento <output id="labPressureOut" for="labPressure">60 %</output></label>
+              <label for="labPressure">Fuerza al presionar <output id="labPressureOut" for="labPressure">60 %</output></label>
               <input type="range" id="labPressure" min="10" max="100" value="60">
             </div>
+            <div class="btn-row"><button type="button" class="btn btn-ghost btn-sm" id="labReset">Limpiar tejido</button></div>
             <canvas class="trace" id="labTrace" role="img" aria-label="Registro en tiempo real de fuerza, bioimpedancia cruda y señal de salida"></canvas>
             <div class="readouts">
-              <div class="readout"><span class="readout-val is-accent" id="labForce">—</span><span class="readout-lbl">Fuerza de contacto</span></div>
-              <div class="readout"><span class="readout-val" id="labImp">—</span><span class="readout-lbl">Impedancia de salida</span></div>
-              <div class="readout"><span class="readout-val" id="labTrust">—</span><span class="readout-lbl">Confianza en la impedancia</span></div>
-              <div class="readout"><span class="readout-val" id="labEmi">—</span><span class="readout-lbl">Interferencia</span></div>
+              <div class="readout"><span class="readout-val is-accent" id="labForce">0,00 N</span><span class="readout-lbl">Fuerza de contacto</span></div>
+              <div class="readout"><span class="readout-val" id="labImp">440 Ω</span><span class="readout-lbl">Impedancia de salida</span></div>
+              <div class="readout"><span class="readout-val" id="labTrust">100 %</span><span class="readout-lbl">Confianza en la impedancia</span></div>
+              <div class="readout"><span class="readout-val" id="labEmi">0 %</span><span class="readout-lbl">Interferencia</span></div>
             </div>
           </div>
         </div>
@@ -165,10 +167,10 @@
           <h2>Cuatro fases, con la certificación en mente desde el primer día.</h2>
         </div>
         <ol class="steps">
-          <li class="step reveal"><h3>Descubrimiento</h3><p>Analizamos el gesto quirúrgico, qué información falta y con qué precisión y rapidez debe llegar.</p><span class="step-out">→ documento de alcance</span></li>
-          <li class="step reveal"><h3>Arquitectura</h3><p>Qué medir, dónde colocar cada sensor y cómo combinar las señales en el entorno eléctrico del quirófano.</p><span class="step-out">→ arquitectura y plan normativo</span></li>
-          <li class="step reveal"><h3>Prototipo y validación</h3><p>Construimos el prototipo, lo probamos frente a interferencias reales y ajustamos con datos.</p><span class="step-out">→ prototipo e informe de banco</span></li>
-          <li class="step reveal"><h3>Documentación</h3><p>Cada decisión registrada para el expediente técnico y el organismo que lo revisará.</p><span class="step-out">→ base del expediente técnico</span></li>
+          <li class="step reveal"><h3>Descubrimiento</h3><p>Analizamos el gesto quirúrgico, qué información falta y con qué precisión y rapidez debe llegar.</p><span class="step-out"><b>Entregable:</b> documento de alcance</span></li>
+          <li class="step reveal"><h3>Arquitectura</h3><p>Qué medir, dónde colocar cada sensor y cómo combinar las señales en el entorno eléctrico del quirófano.</p><span class="step-out"><b>Entregable:</b> arquitectura y plan normativo</span></li>
+          <li class="step reveal"><h3>Prototipo y validación</h3><p>Construimos el prototipo, lo probamos frente a interferencias reales y ajustamos con datos.</p><span class="step-out"><b>Entregable:</b> prototipo e informe de banco</span></li>
+          <li class="step reveal"><h3>Documentación</h3><p>Cada decisión registrada para el expediente técnico y el organismo que lo revisará.</p><span class="step-out"><b>Entregable:</b> base del expediente técnico</span></li>
         </ol>
       </div>
     </section>
@@ -202,7 +204,7 @@
       </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="section section-tint">
       <canvas class="bg-art" data-art="rings" aria-hidden="true"></canvas>
       <div class="container">
         <div class="cta-band">
@@ -225,7 +227,7 @@
       <div class="footer-grid">
         <div class="footer-col">
           <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 86 L50 30 L84 86" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 68 H64" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path class="sig" d="M40.1 20.1 A14 14 0 0 1 59.9 20.1" fill="none" stroke-width="6" stroke-linecap="round"/><path class="sig" d="M31.6 11.6 A26 26 0 0 1 68.4 11.6" fill="none" stroke-width="6" stroke-linecap="round" opacity=".55"/></svg><span class="brand-word">AKRA</span></a>
-          <p>Del griego <span lang="grc">ἄκρα</span>, los extremos. Ingeniería por proyectos en sensórica y telecomunicaciones.</p>
+          <p>Ingeniería por proyectos en sensórica y telecomunicaciones, para el quirófano y para lugares de difícil acceso.</p>
         </div>
         <div class="footer-col">
           <h4>Líneas</h4>
@@ -253,7 +255,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="year">2026</span> AKRA · España</p>
+        <p>&copy; <span id="year">2026</span> AKRA. España</p>
         <p>Ingeniería por proyectos</p>
       </div>
     </div>
