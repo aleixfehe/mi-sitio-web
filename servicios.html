@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sensórica quirúrgica · technelatros</title>
-  <meta name="description" content="Proyectos de sensórica para instrumental quirúrgico: sensores integrados en el instrumento, electrónica que convive con el electrobisturí, validación y documentación orientada a certificación.">
+  <title>Sensórica quirúrgica · AKRA</title>
+  <meta name="description" content="Sensórica para instrumental quirúrgico: sensores integrados en el instrumento, electrónica que convive con el electrobisturí, validación y documentación orientada a certificación.">
+  <meta name="theme-color" content="#070b12">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sensórica quirúrgica · technelatros">
-  <meta property="og:description" content="Del sensor en la punta del instrumento a la documentación técnica, sin perder la señal por el camino.">
+  <meta property="og:title" content="Sensórica quirúrgica · AKRA">
+  <meta property="og:description" content="Del sensor en la punta del instrumento a la documentación técnica.">
+  <meta property="og:image" content="img/logo-mark.svg">
   <meta property="og:locale" content="es_ES">
-  <link rel="icon" href="img/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="icon" href="img/favicon.svg?v=4" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400;500;600&display=swap">
@@ -20,14 +22,15 @@
 
   <header class="site-header">
     <div class="container nav">
-      <a href="index.html" class="brand" aria-label="technelatros, inicio">
-        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg>
-        <span class="brand-word">technelatros</span>
+      <a href="index.html" class="brand" aria-label="AKRA, inicio">
+        <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 86 L50 30 L84 86" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 68 H64" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path class="sig" d="M40.1 20.1 A14 14 0 0 1 59.9 20.1" fill="none" stroke-width="6" stroke-linecap="round"/><path class="sig" d="M31.6 11.6 A26 26 0 0 1 68.4 11.6" fill="none" stroke-width="6" stroke-linecap="round" opacity=".55"/></svg>
+        <span class="brand-word">AKRA</span>
       </a>
       <nav id="primaryNav" aria-label="Principal">
         <ul class="nav-links">
           <li><a href="servicios.html">Sensórica quirúrgica</a></li>
           <li><a href="entornos-remotos.html">Entornos remotos</a></li>
+          <li><a href="index.html#laboratorio">Laboratorio</a></li>
           <li><a href="sobre.html">Nosotros</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
@@ -43,13 +46,53 @@
       <div class="container">
         <div class="hero-copy">
           <span class="eyebrow">Sensórica quirúrgica</span>
-          <h1>Del sensor en la punta del instrumento a la documentación técnica.</h1>
+          <h1>La punta del instrumento, convertida en sensor.</h1>
           <p class="lead">Trabajamos cada capa del sistema —sensores, electrónica, software y documentación— para que lo que llega al cirujano sea preciso y defendible, incluso con el electrobisturí activado.</p>
           <div class="hero-actions">
             <a href="presupuesto.html" class="btn btn-primary">Pedir presupuesto</a>
-            <a href="#modalidades" class="btn btn-ghost">Modalidades de trabajo</a>
+            <a href="#simulacion" class="btn btn-ghost">Ver la simulación</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section section-dark gridded" id="simulacion">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">El problema, en vivo</span>
+          <h2>En quirófano, el ruido llega antes que la señal.</h2>
+          <p class="lead">El propio equipo de electrocirugía genera una interferencia enorme justo cuando el cirujano más necesita información. Pruébalo: activa el electrobisturí y compara la salida con y sin fusión de señales.</p>
+        </div>
+
+        <div class="lab">
+          <div class="viewport frame" id="labScene" style="aspect-ratio: 16 / 11">
+            <span class="vp-tag">Instrumento sensorizado · tejido · vaso</span>
+            <span class="vp-tag vp-tag-br" id="labState" aria-live="polite">Contacto estable con el tejido</span>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><span class="sim-tag">Simulación en vivo</span><h3>Fusión de señales</h3></div>
+            <button type="button" class="toggle is-warn" id="labCautery" aria-pressed="false">
+              <span><span data-label>Activar electrobisturí</span><small>Inyecta interferencia en la punta</small></span>
+              <span class="sw" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="toggle" id="labFusion" aria-pressed="true">
+              <span>Fusión de señales<small>Pondera cada sensor según su fiabilidad</small></span>
+              <span class="sw" aria-hidden="true"></span>
+            </button>
+            <div class="control">
+              <label for="labPressure">Presión del instrumento <output id="labPressureOut" for="labPressure">60 %</output></label>
+              <input type="range" id="labPressure" min="10" max="100" value="60">
+            </div>
+            <canvas class="trace" id="labTrace" role="img" aria-label="Registro en tiempo real de fuerza, bioimpedancia cruda y señal de salida"></canvas>
+            <div class="readouts">
+              <div class="readout"><span class="readout-val is-accent" id="labForce">—</span><span class="readout-lbl">Fuerza de contacto</span></div>
+              <div class="readout"><span class="readout-val" id="labImp">—</span><span class="readout-lbl">Impedancia de salida</span></div>
+              <div class="readout"><span class="readout-val" id="labTrust">—</span><span class="readout-lbl">Confianza en la impedancia</span></div>
+              <div class="readout"><span class="readout-val" id="labEmi">—</span><span class="readout-lbl">Interferencia</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="sim-note">Simulación ilustrativa generada en tu navegador. No procede de sensores ni de intervenciones reales.</p>
       </div>
     </section>
 
@@ -57,42 +100,37 @@
       <div class="container">
         <div class="split">
           <div>
-            <span class="eyebrow">El problema</span>
-            <h2>En quirófano, el ruido llega antes que la señal.</h2>
+            <span class="eyebrow">Cómo lo resolvemos</span>
+            <h2>No confiamos en una sola medida.</h2>
             <div class="prose">
-              <p>El propio equipo de electrocirugía genera una interferencia enorme justo cuando el cirujano más necesita información. El sensor que funcionaba en el banco se queda ciego en el momento que importa.</p>
-              <p>Por eso no confiamos en una sola medida. Limpiamos cada señal antes de procesarla y las combinamos de forma que, <strong>cuando una se degrada, las demás sostienen la lectura</strong>.</p>
+              <p>Limpiamos cada señal antes de procesarla y las combinamos de forma que, <strong>cuando una se degrada, las demás sostienen la lectura</strong>. El peso de cada sensor cambia en tiempo real según lo fiable que sea en ese instante.</p>
+              <p>Y cada filtro, umbral y decisión queda documentado desde el primer día, porque un instrumento quirúrgico no solo tiene que funcionar: tiene que poder demostrarlo.</p>
             </div>
           </div>
           <figure class="figure reveal">
             <div class="diagram-scroll">
               <svg class="diagram is-wide" viewBox="0 0 860 250" role="img" aria-labelledby="fuTitle">
-                <title id="fuTitle">Cadena de señal: los sensores pasan por una etapa de acondicionamiento, después por una fusión ponderada por confianza y producen una señal fiable para el cirujano. El ruido del electrobisturí entra en la etapa de acondicionamiento.</title>
+                <title id="fuTitle">Cadena de señal: los sensores pasan por una etapa de acondicionamiento, después por una fusión según la fiabilidad de cada señal y producen una salida para el cirujano. La interferencia del electrobisturí entra en el acondicionamiento.</title>
                 <defs>
                   <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
                 </defs>
                 <rect class="d-box" x="20" y="62" width="175" height="106" rx="10"/>
                 <text x="107" y="106" text-anchor="middle" font-size="17" font-weight="600">Sensores</text>
                 <text class="d-muted" x="107" y="129" text-anchor="middle" font-size="12.5">en el instrumento</text>
-
                 <rect class="d-box" x="245" y="62" width="175" height="106" rx="10"/>
                 <text x="332" y="106" text-anchor="middle" font-size="17" font-weight="600">Acondicionamiento</text>
                 <text class="d-muted" x="332" y="129" text-anchor="middle" font-size="12.5">limpiar y proteger</text>
-
                 <rect class="d-box" x="470" y="62" width="195" height="106" rx="10"/>
                 <text x="567" y="106" text-anchor="middle" font-size="17" font-weight="600">Fusión</text>
                 <text class="d-muted" x="567" y="129" text-anchor="middle" font-size="12.5">según la fiabilidad</text>
                 <text class="d-muted" x="567" y="146" text-anchor="middle" font-size="12.5">de cada señal</text>
-
                 <rect class="d-box-strong" x="715" y="62" width="125" height="106" rx="10"/>
                 <text class="d-on-strong" x="777" y="106" text-anchor="middle" font-size="17" font-weight="600">Salida</text>
-                <text class="d-on-strong" x="777" y="129" text-anchor="middle" font-size="12.5" opacity=".75">para el cirujano</text>
-
+                <text class="d-on-strong" x="777" y="129" text-anchor="middle" font-size="12.5" opacity=".8">para el cirujano</text>
                 <line class="d-line" x1="197" y1="115" x2="241" y2="115" marker-end="url(#arw)"/>
                 <line class="d-line" x1="422" y1="115" x2="466" y2="115" marker-end="url(#arw)"/>
                 <line class="d-line" x1="667" y1="115" x2="711" y2="115" marker-end="url(#arw)"/>
-
-                <path class="d-wave" d="M332 226 V172" style="stroke-dasharray:4 4"/>
+                <path class="d-warn" d="M332 226 V172" style="stroke-dasharray:4 4"/>
                 <text class="d-muted" x="332" y="244" text-anchor="middle" font-size="12.5">interferencia del electrobisturí</text>
               </svg>
             </div>
@@ -106,16 +144,16 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Qué hacemos</span>
-          <h2>Seis frentes que casi siempre avanzan a la vez.</h2>
+          <h2>Seis frentes que avanzan a la vez.</h2>
           <p class="lead">Ninguno funciona bien por separado: una decisión de hardware condiciona el software, y la norma condiciona a ambos.</p>
         </div>
         <div class="grid grid-3">
-          <div class="cell reveal"><h3>Sensores en el instrumento</h3><p>Captamos lo que la mano no percibe: la fuerza de contacto, el tipo de tejido y la posición del instrumento.</p></div>
-          <div class="cell reveal"><h3>Electrónica que convive con el quirófano</h3><p>Circuitos que siguen midiendo con precisión junto a un electrobisturí y que protegen al paciente.</p></div>
-          <div class="cell reveal"><h3>Software en tiempo real</h3><p>Respuesta inmediata y predecible, porque en quirófano no vale un «casi siempre a tiempo».</p></div>
-          <div class="cell reveal"><h3>Integración con robótica y navegación</h3><p>Conectamos el instrumento con plataformas de cirugía asistida para devolver al cirujano el tacto que el robot no transmite.</p></div>
-          <div class="cell reveal"><h3>Validación en banco y preclínica</h3><p>Ensayos que ponen a prueba la precisión frente a la variabilidad del tejido y la interferencia real.</p></div>
-          <div class="cell reveal"><h3>Diseño orientado a norma</h3><p>Trabajamos con IEC 60601, ISO 13485 e IEC 62304 como referencia desde el primer boceto, no como trámite final.</p></div>
+          <div class="cell reveal"><span class="cell-k">Captar</span><h3>Sensores en el instrumento</h3><p>Lo que la mano no percibe: la fuerza de contacto, el tipo de tejido y la posición del instrumento.</p></div>
+          <div class="cell reveal"><span class="cell-k">Proteger</span><h3>Electrónica que convive con el quirófano</h3><p>Circuitos que siguen midiendo con precisión junto a un electrobisturí y que protegen al paciente.</p></div>
+          <div class="cell reveal"><span class="cell-k">Responder</span><h3>Software en tiempo real</h3><p>Respuesta inmediata y predecible, porque en quirófano no vale un «casi siempre a tiempo».</p></div>
+          <div class="cell reveal"><span class="cell-k">Integrar</span><h3>Robótica y navegación</h3><p>Conectamos el instrumento con plataformas de cirugía asistida para devolver al cirujano el tacto que el robot no transmite.</p></div>
+          <div class="cell reveal"><span class="cell-k">Demostrar</span><h3>Validación en banco y preclínica</h3><p>Ensayos que ponen a prueba la precisión frente a la variabilidad del tejido y la interferencia real.</p></div>
+          <div class="cell reveal"><span class="cell-k">Documentar</span><h3>Diseño orientado a norma</h3><p>IEC 60601, ISO 13485 e IEC 62304 como referencia desde el primer boceto, no como trámite final.</p></div>
         </div>
       </div>
     </section>
@@ -140,38 +178,24 @@
         <div class="section-head">
           <span class="eyebrow">Modalidades</span>
           <h2>Entramos en la fase en la que esté tu instrumental.</h2>
-          <p class="lead">Desde una duda concreta hasta convertirnos en tu equipo de ingeniería a largo plazo.</p>
         </div>
         <div class="tiers">
           <div class="tier reveal">
             <h3>Consultoría puntual</h3>
             <p class="tier-for">Para equipos con instrumental en marcha y un problema concreto de ruido o fiabilidad.</p>
-            <ul>
-              <li>Diagnóstico de lo que tienes ahora</li>
-              <li>Informe de causas y soluciones</li>
-              <li>Sesión de revisión con tu equipo</li>
-            </ul>
+            <ul><li>Diagnóstico de lo que tienes ahora</li><li>Informe de causas y soluciones</li><li>Sesión de revisión con tu equipo</li></ul>
             <a href="presupuesto.html" class="btn btn-ghost btn-sm">Pedir presupuesto</a>
           </div>
           <div class="tier is-featured reveal">
             <h3>Desarrollo de producto</h3>
-            <p class="tier-for">Para quien parte de una idea o un prototipo y quiere avanzar hacia la certificación.</p>
-            <ul>
-              <li>Sistema de sensórica a medida</li>
-              <li>Prototipo funcional validado en banco</li>
-              <li>Documentación orientada a certificación</li>
-              <li>Acompañamiento hasta el organismo notificado</li>
-            </ul>
+            <p class="tier-for">Para quien parte de una idea o un prototipo y quiere llegar a la certificación.</p>
+            <ul><li>Sistema de sensórica a medida</li><li>Prototipo funcional validado en banco</li><li>Documentación orientada a certificación</li><li>Acompañamiento hasta el organismo notificado</li></ul>
             <a href="presupuesto.html" class="btn btn-primary btn-sm">Pedir presupuesto</a>
           </div>
           <div class="tier reveal">
             <h3>Partner a largo plazo</h3>
             <p class="tier-for">Para empresas con instrumental sensorizado que necesitan ingeniería continua.</p>
-            <ul>
-              <li>Nuevas generaciones de instrumento</li>
-              <li>Seguimiento de cambios normativos</li>
-              <li>Apoyo en auditorías de calidad</li>
-            </ul>
+            <ul><li>Nuevas generaciones de instrumento</li><li>Seguimiento de cambios normativos</li><li>Apoyo en auditorías de calidad</li></ul>
             <a href="contacto.html" class="btn btn-ghost btn-sm">Hablar con nosotros</a>
           </div>
         </div>
@@ -183,12 +207,13 @@
       <div class="container">
         <div class="cta-band">
           <div>
+            <span class="eyebrow">Siguiente paso</span>
             <h2>¿En qué fase está tu instrumental?</h2>
-            <p class="lead">Cuéntanos qué quieres medir, con qué precisión y en qué punto estás. Te respondemos en menos de 48 horas.</p>
+            <p class="lead">Cuéntanos qué quieres medir y con qué precisión. Te respondemos en menos de 48 horas.</p>
           </div>
           <div class="hero-actions">
             <a href="presupuesto.html" class="btn btn-primary">Pedir presupuesto</a>
-            <a href="entornos-remotos.html" class="btn btn-on-dark">Ver entornos remotos</a>
+            <a href="entornos-remotos.html" class="btn btn-ghost">Ver entornos remotos</a>
           </div>
         </div>
       </div>
@@ -199,15 +224,15 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="3"/><path d="M27,67 L39,33 L47,46" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M53,46 L61,33 L73,67" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="44" r="5.4" fill="currentColor"/></svg><span class="brand-word">technelatros</span></a>
-          <p>Ingeniería por proyectos en sensórica y comunicaciones para el quirófano y para entornos de difícil acceso.</p>
+          <a href="index.html" class="brand"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 86 L50 30 L84 86" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 68 H64" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path class="sig" d="M40.1 20.1 A14 14 0 0 1 59.9 20.1" fill="none" stroke-width="6" stroke-linecap="round"/><path class="sig" d="M31.6 11.6 A26 26 0 0 1 68.4 11.6" fill="none" stroke-width="6" stroke-linecap="round" opacity=".55"/></svg><span class="brand-word">AKRA</span></a>
+          <p>Del griego <span lang="grc">ἄκρα</span>, los extremos. Ingeniería por proyectos en sensórica y telecomunicaciones.</p>
         </div>
         <div class="footer-col">
           <h4>Líneas</h4>
           <ul>
             <li><a href="servicios.html">Sensórica quirúrgica</a></li>
             <li><a href="entornos-remotos.html">Entornos remotos</a></li>
-            <li><a href="presupuesto.html">Pedir presupuesto</a></li>
+            <li><a href="index.html#laboratorio">Laboratorio</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -215,6 +240,7 @@
           <ul>
             <li><a href="sobre.html">Nosotros</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="presupuesto.html">Pedir presupuesto</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -227,12 +253,15 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <span id="year">2026</span> technelatros · España</p>
+        <p>&copy; <span id="year">2026</span> AKRA · España</p>
         <p>Ingeniería por proyectos</p>
       </div>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/three-kit.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/scene-instrument.js"></script>
 </body>
 </html>
