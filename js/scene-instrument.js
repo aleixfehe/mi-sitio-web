@@ -1,6 +1,7 @@
-// Laboratorio quirúrgico: un instrumento sensorizado presiona tejido sobre un
-// vaso. El sensor de fuerza capta la pulsatilidad; la bioimpedancia se
-// satura cuando se activa el electrobisturí, y la fusión la sostiene.
+// Laboratorio quirúrgico: un instrumento sensorizado sobre tejido con un vaso
+// debajo. Se guía con el ratón, el dedo o el teclado; al mantener pulsado
+// presiona el tejido. Con el electrobisturí activo deja marca al cortar, la
+// bioimpedancia se llena de ruido y la fusión se apoya en el sensor de fuerza.
 // Simulación ilustrativa: no son datos clínicos.
 
 (() => {
@@ -15,12 +16,16 @@
     fusion: $('labFusion'),
     pressure: $('labPressure'),
     pressureOut: $('labPressureOut'),
+    reset: $('labReset'),
     force: $('labForce'),
     imp: $('labImp'),
     trust: $('labTrust'),
     emi: $('labEmi'),
     state: $('labState'),
   };
+
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const BOUNDS = { x: 6.2, z: 3.9 };
 
   // ------------------------------------------------------------ simulación
   const S = {
@@ -29,17 +34,33 @@
     force: 0, zRaw: 440, zOut: 440, zShown: 440, trust: 1,
     tip: { x: 0, y: 0.2, z: 0 },
   };
+  // Control del usuario: al moverse sobre el visor toma el mando; tras unos
+  // segundos sin tocar nada, el instrumento vuelve a su recorrido automático.
+  const ctrl = { manual: false, pressing: false, x: 0, z: 0, lastInput: -99 };
+
   const vesselZ = (x) => 0.6 * Math.sin(x * 0.4) - 0.5;
   const rnd = () => Math.random() - 0.5;
 
   function step(dt) {
     S.t += dt;
     const t = S.t;
-    const cycle = 0.5 - 0.5 * Math.cos(t * 1.05);
-    S.press += (S.pressure * cycle - S.press) * Math.min(1, dt * 6);
+
+    if (ctrl.manual && !ctrl.pressing && t - ctrl.lastInput > 4) ctrl.manual = false;
+
+    let pressTarget;
+    if (ctrl.manual) {
+      pressTarget = ctrl.pressing ? S.pressure : 0;
+      S.tip.x += (ctrl.x - S.tip.x) * Math.min(1, dt * 12);
+      S.tip.z += (ctrl.z - S.tip.z) * Math.min(1, dt * 12);
+    } else {
+      pressTarget = S.pressure * (0.5 - 0.5 * Math.cos(t * 1.05));
+      const ax = 2.4 * Math.sin(t * 0.21);
+      const az = 1.3 * Math.sin(t * 0.29 + 1.2);
+      S.tip.x += (ax - S.tip.x) * Math.min(1, dt * 2);
+      S.tip.z += (az - S.tip.z) * Math.min(1, dt * 2);
+    }
+    S.press += (pressTarget - S.press) * Math.min(1, dt * (ctrl.manual ? 9 : 6));
     S.contact = Math.max(0, S.press - 0.08) / 0.92;
-    S.tip.x = 2.4 * Math.sin(t * 0.21);
-    S.tip.z = 1.3 * Math.sin(t * 0.29 + 1.2);
     const depth = S.contact * 0.6;
     S.tip.y = S.contact > 0 ? -depth : (0.08 - S.press) * 3;
 
@@ -51,7 +72,8 @@
     S.force = Math.max(0, S.contact * 3.4 + S.contact * S.prox * 0.5 * S.pulse + rnd() * 0.03);
 
     if (S.cautery) S.burst += dt;
-    const on = S.cautery && (S.burst % 1.4) < 0.85;
+    // En manual el electrobisturí descarga mientras se presiona; en automático, a ráfagas.
+    const on = S.cautery && (ctrl.manual ? S.contact > 0.1 : (S.burst % 1.4) < 0.85);
     S.emi += ((on ? 1 : 0) - S.emi) * Math.min(1, dt * 10);
 
     const zClean = 440 - 170 * S.contact + 25 * S.prox * S.pulse * S.contact;
@@ -76,13 +98,14 @@
     head = (head + 1) % N;
   }
 
-  const colors = {
-    grid: 'rgba(151,164,184,0.12)',
-    label: K.cssVar('--faint', '#748299'),
-    force: K.cssVar('--accent-bright', '#7db4ff'),
-    raw: 'rgba(151,164,184,0.75)',
-    out: K.cssVar('--ink', '#e8eef6'),
-    warn: 'rgba(240,166,58,0.12)',
+  // La gráfica es una pantalla oscura: colores fijos, no los de la página.
+  const TRACE = {
+    grid: 'rgba(154,167,186,0.14)',
+    label: '#9aa7ba',
+    force: '#7db4ff',
+    raw: 'rgba(154,167,186,0.8)',
+    out: '#e8eef6',
+    warn: 'rgba(255,196,107,0.14)',
   };
 
   function drawTrace() {
@@ -99,13 +122,12 @@
     ctx.clearRect(0, 0, W, H);
     const laneH = H / 3;
 
-    // Franja de interferencia
-    ctx.fillStyle = colors.warn;
+    ctx.fillStyle = TRACE.warn;
     for (let i = 0; i < N; i++) {
       if (buf.e[(head + i) % N] > 0.3) ctx.fillRect((i / (N - 1)) * W, laneH, W / N + 1, laneH * 2);
     }
 
-    ctx.strokeStyle = colors.grid;
+    ctx.strokeStyle = TRACE.grid;
     ctx.lineWidth = 1;
     for (let k = 1; k < 3; k++) {
       ctx.beginPath();
@@ -118,9 +140,9 @@
       ctx.beginPath();
       for (let i = 0; i < N; i++) {
         const v = arr[(head + i) % N];
-        const n = Math.min(1, Math.max(0, (v - lo) / (hi - lo)));
+        const n = clamp((v - lo) / (hi - lo), 0, 1);
         const x = (i / (N - 1)) * W;
-        const y = laneH * idx + laneH - 6 - n * (laneH - 20);
+        const y = laneH * idx + laneH - 6 - n * (laneH - 22);
         if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
       ctx.strokeStyle = color;
@@ -128,15 +150,15 @@
       ctx.lineJoin = 'round';
       ctx.stroke();
     };
-    lane(buf.f, 0, 4.2, 0, colors.force, 1.6);
-    lane(buf.zr, 120, 760, 1, colors.raw, 1);
-    lane(buf.zo, 120, 760, 2, colors.out, 1.8);
+    lane(buf.f, 0, 4.2, 0, TRACE.force, 1.6);
+    lane(buf.zr, 120, 760, 1, TRACE.raw, 1);
+    lane(buf.zo, 120, 760, 2, TRACE.out, 1.8);
 
-    ctx.font = '10px "IBM Plex Mono", Consolas, monospace';
-    ctx.fillStyle = colors.label;
-    ctx.fillText('FUERZA · N', 8, 13);
-    ctx.fillText('BIOIMPEDANCIA CRUDA · Ω', 8, laneH + 13);
-    ctx.fillText(S.fusion ? 'SALIDA FUSIONADA · Ω' : 'SALIDA SIN FUSIÓN · Ω', 8, laneH * 2 + 13);
+    ctx.font = '500 12px Barlow, "Segoe UI", sans-serif';
+    ctx.fillStyle = TRACE.label;
+    ctx.fillText('Fuerza (N)', 8, 15);
+    ctx.fillText('Bioimpedancia sin procesar (Ω)', 8, laneH + 15);
+    ctx.fillText(S.fusion ? 'Salida con fusión (Ω)' : 'Salida sin fusión (Ω)', 8, laneH * 2 + 15);
   }
 
   let uiTimer = 0;
@@ -155,11 +177,13 @@
     let warn = false;
     if (S.emi > 0.4) {
       warn = true;
-      msg = S.fusion ? 'Electrobisturí activo · la fuerza sostiene la lectura' : 'Electrobisturí activo · lectura de impedancia inservible';
+      msg = S.fusion ? 'Electrobisturí activo. La fuerza sostiene la lectura' : 'Electrobisturí activo. Impedancia inservible';
     } else if (S.contact > 0.1 && S.prox > 0.55) {
-      msg = 'Pulsatilidad detectada · vaso bajo la punta';
+      msg = 'Pulsatilidad detectada: hay un vaso bajo la punta';
     } else if (S.contact > 0.1) {
       msg = 'Contacto estable con el tejido';
+    } else if (ctrl.manual) {
+      msg = 'Mantén pulsado para presionar';
     } else {
       msg = 'Instrumento sin contacto';
     }
@@ -167,12 +191,12 @@
     ui.state.classList.toggle('is-warn', warn);
   }
 
-  // Precarga para que la primera vista ya muestre trazas completas.
   for (let i = 0; i < N; i++) { step(1 / 60); record(); }
 
   // ----------------------------------------------------------------- 3D
   const st = K.stage(view, { fov: 30 });
-  let startLoop = null;
+  let startLoop = () => {};
+  let clearBurns = () => {};
 
   if (st) {
     const { renderer, scene, camera, pointer } = st;
@@ -194,33 +218,38 @@
     tg.rotateX(-Math.PI / 2);
     const tp = tg.attributes.position;
     const base = Float32Array.from(tp.array);
+    const burn = new Float32Array(tp.count);
     const vcol = new Float32Array(tp.count * 3);
     tg.setAttribute('color', new THREE.BufferAttribute(vcol, 3));
-    const tissue = new THREE.Mesh(tg, new THREE.MeshStandardMaterial({
+    scene.add(new THREE.Mesh(tg, new THREE.MeshStandardMaterial({
       vertexColors: true, roughness: 0.42, metalness: 0.05, transparent: true, opacity: 0.88,
-    }));
-    scene.add(tissue);
-    const wire = new THREE.Mesh(tg, new THREE.MeshBasicMaterial({ color: 0x3d8bff, wireframe: true, transparent: true, opacity: 0.06 }));
-    scene.add(wire);
+    })));
+    scene.add(new THREE.Mesh(tg, new THREE.MeshBasicMaterial({ color: 0x3d8bff, wireframe: true, transparent: true, opacity: 0.06 })));
+    clearBurns = () => burn.fill(0);
 
     // Vaso bajo el tejido
     const vpts = [];
     for (let x = -7.2; x <= 7.2; x += 0.6) vpts.push(new THREE.Vector3(x, -0.3, vesselZ(x)));
-    const vessel = new THREE.Mesh(
+    scene.add(new THREE.Mesh(
       new THREE.TubeGeometry(new THREE.CatmullRomCurve3(vpts), 120, 0.22, 16),
       new THREE.MeshStandardMaterial({ color: 0x7a2436, emissive: 0x3a0a14, roughness: 0.5 })
-    );
-    scene.add(vessel);
+    ));
 
-    // Área de detección en la superficie
+    // Zona de detección y retícula de puntería
     const sense = new THREE.Mesh(
       new THREE.RingGeometry(0.95, 1, 64),
       new THREE.MeshBasicMaterial({ color: 0x7db4ff, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false })
     );
     sense.rotation.x = -Math.PI / 2;
     scene.add(sense);
+    const aimRing = new THREE.Mesh(
+      new THREE.RingGeometry(0.16, 0.2, 40),
+      new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false })
+    );
+    aimRing.rotation.x = -Math.PI / 2;
+    scene.add(aimRing);
 
-    // Instrumento: la punta está en el origen local y el vástago sube por +Y.
+    // Instrumento: punta en el origen local, vástago hacia +Y.
     const metal = new THREE.MeshStandardMaterial({ color: 0xd0d8e4, metalness: 1, roughness: 0.2 });
     const dark = new THREE.MeshStandardMaterial({ color: 0x151c28, metalness: 0.7, roughness: 0.35 });
     const glowMat = new THREE.MeshStandardMaterial({ color: 0x0d2a55, emissive: 0x3d8bff, emissiveIntensity: 1.2, metalness: 0.3, roughness: 0.4 });
@@ -253,7 +282,6 @@
     const tipGlow = K.glowSprite(0x7db4ff, 0.9);
     scene.add(tipGlow);
 
-    // Chispas del electrobisturí
     const SPARKS = 70;
     const sparkGeo = new THREE.BufferGeometry();
     const sparkPos = new Float32Array(SPARKS * 3);
@@ -268,25 +296,35 @@
     const cMid = new THREE.Color(0x2f6fdb);
     const cHot = new THREE.Color(0xf0a63a);
     const cVessel = new THREE.Color(0x5a1c2b);
+    const cBurn = new THREE.Color(0x140905);
+    const cEdge = new THREE.Color(0xff9a3c);
     const col = new THREE.Color();
 
-    function updateTissue(t) {
+    function updateTissue(dt, t) {
       const depth = S.tip.y < 0 ? -S.tip.y : 0;
       const sig2 = 2 * 0.85 * 0.85;
       const pulse = Math.max(0, S.pulse);
+      const cutting = S.emi > 0.4 && S.contact > 0.12;
       for (let i = 0; i < tp.count; i++) {
         const x = base[i * 3];
         const z = base[i * 3 + 2];
         const dx = x - S.tip.x;
         const dz = z - S.tip.z;
-        const g = Math.exp(-(dx * dx + dz * dz) / sig2);
+        const d2 = dx * dx + dz * dz;
+        if (cutting && d2 < 0.06) burn[i] = Math.min(1, burn[i] + dt * 5 * (1 - d2 / 0.06));
+        const g = Math.exp(-d2 / sig2);
         const dv = z - vesselZ(x);
         const vb = Math.exp(-(dv * dv) / 0.09);
-        tp.setY(i, 0.05 * Math.sin(x * 0.7 + t * 0.3) * Math.cos(z * 0.9) - depth * g + vb * (0.05 + 0.035 * pulse));
+        const b = burn[i];
+        tp.setY(i, 0.05 * Math.sin(x * 0.7 + t * 0.3) * Math.cos(z * 0.9) - depth * g + vb * (0.05 + 0.035 * pulse) - b * 0.05);
         const s = Math.min(1, depth * g * 2.2);
         if (s < 0.5) col.copy(cBase).lerp(cMid, s * 2);
         else col.copy(cMid).lerp(cHot, (s - 0.5) * 2);
         col.lerp(cVessel, vb * 0.45 * (1 - s));
+        if (b > 0) {
+          col.lerp(cBurn, Math.min(1, b * 1.2));
+          if (cutting && d2 < 0.1) col.lerp(cEdge, 0.5 * (1 - d2 / 0.1));
+        }
         vcol[i * 3] = col.r;
         vcol[i * 3 + 1] = col.g;
         vcol[i * 3 + 2] = col.b;
@@ -299,16 +337,17 @@
     const camBase = new THREE.Vector3();
     const target = new THREE.Vector3(0, 0.4, 0);
     const place = () => {
-      const a = st.size.w / st.size.h;
-      if (a >= 1.2) camBase.set(6.6, 5.6, 8.4);
+      if (st.size.w / st.size.h >= 1.2) camBase.set(6.6, 5.6, 8.4);
       else camBase.set(8.5, 8, 11.5);
     };
     st.onResize(place);
     place();
+    let camX = 0;
+    let camY = 0;
 
     const loop = st.loop((dt, t) => {
       if (dt > 0) { step(dt); record(); }
-      updateTissue(S.t);
+      updateTissue(dt, S.t);
 
       inst.position.set(S.tip.x, S.tip.y, S.tip.z);
       const open = 0.1 + 0.28 * (1 - S.contact);
@@ -322,7 +361,9 @@
       sense.scale.setScalar(0.6 + S.contact * 0.9);
       sense.material.opacity = 0.55 * S.contact;
 
-      // Electrobisturí
+      aimRing.position.set(ctrl.x, 0.04, ctrl.z);
+      aimRing.material.opacity += ((ctrl.manual ? 0.7 : 0) - aimRing.material.opacity) * Math.min(1, dt * 8);
+
       const e = S.emi;
       spark.position.set(S.tip.x, S.tip.y + 0.15, S.tip.z);
       spark.intensity = e * (1.6 + Math.random() * 1.8);
@@ -340,19 +381,76 @@
         sparkGeo.attributes.position.needsUpdate = true;
       }
 
-      // Cámara
-      const ang = Math.sin(t * 0.12) * 0.12 + pointer.x * 0.12;
+      // Cámara: sin parallax mientras el usuario guía el instrumento.
+      camX += ((ctrl.manual ? 0 : pointer.x) - camX) * Math.min(1, dt * 3);
+      camY += ((ctrl.manual ? 0 : pointer.y) - camY) * Math.min(1, dt * 3);
+      const ang = (ctrl.manual ? 0 : Math.sin(t * 0.12) * 0.12) + camX * 0.12;
       const radius = Math.hypot(camBase.x, camBase.z);
       const baseAng = Math.atan2(camBase.x, camBase.z);
-      camera.position.set(Math.sin(baseAng + ang) * radius, camBase.y - pointer.y * 0.8, Math.cos(baseAng + ang) * radius);
+      camera.position.set(Math.sin(baseAng + ang) * radius, camBase.y - camY * 0.8, Math.cos(baseAng + ang) * radius);
       camera.lookAt(target);
 
       drawTrace();
       updateUI(dt || 1);
     });
     startLoop = loop.start;
+
+    // --------------------------------------------------------- puntería
+    const canvas = renderer.domElement;
+    const ray = new THREE.Raycaster();
+    const ndc = new THREE.Vector2();
+    const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    const hit = new THREE.Vector3();
+    const takeControl = () => {
+      if (!ctrl.manual) { ctrl.x = S.tip.x; ctrl.z = S.tip.z; }
+      ctrl.manual = true;
+      ctrl.lastInput = S.t;
+      startLoop();
+    };
+    const aim = (e) => {
+      const r = canvas.getBoundingClientRect();
+      ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+      ray.setFromCamera(ndc, camera);
+      if (!ray.ray.intersectPlane(plane, hit)) return;
+      takeControl();
+      ctrl.x = clamp(hit.x, -BOUNDS.x, BOUNDS.x);
+      ctrl.z = clamp(hit.z, -BOUNDS.z, BOUNDS.z);
+    };
+    const release = () => { ctrl.pressing = false; ctrl.lastInput = S.t; };
+    canvas.addEventListener('pointermove', aim);
+    canvas.addEventListener('pointerdown', (e) => {
+      aim(e);
+      ctrl.pressing = true;
+      canvas.setPointerCapture(e.pointerId);
+      view.focus({ preventScroll: true });
+    });
+    canvas.addEventListener('pointerup', release);
+    canvas.addEventListener('pointercancel', release);
+
+    // Teclado: flechas relativas a la vista y espacio para presionar.
+    const KEYS = {
+      ArrowRight: [0.786, -0.618],
+      ArrowLeft: [-0.786, 0.618],
+      ArrowUp: [-0.618, -0.786],
+      ArrowDown: [0.618, 0.786],
+    };
+    view.addEventListener('keydown', (e) => {
+      const dir = KEYS[e.key];
+      if (dir) {
+        e.preventDefault();
+        takeControl();
+        const stepSize = e.shiftKey ? 0.8 : 0.3;
+        ctrl.x = clamp(ctrl.x + dir[0] * stepSize, -BOUNDS.x, BOUNDS.x);
+        ctrl.z = clamp(ctrl.z + dir[1] * stepSize, -BOUNDS.z, BOUNDS.z);
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        takeControl();
+        ctrl.pressing = true;
+      }
+    });
+    view.addEventListener('keyup', (e) => { if (e.key === ' ') release(); });
+    view.addEventListener('blur', release);
   } else {
-    // Sin WebGL: las trazas siguen funcionando.
     let last = performance.now();
     const frame = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000);
@@ -365,7 +463,8 @@
     };
     drawTrace();
     updateUI(1);
-    startLoop = () => requestAnimationFrame(frame);
+    let started = false;
+    startLoop = () => { if (!started) { started = true; requestAnimationFrame(frame); } };
     if (!K.reduce) startLoop();
   }
 
@@ -377,18 +476,19 @@
     S.burst = 0;
     setPressed(ui.cautery, S.cautery);
     ui.cautery.querySelector('[data-label]').textContent = S.cautery ? 'Electrobisturí activado' : 'Activar electrobisturí';
-    if (startLoop) startLoop();
+    startLoop();
   });
   ui.fusion.addEventListener('click', () => {
     S.fusion = !S.fusion;
     setPressed(ui.fusion, S.fusion);
-    if (startLoop) startLoop();
+    startLoop();
   });
   ui.pressure.addEventListener('input', () => {
     S.pressure = ui.pressure.value / 100;
     ui.pressureOut.textContent = `${ui.pressure.value} %`;
-    if (startLoop) startLoop();
+    startLoop();
   });
+  if (ui.reset) ui.reset.addEventListener('click', () => { clearBurns(); startLoop(); });
 
   drawTrace();
   window.addEventListener('resize', drawTrace);
