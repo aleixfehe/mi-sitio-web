@@ -45,21 +45,21 @@
 
   function shortLabel(select) {
     const opt = select.options[select.selectedIndex];
-    if (!select.value || !opt) return '—';
+    if (!select.value || !opt) return 'Sin indicar';
     return opt.dataset.short || opt.textContent;
   }
 
   // ----------------------------------------------------------- resumen vivo
   function update() {
     const tipo = form.querySelector('input[name="tipo"]:checked');
-    sum.tipo.textContent = tipo ? tipo.value : '—';
+    sum.tipo.textContent = tipo ? tipo.value : 'Sin indicar';
     sum.fase.textContent = shortLabel(f.fase);
     sum.plazo.textContent = shortLabel(f.plazo);
     sum.contacto.textContent = shortLabel(f.contacto_pref);
 
     const total = files.reduce((s, file) => s + file.size, 0);
     sum.docs.textContent = files.length
-      ? `${files.length} · ${fmtSize(total)}`
+      ? `${files.length} (${fmtSize(total)})`
       : (hasLink() ? 'Enlace' : 'Ninguno');
 
     const checks = {
