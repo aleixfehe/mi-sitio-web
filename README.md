@@ -1,6 +1,6 @@
-# technelatros · sitio web
+# AKRA · sitio web
 
-Web estática de technelatros (ingeniería por proyectos en sensórica quirúrgica
+Web estática de AKRA (ingeniería por proyectos en sensórica quirúrgica
 y en sensórica y telecomunicaciones para entornos de difícil acceso), servida
 por un Worker de Cloudflare que además envía por correo las solicitudes de
 presupuesto y los mensajes de contacto.
@@ -17,6 +17,15 @@ presupuesto y los mensajes de contacto.
 | `css/style.css` | Sistema visual (tokens de color y tipografía al principio del archivo) |
 | `js/script.js` | Ilustraciones de fondo en canvas, menú, FAQ, formulario de contacto |
 | `js/presupuesto.js` | Formulario de presupuesto: adjuntos, resumen en vivo y envío |
+| `js/three-kit.js` | Utilidades 3D compartidas (three.js r128 desde cdnjs): visor, luces, ruido, pausa fuera de pantalla |
+| `js/scene-hero.js` | Portada: red de sensores sobre un terreno, simulada en vivo |
+| `js/scene-instrument.js` | Laboratorio quirúrgico: instrumento, tejido, electrobisturí y fusión de señales |
+| `js/scene-node.js` | Nodo de campo en 3D con vista despiezada |
+| `js/sim-coverage.js` | Simulación de cobertura con línea de vista sobre un relieve generado |
+| `img/logo-mark.svg`, `img/favicon.svg` | Marca AKRA |
+
+Las escenas 3D se pausan cuando no están en pantalla y, si el sistema pide
+reducir el movimiento, muestran un fotograma fijo con un botón para reproducir.
 | `worker/index.js` | Worker: sirve los estáticos y atiende `/api/presupuesto` y `/api/contacto` |
 | `.assetsignore` | Evita publicar el Worker, la configuración y este README como estáticos |
 
