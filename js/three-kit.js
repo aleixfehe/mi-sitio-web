@@ -129,11 +129,12 @@
     return glowTex;
   }
 
-  function glowSprite(color, size) {
+  // En fondos claros el brillo aditivo desaparece: `normal` usa mezcla normal.
+  function glowSprite(color, size, normal = false) {
     const mat = new THREE.SpriteMaterial({
       map: glowTexture(),
       color,
-      blending: THREE.AdditiveBlending,
+      blending: normal ? THREE.NormalBlending : THREE.AdditiveBlending,
       transparent: true,
       depthWrite: false,
     });
